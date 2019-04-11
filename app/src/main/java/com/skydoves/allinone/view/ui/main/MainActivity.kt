@@ -1,7 +1,8 @@
-package com.skydoves.allinone
+package com.skydoves.allinone.view.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.skydoves.allinone.R
 
 class MainActivity : AppCompatActivity() {
 
