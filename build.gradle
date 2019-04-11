@@ -1,3 +1,5 @@
+apply from: './versionsPlugin.gradle'
+
 buildscript {
     ext {
         // sdk and tools
@@ -24,16 +26,17 @@ buildscript {
         junitVersion = '4.12'
         espressoVersion = '3.1.1'
         spotlessVersion = '3.21.0'
+        versionsPluginVersion = '0.21.0'
     }
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.3.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$versionsPluginVersion"
     }
 }
 
