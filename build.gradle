@@ -29,6 +29,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:3.3.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
     }
 }
 

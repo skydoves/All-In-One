@@ -13,15 +13,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.skydoves.allinone.view.ui.main
-
-import androidx.lifecycle.ViewModel
-import timber.log.Timber
-
-class MainActivityViewModel : ViewModel() {
-
-  init {
-    Timber.d("injection MainActivityViewModel")
-  }
-}
+ 

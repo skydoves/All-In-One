@@ -57,3 +57,5 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test:runner:1.2.0-alpha03"
 }
+
+apply from: '../spotless.gradle'
