@@ -19,6 +19,7 @@ package com.skydoves.allinone.persistence.preference
 import com.skydoves.preferenceroom.KeyName
 import com.skydoves.preferenceroom.PreferenceEntity
 
+@Suppress("unused")
 @PreferenceEntity("Settings")
 open class SettingEntity{
   @JvmField

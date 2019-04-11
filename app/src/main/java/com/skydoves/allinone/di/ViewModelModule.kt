@@ -17,6 +17,8 @@
 package com.skydoves.allinone.di
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.skydoves.allinone.factory.AppViewModelFactory
 import com.skydoves.allinone.view.ui.main.MainActivityViewModel
 import dagger.Binds
 import dagger.Module
@@ -30,4 +32,7 @@ internal abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(MainActivityViewModel::class)
   internal abstract fun bindMainActivityViewModels(mainActivityViewModel: MainActivityViewModel): ViewModel
+
+  @Binds
+  internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
 }
