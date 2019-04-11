@@ -18,8 +18,10 @@ package com.skydoves.allinone.view.ui.main
 
 import androidx.lifecycle.ViewModel
 import timber.log.Timber
+import javax.inject.Inject
 
-class MainActivityViewModel : ViewModel() {
+class MainActivityViewModel @Inject
+constructor() : ViewModel() {
 
   init {
     Timber.d("injection MainActivityViewModel")
