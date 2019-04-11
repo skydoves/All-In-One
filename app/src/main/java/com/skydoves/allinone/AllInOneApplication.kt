@@ -17,6 +17,7 @@
 package com.skydoves.allinone
 
 import com.skydoves.allinone.di.DaggerAppComponent
+import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
@@ -35,6 +36,8 @@ class AllInOneApplication : DaggerApplication() {
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
     }
+
+    PreferenceComponent_PreferenceComponent.init(this)
   }
 
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

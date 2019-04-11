@@ -46,6 +46,10 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
+    // preference room
+    implementation "com.github.skydoves:preferenceroom:$preferenceroomVersion"
+    kapt "com.github.skydoves:preferenceroom-processor:$preferenceroomVersion"
+
     // adapter
     implementation "com.github.skydoves:baserecyclerviewadapter:$baseAdapterVersion"
 
