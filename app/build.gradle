@@ -53,6 +53,11 @@ dependencies {
     // adapter
     implementation "com.github.skydoves:baserecyclerviewadapter:$baseAdapterVersion"
 
+    // custom views
+    implementation "com.github.AppIntro:AppIntro:$appIntroVersion"
+    implementation "devlight.io:navigationtabbar:$navigationTabVersion"
+    implementation "com.github.PhilJay:MPAndroidChart:$mpChartVersion"
+
     // debugging
     implementation "com.jakewharton.timber:timber:$timberVersion"
 

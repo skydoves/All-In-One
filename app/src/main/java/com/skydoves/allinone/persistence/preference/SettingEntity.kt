@@ -16,7 +16,12 @@
 
 package com.skydoves.allinone.persistence.preference
 
+import com.skydoves.preferenceroom.KeyName
 import com.skydoves.preferenceroom.PreferenceEntity
 
 @PreferenceEntity("Settings")
-open class SettingEntity
+open class SettingEntity{
+  @JvmField
+  @KeyName("intro")
+  val introShowed: Boolean = false
+}
