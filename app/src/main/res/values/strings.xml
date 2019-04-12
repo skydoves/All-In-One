@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AllInOne</string>
+    <string name="app_name">헬스케어 올인원</string>
+    <string name="label_start">시작하기</string>
 </resources>

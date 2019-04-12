@@ -16,11 +16,13 @@
 
 package com.skydoves.allinone.view.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.skydoves.allinone.R
+import com.skydoves.allinone.view.ui.intro.AppIntroActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -28,11 +30,13 @@ class MainActivity : AppCompatActivity() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java)
+  private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+
+    startActivity(Intent(this, AppIntroActivity::class.java))
   }
 }
