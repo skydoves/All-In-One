@@ -25,6 +25,7 @@ buildscript {
         mpChartVersion = 'v3.1.0'
         junitVersion = '4.12'
         espressoVersion = '3.1.1'
+        testRunnerVersion = '1.2.0-alpha03'
         spotlessVersion = '3.21.0'
         versionsPluginVersion = '0.21.0'
     }

@@ -64,7 +64,7 @@ dependencies {
     // unit test
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation "androidx.test:runner:1.2.0-alpha03"
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
 }
 
 apply from: '../spotless.gradle'
