@@ -21,7 +21,7 @@ import com.skydoves.preferenceroom.PreferenceEntity
 
 @Suppress("unused")
 @PreferenceEntity("Settings")
-open class SettingEntity{
+open class SettingEntity {
   @JvmField
   @KeyName("intro")
   val introShowed: Boolean = false

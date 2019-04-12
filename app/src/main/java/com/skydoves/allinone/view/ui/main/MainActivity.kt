@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.view.ui.intro.AppIntroActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -37,6 +38,12 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    startActivity(Intent(this, AppIntroActivity::class.java))
+    observeLiveData()
+  }
+
+  private fun observeLiveData() {
+    observeLiveData(viewModel.shouldInitialize) {
+      startActivity(Intent(this, AppIntroActivity::class.java))
+    }
   }
 }

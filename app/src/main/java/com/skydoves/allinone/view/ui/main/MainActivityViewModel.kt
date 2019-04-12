@@ -16,14 +16,25 @@
 
 package com.skydoves.allinone.view.ui.main
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject
 constructor() : ViewModel() {
 
+  private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
+
+  val shouldInitialize = MutableLiveData<Boolean>()
+
   init {
     Timber.d("injection MainActivityViewModel")
+
+    if (!setting.intro) {
+      shouldInitialize.postValue(setting.intro)
+      setting.putIntro(!setting.intro)
+    }
   }
 }

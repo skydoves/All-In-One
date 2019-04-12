@@ -16,7 +16,10 @@
 
 package com.skydoves.allinone.persistence.preference
 
+import com.skydoves.allinone.view.ui.main.MainActivityViewModel
 import com.skydoves.preferenceroom.PreferenceComponent
 
 @PreferenceComponent(entities = [SettingEntity::class])
-interface PreferenceComponent
+interface PreferenceComponent {
+  fun inject(target: MainActivityViewModel)
+}
