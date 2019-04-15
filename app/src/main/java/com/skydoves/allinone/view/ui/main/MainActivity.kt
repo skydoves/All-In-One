@@ -19,15 +19,25 @@ package com.skydoves.allinone.view.ui.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.observeLiveData
+import com.skydoves.allinone.utils.NavigationUtils
+import com.skydoves.allinone.view.adapter.viewpager.MainPagerAdapter
 import com.skydoves.allinone.view.ui.intro.AppIntroActivity
 import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+
+  @Inject
+  lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -38,12 +48,22 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
+    initializeUI()
     observeLiveData()
+  }
+
+  private fun initializeUI() {
+    viewpager.adapter = MainPagerAdapter(supportFragmentManager)
+    NavigationUtils.setComponents(this, viewpager, navigation)
   }
 
   private fun observeLiveData() {
     observeLiveData(viewModel.shouldInitialize) {
       startActivity(Intent(this, AppIntroActivity::class.java))
     }
+  }
+
+  override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+    return fragmentInjector
   }
 }
