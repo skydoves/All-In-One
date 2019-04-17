@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
   private fun initializeUI() {
     viewpager.adapter = MainPagerAdapter(supportFragmentManager)
+    viewpager.offscreenPageLimit = 5
     NavigationUtils.setComponents(this, viewpager, navigation)
   }
 
