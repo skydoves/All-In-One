@@ -29,9 +29,9 @@ class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
   override fun getItem(position: Int): Fragment {
     return when (position) {
-      0 -> TodoFragment()
+      0 -> OutdoorFragment()
       1 -> WaterDrinkFragment()
-      2 -> OutdoorFragment()
+      2 -> TodoFragment()
       3 -> WeatherFragment()
       else -> SettingFragment()
     }
