@@ -28,44 +28,49 @@ object NavigationUtils {
     val colors = mContext.resources.getStringArray(R.array.default_preview)
     val models = ArrayList<NavigationTabBar.Model>()
     models.add(
-        NavigationTabBar.Model.Builder(
-            ContextCompat.getDrawable(mContext, R.drawable.ic_outdoor),
-            Color.parseColor(colors[0]))
-            .title("야외 활동")
-            .badgeTitle("new")
-            .build()
+      NavigationTabBar.Model.Builder(
+        ContextCompat.getDrawable(mContext, R.drawable.ic_outdoor),
+        Color.parseColor(colors[0])
+      )
+        .title("야외 활동")
+        .badgeTitle("new")
+        .build()
     )
     models.add(
-        NavigationTabBar.Model.Builder(
-            ContextCompat.getDrawable(mContext, R.drawable.ic_drop),
-            Color.parseColor(colors[1]))
-            .title("수분 섭취")
-            .badgeTitle("new")
-            .build()
+      NavigationTabBar.Model.Builder(
+        ContextCompat.getDrawable(mContext, R.drawable.ic_drop),
+        Color.parseColor(colors[1])
+      )
+        .title("수분 섭취")
+        .badgeTitle("new")
+        .build()
     )
     models.add(
-        NavigationTabBar.Model.Builder(
-            ContextCompat.getDrawable(mContext, R.drawable.ic_todo),
-            Color.parseColor(colors[2]))
-            .title("할일 목록")
-            .badgeTitle("new")
-            .build()
+      NavigationTabBar.Model.Builder(
+        ContextCompat.getDrawable(mContext, R.drawable.ic_todo),
+        Color.parseColor(colors[2])
+      )
+        .title("할일 목록")
+        .badgeTitle("new")
+        .build()
     )
     models.add(
-        NavigationTabBar.Model.Builder(
-            ContextCompat.getDrawable(mContext, R.drawable.ic_sunny),
-            Color.parseColor(colors[3]))
-            .title("오늘 날씨")
-            .badgeTitle("new")
-            .build()
+      NavigationTabBar.Model.Builder(
+        ContextCompat.getDrawable(mContext, R.drawable.ic_sunny),
+        Color.parseColor(colors[3])
+      )
+        .title("오늘 날씨")
+        .badgeTitle("new")
+        .build()
     )
     models.add(
-        NavigationTabBar.Model.Builder(
-            ContextCompat.getDrawable(mContext, R.drawable.ic_setting),
-            Color.parseColor(colors[4]))
-            .title("환경 설정")
-            .badgeTitle("new")
-            .build()
+      NavigationTabBar.Model.Builder(
+        ContextCompat.getDrawable(mContext, R.drawable.ic_setting),
+        Color.parseColor(colors[4])
+      )
+        .title("환경 설정")
+        .badgeTitle("new")
+        .build()
     )
     return models
   }
