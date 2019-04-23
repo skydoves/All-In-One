@@ -7,7 +7,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.skydoves.allinone"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -61,6 +61,8 @@ dependencies {
     implementation "devlight.io:navigationtabbar:$navigationTabVersion"
     implementation "com.github.PhilJay:MPAndroidChart:$mpChartVersion"
     implementation "com.github.jorgecastilloprz:fillableloaders:$fillableVersion"
+    implementation "com.github.skydoves:needs:$needsVersion"
+    implementation "com.github.skydoves:powermenu:$powermenuVersion"
 
     // debugging
     implementation "com.jakewharton.timber:timber:$timberVersion"
