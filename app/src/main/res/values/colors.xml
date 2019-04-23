@@ -9,4 +9,6 @@
     <color name="HintText">#87ffffff</color>
     <color name="preview">#b0abb0</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="waterBlue">#3d95c9</color>
 </resources>

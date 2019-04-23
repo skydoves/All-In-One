@@ -17,8 +17,10 @@
         android:name=".AllInOneApplication"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".view.ui.main.MainActivity">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
+        <activity android:name=".view.ui.main.MainActivity"
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

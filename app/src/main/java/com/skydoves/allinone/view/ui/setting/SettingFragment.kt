@@ -34,6 +34,11 @@ class SettingFragment : Fragment() {
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private lateinit var viewModel: MainActivityViewModel
 
+  override fun onAttach(context: Context) {
+    AndroidSupportInjection.inject(this)
+    super.onAttach(context)
+  }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.layout_setting, container, false)
   }
@@ -41,11 +46,6 @@ class SettingFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     initializeUI()
-  }
-
-  override fun onAttach(context: Context) {
-    AndroidSupportInjection.inject(this)
-    super.onAttach(context)
   }
 
   private fun initializeUI() {
