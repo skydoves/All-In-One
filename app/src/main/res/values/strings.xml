@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">헬스케어 올인원</string>
     <string name="label_start">시작하기</string>
+    <string name="needs_confirm">확인 되었습니다.</string>
+    <string name="needs_title">앱 권한 설정 안내</string>
+    <string name="needs_required">(필수)</string>
+    <string name="needs_sdcard">디바이스의 내부 파일에 접근합니다.</string>
+    <string name="needs_sdcard_description">선택적 권한은 서비스 사용 중 필요한 시점에 동의를 받고 있습니다.</string>
+    <string name="confirm">확인</string>
 </resources>

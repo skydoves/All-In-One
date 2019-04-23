@@ -25,13 +25,17 @@ import androidx.lifecycle.ViewModelProviders
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.utils.NavigationUtils
+import com.skydoves.allinone.utils.NeedsUtils
 import com.skydoves.allinone.view.adapter.viewpager.MainPagerAdapter
 import com.skydoves.allinone.view.ui.intro.AppIntroActivity
+import com.skydoves.needs.Needs
+import com.skydoves.needs.OnConfirmListener
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -42,6 +46,8 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java) }
+
+  private lateinit var needs: Needs
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
@@ -56,11 +62,25 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     viewpager.adapter = MainPagerAdapter(supportFragmentManager)
     viewpager.offscreenPageLimit = 5
     NavigationUtils.setComponents(this, viewpager, navigation)
+    configureNeeds()
   }
 
   private fun observeLiveData() {
     observeLiveData(viewModel.shouldInitialize) {
       startActivity(Intent(this, AppIntroActivity::class.java))
+    }
+  }
+
+  private fun configureNeeds() {
+    this.needs = NeedsUtils.getNeedsPopup(this, this)
+    this.needs.setOnConfirmListener(object : OnConfirmListener {
+      override fun onConfirm() {
+        toast(getString(R.string.needs_confirm))
+        needs.dismiss()
+      }
+    })
+    viewpager.viewTreeObserver.addOnGlobalLayoutListener {
+      needs.show(viewpager)
     }
   }
 
