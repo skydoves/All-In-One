@@ -105,7 +105,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8">
+            android:layout_weight="0.7">
 
             <LinearLayout
                 android:id="@+id/divider2"
@@ -121,12 +121,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:padding="20dp">
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:id="@+id/label_drink_should"
@@ -157,7 +159,8 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:id="@+id/label_drink_today"
@@ -194,7 +197,7 @@
                         android:id="@+id/fab_drink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_centerInParent="true"
                         android:src="@drawable/ic_glass0"
                         app:backgroundTint="#3d95c9"
                         app:fabutton_duration="200"
