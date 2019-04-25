@@ -7,4 +7,9 @@
     <string name="needs_sdcard">디바이스의 내부 파일에 접근합니다.</string>
     <string name="needs_sdcard_description">선택적 권한은 서비스 사용 중 필요한 시점에 동의를 받고 있습니다.</string>
     <string name="confirm">확인</string>
+    <string name="label_today_drink">오늘의 수분 섭취량</string>
+    <string name="label_drink_target">목표 섭취량</string>
+    <string name="label_today_weather">오늘의 미세먼지</string>
+    <string name="label_drink_should">남은 섭취량</string>
+    <string name="label_drink_today">오늘의 섭취량</string>
 </resources>

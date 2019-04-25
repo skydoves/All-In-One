@@ -63,6 +63,7 @@ dependencies {
     implementation "com.github.jorgecastilloprz:fillableloaders:$fillableVersion"
     implementation "com.github.skydoves:needs:$needsVersion"
     implementation "com.github.skydoves:powermenu:$powermenuVersion"
+    implementation "com.github.skydoves:elasticviews:$elasticviewVersion"
 
     // debugging
     implementation "com.jakewharton.timber:timber:$timberVersion"

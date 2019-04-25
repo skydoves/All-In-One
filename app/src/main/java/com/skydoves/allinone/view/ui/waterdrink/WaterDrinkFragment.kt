@@ -71,7 +71,7 @@ class WaterDrinkFragment : Fragment() {
 
       fillAbleLoader.setSvgPath(FillAbleLoaderPaths.SVG_WATERDROP)
       fillAbleLoader.setFillColor(Color.WHITE)
-      fillAbleLoader.setPercentage(70f)
+      fillAbleLoader.setPercentage(65f)
       fillAbleLoader.start()
     }
   }

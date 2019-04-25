@@ -26,6 +26,7 @@ buildscript {
         fillableVersion = '1.03@aar'
         needsVersion = '1.0.2'
         powermenuVersion = '2.0.9'
+        elasticviewVersion = '2.0.3'
         mpChartVersion = '3.1.0'
         junitVersion = '4.12'
         espressoVersion = '3.1.1'
