@@ -12,4 +12,10 @@
     <string name="label_today_weather">오늘의 미세먼지</string>
     <string name="label_drink_should">남은 섭취량</string>
     <string name="label_drink_today">오늘의 섭취량</string>
+    <string name="label_waterGoal">목표 수분 섭취량</string>
+    <string name="label_waterGoal_description">하루 목표 섭취량을 입력해 주세요!</string>
+    <string name="label_ml">ml</string>
+    <string name="label_waterGoal_confirm">목표 설정 완료</string>
+    <string name="toast_wrong_goal">올바른 목표치를 설정해주세요!</string>
+    <string name="toast_setGoal">목표치를 설정했습니다.</string>
 </resources>

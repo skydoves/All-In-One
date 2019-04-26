@@ -25,4 +25,8 @@ open class SettingEntity {
   @JvmField
   @KeyName("intro")
   val introShowed: Boolean = false
+
+  @JvmField
+  @KeyName("waterGoal")
+  val waterGoal: Int = 2000
 }
