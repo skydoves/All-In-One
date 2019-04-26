@@ -20,6 +20,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.paolorotolo.appintro.AppIntro
 import com.skydoves.allinone.R
+import com.skydoves.allinone.view.ui.setting.water.WaterGoalActivity
+import org.jetbrains.anko.startActivity
 
 class AppIntroActivity : AppIntro() {
 
@@ -35,11 +37,16 @@ class AppIntroActivity : AppIntro() {
 
   override fun onSkipPressed(currentFragment: Fragment) {
     super.onSkipPressed(currentFragment)
-    finish()
+    doneOrSkip()
   }
 
   override fun onDonePressed(currentFragment: Fragment) {
     super.onDonePressed(currentFragment)
+    doneOrSkip()
+  }
+
+  private fun doneOrSkip() {
+    startActivity<WaterGoalActivity>()
     finish()
   }
 

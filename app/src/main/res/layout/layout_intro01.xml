@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="10"
-    android:background="#2d334e"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <Space
