@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.factory.AppViewModelFactory
 import com.skydoves.allinone.view.ui.main.MainActivityViewModel
+import com.skydoves.allinone.view.ui.setting.water.WaterGoalViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -32,6 +33,11 @@ internal abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(MainActivityViewModel::class)
   internal abstract fun bindMainActivityViewModels(mainActivityViewModel: MainActivityViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(WaterGoalViewModel::class)
+  internal abstract fun bindWaterGoalActivityViewModel(waterGoalViewModel: WaterGoalViewModel): ViewModel
 
   @Binds
   internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory

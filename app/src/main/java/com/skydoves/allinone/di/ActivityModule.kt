@@ -17,6 +17,7 @@
 package com.skydoves.allinone.di
 
 import com.skydoves.allinone.view.ui.main.MainActivity
+import com.skydoves.allinone.view.ui.setting.water.WaterGoalActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -26,4 +27,7 @@ abstract class ActivityModule {
 
   @ContributesAndroidInjector(modules = [MainActivityFragmentModule::class])
   internal abstract fun contributeMainActivity(): MainActivity
+
+  @ContributesAndroidInjector
+  internal abstract fun contributeWaterGoalActivity(): WaterGoalActivity
 }
