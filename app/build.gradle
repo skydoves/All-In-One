@@ -56,6 +56,9 @@ dependencies {
     // adapter
     implementation "com.github.skydoves:baserecyclerviewadapter:$baseAdapterVersion"
 
+    // timestamp
+    implementation "com.jakewharton.threetenabp:threetenabp:$threetenabpVersion"
+
     // custom views
     implementation "com.github.AppIntro:AppIntro:$appIntroVersion"
     implementation "devlight.io:navigationtabbar:$navigationTabVersion"
