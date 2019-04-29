@@ -32,7 +32,6 @@ import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform
 import com.skydoves.allinone.R
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
-import com.skydoves.allinone.view.ui.main.MainActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_waterdrink.*
 import javax.inject.Inject
@@ -41,7 +40,7 @@ class WaterDrinkFragment : Fragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java) }
+  private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(WaterDrinkViewModel::class.java) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
