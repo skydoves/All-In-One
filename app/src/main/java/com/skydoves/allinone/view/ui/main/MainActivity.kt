@@ -21,9 +21,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.observeLiveData
+import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.NavigationUtils
 import com.skydoves.allinone.utils.NeedsUtils
 import com.skydoves.allinone.view.adapter.viewpager.MainPagerAdapter
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java) }
+  private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class)}
 
   private lateinit var needs: Needs
 

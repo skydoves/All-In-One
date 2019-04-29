@@ -19,8 +19,8 @@ package com.skydoves.allinone.view.ui.setting.water
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.vm
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_water_goal.*
 import org.jetbrains.anko.toast
@@ -30,7 +30,7 @@ class WaterGoalActivity : AppCompatActivity() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(WaterGoalViewModel::class.java) }
+  private val viewModel by lazy { vm(viewModelFactory, WaterGoalViewModel::class)}
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
