@@ -26,10 +26,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.github.jorgecastillo.FillableLoaderBuilder
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
 import dagger.android.support.AndroidSupportInjection
@@ -40,7 +40,7 @@ class WaterDrinkFragment : Fragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(WaterDrinkViewModel::class.java) }
+  private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)

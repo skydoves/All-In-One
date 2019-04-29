@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.view.ui.main.MainActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -32,7 +33,7 @@ class TodoFragment : Fragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private lateinit var viewModel: MainActivityViewModel
+  private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
