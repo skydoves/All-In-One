@@ -16,6 +16,7 @@
 
 package com.skydoves.allinone.view.ui.waterdrink
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -25,6 +26,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.github.jorgecastillo.FillableLoaderBuilder
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform
 import com.skydoves.allinone.R
@@ -39,7 +41,7 @@ class WaterDrinkFragment : Fragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private lateinit var viewModel: MainActivityViewModel
+  private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -55,6 +57,7 @@ class WaterDrinkFragment : Fragment() {
     initializeUI()
   }
 
+  @SuppressLint("SetTextI18n")
   private fun initializeUI() {
     context?.let {
       val loaderBuilder = FillableLoaderBuilder()
@@ -74,5 +77,7 @@ class WaterDrinkFragment : Fragment() {
       fillAbleLoader.setPercentage(65f)
       fillAbleLoader.start()
     }
+
+    goal.text = "${viewModel.getWaterGoal()} ml"
   }
 }

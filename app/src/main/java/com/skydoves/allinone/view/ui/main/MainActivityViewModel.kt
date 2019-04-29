@@ -37,4 +37,8 @@ constructor() : ViewModel() {
       setting.putIntro(!setting.intro)
     }
   }
+
+  fun getWaterGoal(): Int {
+    return setting.waterGoal
+  }
 }
