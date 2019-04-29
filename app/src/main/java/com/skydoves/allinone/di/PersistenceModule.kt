@@ -17,28 +17,28 @@
 package com.skydoves.allinone.di
 
 import android.app.Application
-import dagger.BindsInstance
-import dagger.Component
-import dagger.android.AndroidInjectionModule
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import androidx.annotation.NonNull
+import androidx.room.Room
+import com.skydoves.allinone.persistence.room.AppDatabase
+import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
+import dagger.Module
+import dagger.Provides
 import javax.inject.Singleton
 
-@Singleton
-@Component(modules = [
-  AndroidInjectionModule::class,
-  ActivityModule::class,
-  ViewModelModule::class,
-  PersistenceModule::class,
-  NetworkModule::class])
-interface AppComponent : AndroidInjector<DaggerApplication> {
-  @Component.Builder
-  interface Builder {
-    @BindsInstance
-    fun application(application: Application): Builder
+@Module
+class PersistenceModule {
 
-    fun build(): AppComponent
+  @Provides
+  @Singleton
+  fun provideDatabase(@NonNull application: Application): AppDatabase {
+    return Room.databaseBuilder(application, AppDatabase::class.java, "AllInOne.db")
+        .allowMainThreadQueries()
+        .build()
   }
 
-  override fun inject(instance: DaggerApplication)
+  @Provides
+  @Singleton
+  fun provideWaterDrinkDao(@NonNull database: AppDatabase): WaterDrinkDao {
+    return database.waterDrinkDao()
+  }
 }
