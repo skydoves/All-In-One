@@ -18,4 +18,6 @@
     <string name="label_waterGoal_confirm">목표 설정 완료</string>
     <string name="toast_wrong_goal">올바른 목표치를 설정해주세요!</string>
     <string name="toast_setGoal">목표치를 설정했습니다.</string>
+    <string name="label_select_drink_amount">섭취용량 선택</string>
+    <string name="cancel">취소</string>
 </resources>

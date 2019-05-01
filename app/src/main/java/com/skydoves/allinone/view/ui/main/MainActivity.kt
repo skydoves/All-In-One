@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class)}
+  private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class) }
 
   private lateinit var needs: Needs
 

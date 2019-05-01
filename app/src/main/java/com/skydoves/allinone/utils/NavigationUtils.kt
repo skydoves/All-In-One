@@ -24,6 +24,7 @@ import com.skydoves.allinone.R
 import devlight.io.library.ntb.NavigationTabBar
 
 object NavigationUtils {
+
   fun getNavigationModels(mContext: Context): ArrayList<NavigationTabBar.Model> {
     val colors = mContext.resources.getStringArray(R.array.default_preview)
     val models = ArrayList<NavigationTabBar.Model>()

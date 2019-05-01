@@ -30,7 +30,7 @@ class WaterGoalActivity : AppCompatActivity() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, WaterGoalViewModel::class)}
+  private val viewModel by lazy { vm(viewModelFactory, WaterGoalViewModel::class) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
