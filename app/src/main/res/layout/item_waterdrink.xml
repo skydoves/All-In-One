@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:layout_marginLeft="10dp"
+  android:layout_marginStart="10dp"
+  android:layout_marginTop="10dp"
+  android:background="@color/background">
+
+  <ImageView
+    android:id="@+id/icon"
+    android:layout_width="55dp"
+    android:layout_height="55dp"
+    android:layout_gravity="center_horizontal"
+    tools:src="@drawable/ic_glass1"/>
+
+  <TextView
+    android:id="@+id/amount"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="5dp"
+    android:layout_gravity="center_horizontal"
+    android:textColor="@color/white"
+    tools:text="amount"/>
+</LinearLayout>

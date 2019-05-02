@@ -14,23 +14,16 @@
  * limitations under the License.
  */
 
-@file:Suppress("UNCHECKED_CAST")
+package com.skydoves.allinone.utils
 
-package com.skydoves.allinone.extension
-
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import com.skydoves.allinone.bus.LiveDataBus
 
-inline fun <T> LifecycleOwner.observeLiveData(data: LiveData<T>, crossinline onChanged: (T) -> Unit) {
-  data.observe(this, Observer {
-    it?.let { value -> onChanged(value) }
-  })
-}
+class AbsentLiveData<T> : LiveData<T>() {
+  init {
+    postValue(null)
+  }
 
-inline fun <T> LifecycleOwner.observeEventBus(index: Int, crossinline onChanged: (T) -> Unit) {
-  LiveDataBus.observe(index, this, Observer {
-    it?.let { value -> onChanged(value as T) }
-  })
+  companion object {
+    fun <T> create() = AbsentLiveData<T>()
+  }
 }
