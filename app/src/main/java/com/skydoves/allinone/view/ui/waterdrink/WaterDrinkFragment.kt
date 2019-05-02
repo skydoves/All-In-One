@@ -26,9 +26,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.github.jorgecastillo.FillableLoader
 import com.github.jorgecastillo.FillableLoaderBuilder
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
@@ -43,6 +45,8 @@ class WaterDrinkFragment : Fragment() {
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
 
+  private lateinit var fillAbleLoader: FillableLoader
+
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
     super.onAttach(context)
@@ -55,13 +59,14 @@ class WaterDrinkFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     initializeUI()
+    observeLiveData()
   }
 
   @SuppressLint("SetTextI18n")
   private fun initializeUI() {
     context?.let {
       val loaderBuilder = FillableLoaderBuilder()
-      val fillAbleLoader = loaderBuilder.parentView(parentView)
+      this.fillAbleLoader = loaderBuilder.parentView(parentView)
           .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
           .layoutParams(FillAbleLoaderUtils.getParams(it))
           .originalDimensions(290, 425)
@@ -74,12 +79,22 @@ class WaterDrinkFragment : Fragment() {
 
       fillAbleLoader.setSvgPath(FillAbleLoaderPaths.SVG_WATERDROP)
       fillAbleLoader.setFillColor(Color.WHITE)
-      fillAbleLoader.setPercentage(65f)
+      fillAbleLoader.setPercentage(20f)
       fillAbleLoader.start()
     }
 
     goal.text = "${viewModel.getWaterGoal()} ml"
 
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
+  }
+
+  private fun observeLiveData() {
+    observeLiveData(viewModel.getTodayWaterDrinks()) {
+      fillAbleLoader.reset()
+      fillAbleLoader.setSvgPath(FillAbleLoaderPaths.SVG_WATERDROP)
+      fillAbleLoader.setFillColor(Color.WHITE)
+      fillAbleLoader.setPercentage(65f + it.size*2)
+      fillAbleLoader.start()
+    }
   }
 }

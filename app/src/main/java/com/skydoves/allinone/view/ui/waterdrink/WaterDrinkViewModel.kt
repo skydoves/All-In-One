@@ -16,11 +16,14 @@
 
 package com.skydoves.allinone.view.ui.waterdrink
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
+import com.skydoves.allinone.utils.AbsentLiveData
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
@@ -31,24 +34,29 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
 
   private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
 
-  val waterDrinks: MutableLiveData<List<WaterDrink>> = MutableLiveData()
+  private val waterDrinkLiveData: MutableLiveData<WaterDrink> = MutableLiveData()
+  private val waterDrinks: LiveData<List<WaterDrink>>
 
   init {
     Timber.d("injection WaterDrinkViewModel")
+
+    waterDrinkLiveData.value = WaterDrinkItemUtils.getDummyWaterDrink()
+    waterDrinks = Transformations.switchMap(waterDrinkLiveData) {
+      waterDrinkLiveData.value?.let {
+        waterDrinkDao.getWaterDrinksByDate(WaterDrinkItemUtils.getDateString(OffsetDateTime.now())) }
+          ?: AbsentLiveData.create()
+    }
   }
 
   fun getWaterGoal(): Int {
     return setting.waterGoal
   }
 
+  fun getTodayWaterDrinks() = waterDrinks
+
   fun insertWaterDrink(waterDrink: WaterDrink) {
     waterDrink.timeStamp = OffsetDateTime.now()
     waterDrinkDao.insertWaterDrink(waterDrink)
-  }
-
-  fun getWaterDrinkByDate(date: OffsetDateTime) {
-    waterDrinkDao.getWaterDrinksByDate(WaterDrinkItemUtils.getDateString(date)).observeForever {
-      waterDrinks.postValue(it)
-    }
+    waterDrinkLiveData.postValue(waterDrink)
   }
 }

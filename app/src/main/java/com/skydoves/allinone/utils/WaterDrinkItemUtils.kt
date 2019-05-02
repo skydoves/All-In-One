@@ -36,6 +36,19 @@ object WaterDrinkItemUtils {
     return "${time.year}${time.dayOfMonth}${time.dayOfMonth}"
   }
 
+  fun getWaterAmouts(waterDrinks: List<WaterDrink>): Int {
+    var amounts = 0
+    for (waterDrink in waterDrinks) {
+      amounts += waterDrink.amount
+    }
+    return amounts
+  }
+
+  fun getDummyWaterDrink(): WaterDrink {
+    val time = OffsetDateTime.now()
+    return WaterDrink(time, getDateString(time), getWaterDrinkIcon(125), 125)
+  }
+
   fun getDefaultModels(): List<WaterDrink> {
     val time = OffsetDateTime.now()
     val items: MutableList<WaterDrink> = ArrayList()

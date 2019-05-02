@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("UNCHECKED_CAST")
+
 package com.skydoves.allinone.extension
 
 import androidx.lifecycle.LifecycleOwner
@@ -27,8 +29,8 @@ inline fun <T> LifecycleOwner.observeLiveData(data: LiveData<T>, crossinline onC
   })
 }
 
-inline fun LifecycleOwner.observeEventBus(index: Int, crossinline onChanged: () -> Unit) {
+inline fun <T> LifecycleOwner.observeEventBus(index: Int, crossinline onChanged: (T) -> Unit) {
   LiveDataBus.observe(index, this, Observer {
-    it?.let { _ -> onChanged() }
+    it?.let { value -> onChanged(value as T) }
   })
 }
