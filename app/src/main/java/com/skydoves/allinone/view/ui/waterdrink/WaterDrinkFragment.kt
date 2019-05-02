@@ -34,6 +34,7 @@ import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_waterdrink.*
+import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
 
 class WaterDrinkFragment : Fragment() {
@@ -78,5 +79,7 @@ class WaterDrinkFragment : Fragment() {
     }
 
     goal.text = "${viewModel.getWaterGoal()} ml"
+
+    fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
   }
 }
