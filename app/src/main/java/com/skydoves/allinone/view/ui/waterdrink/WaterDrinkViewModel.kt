@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModel
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
+import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -37,6 +38,7 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
   }
 
   fun insertWaterDrink(waterDrink: WaterDrink) {
+    waterDrink.timeStamp = OffsetDateTime.now()
     waterDrinkDao.insertWaterDrink(waterDrink)
   }
 }

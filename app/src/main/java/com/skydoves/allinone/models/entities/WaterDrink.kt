@@ -25,7 +25,7 @@ import org.threeten.bp.OffsetDateTime
 @Suppress("unused")
 @Entity(primaryKeys = [("timeStamp")])
 data class WaterDrink(
-  @NonNull val timeStamp: OffsetDateTime,
+  @NonNull var timeStamp: OffsetDateTime,
   val icon: Int,
   val amount: Int
 ) : Parcelable {

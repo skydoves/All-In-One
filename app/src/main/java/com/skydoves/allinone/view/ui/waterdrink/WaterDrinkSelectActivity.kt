@@ -19,20 +19,43 @@ package com.skydoves.allinone.view.ui.waterdrink
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.vm
+import com.skydoves.allinone.models.entities.WaterDrink
+import com.skydoves.allinone.utils.WaterDrinkItemUtils
+import com.skydoves.allinone.view.adapter.recyclerView.WaterItemAdapter
+import com.skydoves.allinone.view.viewholder.WaterItemViewHolder
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.layout_item_select_popup.*
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-class WaterDrinkSelectActivity : AppCompatActivity() {
+class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delegate {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
 
+  private val adapter by lazy { WaterItemAdapter(this) }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.layout_item_select_popup)
+    initializeUI()
+  }
+
+  private fun initializeUI() {
+    recyclerView.adapter = adapter
+    recyclerView.layoutManager = GridLayoutManager(this, 3)
+    adapter.addItems(WaterDrinkItemUtils.getDefaultModels())
+    cancel.setOnClickListener { finish() }
+  }
+
+  override fun onItemClick(waterDrink: WaterDrink) {
+    viewModel.insertWaterDrink(waterDrink)
+    toast("${waterDrink.amount}${getString(R.string.toast_drink_water)}")
+    finish()
   }
 }
