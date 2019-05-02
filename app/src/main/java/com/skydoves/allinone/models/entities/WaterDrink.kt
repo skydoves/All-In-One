@@ -26,11 +26,13 @@ import org.threeten.bp.OffsetDateTime
 @Entity(primaryKeys = [("timeStamp")])
 data class WaterDrink(
   @NonNull var timeStamp: OffsetDateTime,
+  @NonNull val date: String,
   val icon: Int,
   val amount: Int
 ) : Parcelable {
   constructor(source: Parcel) : this(
       source.readSerializable() as OffsetDateTime,
+      source.readString(),
       source.readInt(),
       source.readInt()
   )
@@ -39,6 +41,7 @@ data class WaterDrink(
 
   override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
     writeSerializable(timeStamp)
+    writeString(date)
     writeInt(icon)
     writeInt(amount)
   }

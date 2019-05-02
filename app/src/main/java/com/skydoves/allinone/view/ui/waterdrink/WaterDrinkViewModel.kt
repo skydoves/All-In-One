@@ -16,10 +16,12 @@
 
 package com.skydoves.allinone.view.ui.waterdrink
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
+import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
 import javax.inject.Inject
@@ -28,6 +30,8 @@ class WaterDrinkViewModel @Inject
 constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
 
   private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
+
+  val waterDrinks: MutableLiveData<List<WaterDrink>> = MutableLiveData()
 
   init {
     Timber.d("injection WaterDrinkViewModel")
@@ -40,5 +44,11 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
   fun insertWaterDrink(waterDrink: WaterDrink) {
     waterDrink.timeStamp = OffsetDateTime.now()
     waterDrinkDao.insertWaterDrink(waterDrink)
+  }
+
+  fun getWaterDrinkByDate(date: OffsetDateTime) {
+    waterDrinkDao.getWaterDrinksByDate(WaterDrinkItemUtils.getDateString(date)).observeForever {
+      waterDrinks.postValue(it)
+    }
   }
 }

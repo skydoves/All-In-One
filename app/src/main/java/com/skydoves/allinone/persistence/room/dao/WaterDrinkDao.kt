@@ -33,5 +33,8 @@ interface WaterDrinkDao {
   fun updateWaterDrink(waterDrink: WaterDrink)
 
   @Query("SELECT * FROM WaterDrink ORDER BY datetime(timeStamp) DESC")
-  fun getWaterDrinks(): LiveData<WaterDrink>
+  fun getWaterDrinks(): LiveData<List<WaterDrink>>
+
+  @Query("SELECT * FROM WaterDrink WHERE date = :date_")
+  fun getWaterDrinksByDate(date_: String): LiveData<List<WaterDrink>>
 }

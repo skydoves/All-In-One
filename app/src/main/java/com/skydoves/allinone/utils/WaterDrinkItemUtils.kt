@@ -32,13 +32,18 @@ object WaterDrinkItemUtils {
     }
   }
 
+  fun getDateString(time: OffsetDateTime): String {
+    return "${time.year}${time.dayOfMonth}${time.dayOfMonth}"
+  }
+
   fun getDefaultModels(): List<WaterDrink> {
+    val time = OffsetDateTime.now()
     val items: MutableList<WaterDrink> = ArrayList()
-    items.add(WaterDrink(OffsetDateTime.now(), getWaterDrinkIcon(125), 125))
-    items.add(WaterDrink(OffsetDateTime.now(), getWaterDrinkIcon(250), 250))
-    items.add(WaterDrink(OffsetDateTime.now(), getWaterDrinkIcon(350), 350))
-    items.add(WaterDrink(OffsetDateTime.now(), getWaterDrinkIcon(500), 500))
-    items.add(WaterDrink(OffsetDateTime.now(), getWaterDrinkIcon(1000), 1000))
+    items.add(WaterDrink(time, getDateString(time), getWaterDrinkIcon(125), 125))
+    items.add(WaterDrink(time, getDateString(time), getWaterDrinkIcon(250), 250))
+    items.add(WaterDrink(time, getDateString(time), getWaterDrinkIcon(350), 350))
+    items.add(WaterDrink(time, getDateString(time), getWaterDrinkIcon(500), 500))
+    items.add(WaterDrink(time, getDateString(time), getWaterDrinkIcon(1000), 1000))
     return items
   }
 }

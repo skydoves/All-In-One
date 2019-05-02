@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
@@ -43,7 +44,9 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.layout_item_select_popup)
+
     initializeUI()
+    observeLiveData()
   }
 
   private fun initializeUI() {
@@ -53,9 +56,15 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
     cancel.setOnClickListener { finish() }
   }
 
+  fun observeLiveData() {
+    observeLiveData(viewModel.waterDrinks) {
+      finish()
+    }
+  }
+
   override fun onItemClick(waterDrink: WaterDrink) {
     viewModel.insertWaterDrink(waterDrink)
+    viewModel.getWaterDrinkByDate(waterDrink.timeStamp)
     toast("${waterDrink.amount}${getString(R.string.toast_drink_water)}")
-    finish()
   }
 }
