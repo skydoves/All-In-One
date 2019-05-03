@@ -34,6 +34,7 @@ import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
+import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_waterdrink.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -81,19 +82,34 @@ class WaterDrinkFragment : Fragment() {
       fillAbleLoader.setFillColor(Color.WHITE)
       fillAbleLoader.setPercentage(20f)
       fillAbleLoader.start()
+      percentage.bringToFront()
     }
 
     goal.text = "${viewModel.getWaterGoal()} ml"
-
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
   }
 
+  @SuppressLint("SetTextI18n")
   private fun observeLiveData() {
     observeLiveData(viewModel.getTodayWaterDrinks()) {
+      val todayAmounts = WaterDrinkItemUtils.getWaterAmouts(it)
+      drink_today.text = "$todayAmounts ml"
+      val should = viewModel.getWaterGoal() - todayAmounts
+      if (should > 0) {
+        drink_should.text = "$should ml"
+      } else {
+        drink_should.text = "0ml"
+      }
+      val percent = (todayAmounts.toFloat() / viewModel.getWaterGoal().toFloat() * 100)
+      if (percent < 100) {
+        percentage.text = "${percent.toInt()}%"
+      } else {
+        percentage.text = "100%"
+      }
       fillAbleLoader.reset()
       fillAbleLoader.setSvgPath(FillAbleLoaderPaths.SVG_WATERDROP)
       fillAbleLoader.setFillColor(Color.WHITE)
-      fillAbleLoader.setPercentage(65f + it.size*2)
+      fillAbleLoader.setPercentage(percent)
       fillAbleLoader.start()
     }
   }

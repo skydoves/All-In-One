@@ -48,9 +48,7 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
     }
   }
 
-  fun getWaterGoal(): Int {
-    return setting.waterGoal
-  }
+  fun getWaterGoal() = setting.waterGoal
 
   fun getTodayWaterDrinks() = waterDrinks
 
