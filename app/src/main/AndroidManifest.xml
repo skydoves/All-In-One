@@ -32,7 +32,7 @@
     <activity android:name=".view.ui.setting.water.WaterGoalActivity" />
     <activity
       android:name=".view.ui.waterdrink.WaterDrinkSelectActivity"
-      android:theme="@style/AppTheme.Dialog"/>
+      android:theme="@style/AppTheme.Dialog" />
   </application>
 
 </manifest>

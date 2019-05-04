@@ -21,4 +21,8 @@
   <string name="label_select_drink_amount">섭취용량 선택</string>
   <string name="cancel">취소</string>
   <string name="toast_drink_water">ml를 섭취했습니다.</string>
+  <string name="label_no_record">기록이 없습니다.</string>
+  <string name="label_drink_total">총 섭취량</string>
+  <string name="label_water_average">평균 섭취량</string>
+  <string name="label_selected_day">선택 요일</string>
 </resources>

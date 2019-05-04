@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/parent"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/background">
@@ -16,7 +15,7 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="0.7">
-      
+
       <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/more"
         android:layout_width="48dp"
@@ -24,200 +23,198 @@
         android:padding="5dp"
         android:src="@drawable/ic_hamburger"
         android:layout_margin="15dp"
+        android:rotation="90"
         app:imageview_duration="100"
         app:imageview_scale="0.75"/>
 
       <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/label_today_drink"
-        android:textColor="@color/white"
-        android:textSize="23sp"
-        android:layout_centerInParent="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        tools:text="2019-10-21 ~ 2019-10-28" />
     </RelativeLayout>
 
     <RelativeLayout
-      android:id="@+id/parentView"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="2.5">
 
       <LinearLayout
-        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/preview"
-        android:orientation="horizontal"/>
+        android:background="#2e3241"
+        android:orientation="horizontal" />
 
-      <TextView
-        android:id="@+id/label_goal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/divider"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="23dp"
-        android:gravity="end"
-        android:scrollbars="vertical"
-        android:text="@string/label_drink_target"
-        android:textColor="@color/waterBlue"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+      <ImageView
+        android:id="@+id/previous"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_arrow_left"
+        android:tint="#ffffff" />
 
-      <TextView
-        android:id="@+id/goal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/label_goal"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="23dp"
-        android:gravity="end"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="2000 ml" />
-
-      <TextView
-        android:id="@+id/label_fineDust"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/divider"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:scrollbars="vertical"
-        android:text="@string/label_today_weather"
-        android:textColor="@color/waterBlue"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-      <TextView
-        android:id="@+id/fineDust"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/label_fineDust"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="75" />
-
-      <TextView
-        android:id="@+id/percentage"
+      <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:foregroundGravity="center" />
+
+      <ImageView
+        android:id="@+id/next"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_arrow_right"
+        android:tint="#ffffff" />
+
+      <TextView
+        android:id="@+id/chart_tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:text="@string/label_no_record"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        tools:text="50%" />
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
     </RelativeLayout>
 
     <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="0.7">
+      android:layout_weight="0.8">
 
       <LinearLayout
-        android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/preview"
-        android:orientation="horizontal"/>
+        android:background="#2e3241" />
 
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:weightSum="3">
 
-        <RelativeLayout
+        <LinearLayout
           android:layout_width="0dp"
           android:layout_height="match_parent"
-          android:layout_marginTop="15dp"
-          android:layout_weight="2">
+          android:layout_weight="1"
+          android:orientation="vertical">
 
           <TextView
-            android:id="@+id/label_drink_should"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:scrollbars="vertical"
-            android:text="@string/label_drink_should"
+            android:text="@string/label_drink_total"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#3d95c9"
             android:textSize="15sp"
             android:textStyle="bold" />
 
           <TextView
-            android:id="@+id/drink_should"
+            android:id="@+id/total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/label_drink_should"
             android:layout_marginTop="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#ffffff"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="1000 ml" />
+        </LinearLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
           android:layout_width="0dp"
           android:layout_height="match_parent"
-          android:layout_marginTop="15dp"
-          android:layout_weight="2">
+          android:layout_weight="1"
+          android:orientation="vertical">
 
           <TextView
-            android:id="@+id/label_drink_today"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:scrollbars="vertical"
-            android:text="@string/label_drink_today"
+            android:text="@string/label_water_average"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#3d95c9"
             android:textSize="15sp"
             android:textStyle="bold" />
 
           <TextView
-            android:id="@+id/drink_today"
+            android:id="@+id/average"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/label_drink_today"
             android:layout_marginTop="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#ffffff"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="1000 ml" />
+        </LinearLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
           android:layout_width="0dp"
           android:layout_height="match_parent"
-          android:layout_weight="1">
+          android:layout_weight="1"
+          android:orientation="vertical">
 
-          <com.skydoves.elasticviews.ElasticFloatingActionButton
-            android:id="@+id/fab_drink"
-            android:layout_width="wrap_content"
+          <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_glass0"
-            app:backgroundTint="#3d95c9"
-            app:fabutton_duration="200"
-            app:fabutton_scale="0.9" />
-        </RelativeLayout>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scrollbars="vertical"
+            android:text="@string/label_selected_day"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#3d95c9"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+          <TextView
+            android:id="@+id/today"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="금요일" />
+        </LinearLayout>
       </LinearLayout>
     </RelativeLayout>
   </LinearLayout>

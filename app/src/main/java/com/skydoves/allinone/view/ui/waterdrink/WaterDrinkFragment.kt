@@ -35,10 +35,12 @@ import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
+import com.yalantis.guillotine.animation.GuillotineAnimation
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_waterdrink.*
 import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
+
 
 class WaterDrinkFragment : Fragment() {
 
@@ -47,6 +49,7 @@ class WaterDrinkFragment : Fragment() {
   private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
 
   private lateinit var fillAbleLoader: FillableLoader
+  private lateinit var layoutMenu: GuillotineAnimation
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -78,15 +81,24 @@ class WaterDrinkFragment : Fragment() {
           .fillDuration(3000)
           .build()
 
-      fillAbleLoader.setSvgPath(FillAbleLoaderPaths.SVG_WATERDROP)
-      fillAbleLoader.setFillColor(Color.WHITE)
-      fillAbleLoader.setPercentage(20f)
-      fillAbleLoader.start()
       percentage.bringToFront()
     }
 
+    inflateGraphLayout()
+    more.setOnClickListener { layoutMenu.open() }
+
     goal.text = "${viewModel.getWaterGoal()} ml"
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
+  }
+
+  @SuppressLint("InflateParams")
+  private fun inflateGraphLayout() {
+    val inflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    val chartLayout = inflater.inflate(R.layout.layout_water_drink_graph, null)
+    parent.addView(chartLayout)
+    this.layoutMenu = GuillotineAnimation.GuillotineBuilder(chartLayout, chartLayout.findViewById(R.id.more), more)
+        .build()
+    this.layoutMenu.close()
   }
 
   @SuppressLint("SetTextI18n")
