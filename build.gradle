@@ -28,6 +28,7 @@ buildscript {
         powermenuVersion = '2.0.9'
         elasticviewVersion = '2.0.3'
         mpChartVersion = '3.1.0'
+        guillotineMenuVersion = '1.2'
         threetenabpVersion = '1.2.0'
         junitVersion = '4.12'
         espressoVersion = '3.1.1'
