@@ -19,12 +19,12 @@
       
       <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/more"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:padding="5dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:padding="8dp"
         android:src="@drawable/ic_hamburger"
         android:layout_margin="15dp"
-        app:imageview_duration="100"
+        app:imageview_duration="80"
         app:imageview_scale="0.75"/>
 
       <TextView

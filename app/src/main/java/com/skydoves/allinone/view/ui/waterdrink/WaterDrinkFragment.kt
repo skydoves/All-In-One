@@ -33,8 +33,10 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.ml
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
+import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
 import com.skydoves.allinone.utils.LineChartUtils
@@ -47,6 +49,7 @@ import org.jetbrains.anko.support.v4.startActivity
 import java.util.ArrayList
 import javax.inject.Inject
 
+@SuppressLint("SetTextI18n")
 class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
   @Inject
@@ -71,7 +74,6 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     observeLiveData()
   }
 
-  @SuppressLint("SetTextI18n")
   private fun initializeUI() {
     context?.let {
       val loaderBuilder = FillableLoaderBuilder()
@@ -90,10 +92,15 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     }
 
     inflateGraphLayout()
-    more.setOnClickListener { layoutMenu.open() }
+    more.setOnClickListener {
+      layoutMenu.open()
+      lineChart.animateY(1700)
+    }
 
-    goal.text = "${viewModel.getWaterGoal()} ml"
+    goal.text = viewModel.getWaterGoal().toString().ml()
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
+
+    duration.text = DateUtils.getFarDay(0) + " ~ " + DateUtils.getFarDay( 6)
   }
 
   @SuppressLint("InflateParams")
@@ -102,21 +109,20 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     val chartLayout = inflater.inflate(R.layout.layout_water_drink_graph, null)
     parent.addView(chartLayout)
     this.layoutMenu =
-      GuillotineAnimation.GuillotineBuilder(chartLayout, chartLayout.findViewById(R.id.backLayout), more)
+      GuillotineAnimation.GuillotineBuilder(chartLayout, backLayout, more)
         .build()
     this.layoutMenu.close()
   }
 
-  @SuppressLint("SetTextI18n")
   private fun observeLiveData() {
     observeLiveData(viewModel.getTodayWaterDrinks()) {
-      val todayAmounts = WaterDrinkItemUtils.getWaterAmouts(it)
-      drink_today.text = "$todayAmounts ml"
+      val todayAmounts = WaterDrinkItemUtils.getWaterAmounts(it)
+      drink_today.text = todayAmounts.toString().ml()
       val should = viewModel.getWaterGoal() - todayAmounts
       if (should > 0) {
-        drink_should.text = "$should ml"
+        drink_should.text = should.toString().ml()
       } else {
-        drink_should.text = "0ml"
+        drink_should.text = 0.toString().ml()
       }
       val percent = (todayAmounts.toFloat() / viewModel.getWaterGoal().toFloat() * 100)
       if (percent < 100) {
@@ -143,5 +149,9 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
   override fun onNothingSelected() = Unit
 
   override fun onValueSelected(e: Entry?, dataSetIndex: Int, h: Highlight?) {
+    context?.let {
+      today.text = DateUtils.getIndexOfDayName(it, e?.xIndex!!)
+      today_amount.text = String.format("%.0f", e.`val`).ml()
+    }
   }
 }

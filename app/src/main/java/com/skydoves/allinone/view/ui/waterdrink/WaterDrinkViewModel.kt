@@ -52,6 +52,8 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
 
   fun getTodayWaterDrinks() = waterDrinks
 
+  fun getWaterDrinksByDate(date: String) = waterDrinkDao.getWaterDrinksByDate(date)
+
   fun insertWaterDrink(waterDrink: WaterDrink) {
     waterDrink.timeStamp = OffsetDateTime.now()
     waterDrinkDao.insertWaterDrink(waterDrink)

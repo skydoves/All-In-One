@@ -33,10 +33,10 @@ object WaterDrinkItemUtils {
   }
 
   fun getDateString(time: OffsetDateTime): String {
-    return "${time.year}${time.dayOfMonth}${time.dayOfMonth}"
+    return "${time.year}-${time.monthValue}-${time.dayOfMonth}"
   }
 
-  fun getWaterAmouts(waterDrinks: List<WaterDrink>): Int {
+  fun getWaterAmounts(waterDrinks: List<WaterDrink>): Int {
     var amounts = 0
     for (waterDrink in waterDrinks) {
       amounts += waterDrink.amount

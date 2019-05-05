@@ -25,4 +25,18 @@
   <string name="label_drink_total">총 섭취량</string>
   <string name="label_water_average">평균 섭취량</string>
   <string name="label_selected_day">선택 요일</string>
+  <string name="label_monday">월요일</string>
+  <string name="label_tuesday">화요일</string>
+  <string name="label_wednesday">수요일</string>
+  <string name="label_thursday">목요일</string>
+  <string name="label_friday">금요일</string>
+  <string name="label_saturday">토요일</string>
+  <string name="label_sunday">일요일</string>
+  <string name="label_sun">일</string>
+  <string name="label_mon">월</string>
+  <string name="label_tue">화</string>
+  <string name="label_wed">수</string>
+  <string name="label_thu">목</string>
+  <string name="label_fri">금</string>
+  <string name="label_sat">토</string>
 </resources>

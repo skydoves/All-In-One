@@ -38,15 +38,15 @@ object LineChartUtils {
     listener: OnChartValueSelectedListener
   ) {
     val labels = ArrayList<String>()
-    labels.add("일")
-    labels.add("월")
-    labels.add("화")
-    labels.add("수")
-    labels.add("목")
-    labels.add("금")
-    labels.add("토")
+    labels.add(context.getString(R.string.label_sun))
+    labels.add(context.getString(R.string.label_mon))
+    labels.add(context.getString(R.string.label_tue))
+    labels.add(context.getString(R.string.label_wed))
+    labels.add(context.getString(R.string.label_thu))
+    labels.add(context.getString(R.string.label_fri))
+    labels.add(context.getString(R.string.label_sat))
 
-    val dataSet = LineDataSet(entries, "마신 물의 양")
+    val dataSet = LineDataSet(entries, "")
     val data = LineData(labels, dataSet)
     lineChart.data = data
     lineChart.setOnChartValueSelectedListener(listener)
@@ -70,7 +70,6 @@ object LineChartUtils {
     lineChart.setPinchZoom(false)
     lineChart.isDragEnabled = false
     lineChart.setScaleEnabled(false)
-    lineChart.animateY(1700)
 
     val mv = LineChartMarkerView(context, R.layout.layout_line_chart_marker)
     lineChart.markerView = mv
@@ -89,5 +88,13 @@ object LineChartUtils {
     leftAxis.setStartAtZero(true)
     leftAxis.spaceTop = 45f
     leftAxis.valueFormatter = LineChartYAxisFormatter()
+
+    // dataSet settings
+    dataSet.setDrawFilled(true)
+    dataSet.circleSize = 5f
+    dataSet.valueTextSize = 13f
+    dataSet.valueTextColor = Color.WHITE
+    dataSet.enableDashedHighlightLine(10f, 5f, 0f)
+    dataSet.valueFormatter = DataSetValueFormatter()
   }
 }
