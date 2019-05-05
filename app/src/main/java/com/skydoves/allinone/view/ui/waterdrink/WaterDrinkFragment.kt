@@ -29,20 +29,25 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.jorgecastillo.FillableLoader
 import com.github.jorgecastillo.FillableLoaderBuilder
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
+import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import com.yalantis.guillotine.animation.GuillotineAnimation
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.layout_water_drink_graph.*
 import kotlinx.android.synthetic.main.layout_waterdrink.*
 import org.jetbrains.anko.support.v4.startActivity
+import java.util.ArrayList
 import javax.inject.Inject
 
-
-class WaterDrinkFragment : Fragment() {
+class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -71,15 +76,15 @@ class WaterDrinkFragment : Fragment() {
     context?.let {
       val loaderBuilder = FillableLoaderBuilder()
       this.fillAbleLoader = loaderBuilder.parentView(parentView)
-          .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
-          .layoutParams(FillAbleLoaderUtils.getParams(it))
-          .originalDimensions(290, 425)
-          .fillColor(ContextCompat.getColor(it, R.color.waterBlue))
-          .strokeColor(ContextCompat.getColor(it, R.color.waterBlue))
-          .strokeDrawingDuration(0)
-          .clippingTransform(WavesClippingTransform())
-          .fillDuration(3000)
-          .build()
+        .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
+        .layoutParams(FillAbleLoaderUtils.getParams(it))
+        .originalDimensions(290, 425)
+        .fillColor(ContextCompat.getColor(it, R.color.waterBlue))
+        .strokeColor(ContextCompat.getColor(it, R.color.waterBlue))
+        .strokeDrawingDuration(0)
+        .clippingTransform(WavesClippingTransform())
+        .fillDuration(3000)
+        .build()
 
       percentage.bringToFront()
     }
@@ -96,7 +101,8 @@ class WaterDrinkFragment : Fragment() {
     val inflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     val chartLayout = inflater.inflate(R.layout.layout_water_drink_graph, null)
     parent.addView(chartLayout)
-    this.layoutMenu = GuillotineAnimation.GuillotineBuilder(chartLayout, chartLayout.findViewById(R.id.more), more)
+    this.layoutMenu =
+      GuillotineAnimation.GuillotineBuilder(chartLayout, chartLayout.findViewById(R.id.backLayout), more)
         .build()
     this.layoutMenu.close()
   }
@@ -123,6 +129,19 @@ class WaterDrinkFragment : Fragment() {
       fillAbleLoader.setFillColor(Color.WHITE)
       fillAbleLoader.setPercentage(percent)
       fillAbleLoader.start()
+
+      context?.let { context_ ->
+        val entries = ArrayList<Entry>()
+        entries.add(Entry(todayAmounts.toFloat(), 0))
+        entries.add(Entry(todayAmounts.toFloat() - 200, 1))
+        entries.add(Entry(todayAmounts.toFloat() + 400, 2))
+        LineChartUtils.setWaterDrinkLineChart(context_, lineChart, entries, this)
+      }
     }
+  }
+
+  override fun onNothingSelected() = Unit
+
+  override fun onValueSelected(e: Entry?, dataSetIndex: Int, h: Highlight?) {
   }
 }

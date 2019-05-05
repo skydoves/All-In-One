@@ -17,7 +17,7 @@
       android:layout_weight="0.7">
 
       <com.skydoves.elasticviews.ElasticImageView
-        android:id="@+id/more"
+        android:id="@+id/backLayout"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:padding="5dp"
