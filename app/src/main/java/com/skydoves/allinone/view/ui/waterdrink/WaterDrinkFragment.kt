@@ -33,8 +33,10 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.gone
 import com.skydoves.allinone.extension.ml
 import com.skydoves.allinone.extension.observeLiveData
+import com.skydoves.allinone.extension.visible
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
@@ -46,7 +48,6 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_water_drink_graph.*
 import kotlinx.android.synthetic.main.layout_waterdrink.*
 import org.jetbrains.anko.support.v4.startActivity
-import java.util.ArrayList
 import javax.inject.Inject
 
 @SuppressLint("SetTextI18n")
@@ -93,14 +94,32 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
     inflateGraphLayout()
     more.setOnClickListener {
+      initializeGraph()
+      fab_drink.gone()
       layoutMenu.open()
-      lineChart.animateY(1700)
+    }
+    backLayout.setOnClickListener {
+      layoutMenu.close()
+      fab_drink.visible()
     }
 
     goal.text = viewModel.getWaterGoal().toString().ml()
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
-
     duration.text = DateUtils.getFarDay(0) + " ~ " + DateUtils.getFarDay( 6)
+  }
+
+  private fun initializeGraph() {
+    val entries = ArrayList<Entry>()
+    context?.let { context_ ->
+      val todayDate = DateUtils.getDateDay()
+      for (i in 0..todayDate) {
+        observeLiveData(viewModel.getWaterDrinksByDate(DateUtils.getFarDay(i - todayDate))) {
+          entries.add(Entry(WaterDrinkItemUtils.getWaterAmounts(it).toFloat(), i))
+          LineChartUtils.setWaterDrinkLineChart(context_, lineChart, entries, this)
+        }
+      }
+    }
+    lineChart.animateY(1700)
   }
 
   @SuppressLint("InflateParams")
@@ -135,14 +154,6 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       fillAbleLoader.setFillColor(Color.WHITE)
       fillAbleLoader.setPercentage(percent)
       fillAbleLoader.start()
-
-      context?.let { context_ ->
-        val entries = ArrayList<Entry>()
-        entries.add(Entry(todayAmounts.toFloat(), 0))
-        entries.add(Entry(todayAmounts.toFloat() - 200, 1))
-        entries.add(Entry(todayAmounts.toFloat() + 400, 2))
-        LineChartUtils.setWaterDrinkLineChart(context_, lineChart, entries, this)
-      }
     }
   }
 
