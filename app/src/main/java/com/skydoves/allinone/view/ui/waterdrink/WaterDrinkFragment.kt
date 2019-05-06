@@ -20,6 +20,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,12 +37,12 @@ import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.gone
 import com.skydoves.allinone.extension.ml
 import com.skydoves.allinone.extension.observeLiveData
+import com.skydoves.allinone.extension.observeLiveDataOnce
 import com.skydoves.allinone.extension.visible
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
-import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import com.yalantis.guillotine.animation.GuillotineAnimation
 import dagger.android.support.AndroidSupportInjection
@@ -59,6 +60,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
   private lateinit var fillAbleLoader: FillableLoader
   private lateinit var layoutMenu: GuillotineAnimation
+  private val entries = ArrayList<Entry>()
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -109,17 +111,14 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
   }
 
   private fun initializeGraph() {
-    val entries = ArrayList<Entry>()
     context?.let { context_ ->
       val todayDate = DateUtils.getDateDay()
-      for (i in 0..todayDate) {
-        observeLiveData(viewModel.getWaterDrinksByDate(DateUtils.getFarDay(i - todayDate))) {
-          entries.add(Entry(WaterDrinkItemUtils.getWaterAmounts(it).toFloat(), i))
-          LineChartUtils.setWaterDrinkLineChart(context_, lineChart, entries, this)
-        }
+      observeLiveDataOnce(viewModel.getWaterDrinksFromDate(DateUtils.getWeeklyBoundDateTime())) {
+        Log.e("Test", it.toString())
+//        entries.add(Entry(WaterDrinkItemUtils.getWaterAmounts(it).toFloat(), i))
+//        LineChartUtils.setWaterDrinkLineChart(context_, lineChart, entries, this)
       }
     }
-    lineChart.animateY(1700)
   }
 
   @SuppressLint("InflateParams")

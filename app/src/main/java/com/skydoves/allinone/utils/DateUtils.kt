@@ -18,6 +18,7 @@ package com.skydoves.allinone.utils
 
 import android.content.Context
 import com.skydoves.allinone.R
+import org.threeten.bp.OffsetDateTime
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -58,5 +59,14 @@ object DateUtils {
       e.printStackTrace()
     }
     return 0
+  }
+
+  fun getWeeklyBoundDateTime(): String {
+    val time = OffsetDateTime.now().minusDays(getDateDay().toLong())
+      .withHour(0)
+      .withMinute(0)
+      .withSecond(0)
+      .withNano(0)
+    return time.toString()
   }
 }

@@ -37,4 +37,7 @@ interface WaterDrinkDao {
 
   @Query("SELECT * FROM WaterDrink WHERE date = :date_")
   fun getWaterDrinksByDate(date_: String): LiveData<List<WaterDrink>>
+
+  @Query("SELECT * FROM WaterDrink WHERE date >= :date_")
+  fun getWaterDrinksFromToday(date_: String): LiveData<List<WaterDrink>>
 }

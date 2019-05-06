@@ -29,6 +29,17 @@ inline fun <T> LifecycleOwner.observeLiveData(data: LiveData<T>, crossinline onC
   })
 }
 
+inline fun <T> LifecycleOwner.observeLiveDataOnce(data: LiveData<T>, crossinline onChangedUnit: (T) -> Unit) {
+  data.observe(this, object : Observer<T> {
+    override fun onChanged(t: T?) {
+      t?.let {
+        onChangedUnit(it)
+        data.removeObserver(this)
+      }
+    }
+  })
+}
+
 inline fun <T> LifecycleOwner.observeEventBus(index: Int, crossinline onChanged: (T) -> Unit) {
   LiveDataBus.observe(index, this, Observer {
     it?.let { value -> onChanged(value as T) }
