@@ -16,6 +16,7 @@
 
 package com.skydoves.allinone.utils
 
+import com.github.mikephil.charting.data.Entry
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.entities.WaterDrink
 import org.threeten.bp.OffsetDateTime
@@ -58,5 +59,23 @@ object WaterDrinkItemUtils {
     items.add(WaterDrink(time, getDateString(time), getWaterDrinkIcon(500), 500))
     items.add(WaterDrink(time, getDateString(time), getWaterDrinkIcon(1000), 1000))
     return items
+  }
+
+  fun getWeeklyEntries(waterList: List<WaterDrink>): List<Entry> {
+    val entries = ArrayList<Entry>()
+    for (i in 0..DateUtils.getDateDay()) {
+      entries.add(Entry(sumOfWaterByDay(waterList, DateUtils.getFarDay(i - DateUtils.getDateDay())).toFloat(), i))
+    }
+    return entries
+  }
+
+  private fun sumOfWaterByDay(waterList: List<WaterDrink>, date: String): Int {
+    var sum = 0
+    for (water in waterList) {
+      if (water.date == date) {
+        sum += water.amount
+      }
+    }
+    return sum
   }
 }

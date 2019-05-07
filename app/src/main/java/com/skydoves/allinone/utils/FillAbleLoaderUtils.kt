@@ -17,11 +17,14 @@
 package com.skydoves.allinone.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.util.TypedValue
 import android.widget.RelativeLayout
+import com.github.jorgecastillo.FillableLoader
 import com.skydoves.allinone.R
 
 object FillAbleLoaderUtils {
+
   fun getParams(context: Context): RelativeLayout.LayoutParams {
     val viewSize = context.resources.getDimensionPixelSize(R.dimen.fourthSampleViewSize)
     val params = RelativeLayout.LayoutParams(viewSize, viewSize)
@@ -31,5 +34,13 @@ object FillAbleLoaderUtils {
       TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 305f, context.resources.displayMetrics).toInt()
     params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE)
     return params
+  }
+
+  fun refreshPercentage(fillAbleLoader: FillableLoader, percent: Float) {
+    fillAbleLoader.reset()
+    fillAbleLoader.setSvgPath(FillAbleLoaderPaths.SVG_WATERDROP)
+    fillAbleLoader.setFillColor(Color.WHITE)
+    fillAbleLoader.setPercentage(percent)
+    fillAbleLoader.start()
   }
 }

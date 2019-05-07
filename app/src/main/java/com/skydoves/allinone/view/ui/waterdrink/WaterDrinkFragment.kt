@@ -18,9 +18,7 @@ package com.skydoves.allinone.view.ui.waterdrink
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +41,7 @@ import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
+import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import com.yalantis.guillotine.animation.GuillotineAnimation
 import dagger.android.support.AndroidSupportInjection
@@ -60,7 +59,6 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
   private lateinit var fillAbleLoader: FillableLoader
   private lateinit var layoutMenu: GuillotineAnimation
-  private val entries = ArrayList<Entry>()
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -92,13 +90,14 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
         .build()
 
       percentage.bringToFront()
+      initializeGraph()
     }
 
     inflateGraphLayout()
     more.setOnClickListener {
-      initializeGraph()
       fab_drink.gone()
       layoutMenu.open()
+      lineChart.animateY(1700)
     }
     backLayout.setOnClickListener {
       layoutMenu.close()
@@ -112,11 +111,12 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
   private fun initializeGraph() {
     context?.let { context_ ->
-      val todayDate = DateUtils.getDateDay()
       observeLiveDataOnce(viewModel.getWaterDrinksFromDate(DateUtils.getWeeklyBoundDateTime())) {
-        Log.e("Test", it.toString())
-//        entries.add(Entry(WaterDrinkItemUtils.getWaterAmounts(it).toFloat(), i))
-//        LineChartUtils.setWaterDrinkLineChart(context_, lineChart, entries, this)
+        LineChartUtils.setWaterDrinkLineChart(
+            context_,
+            lineChart,
+            WaterDrinkItemUtils.getWeeklyEntries(it),
+            this)
       }
     }
   }
@@ -148,11 +148,9 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       } else {
         percentage.text = "100%"
       }
-      fillAbleLoader.reset()
-      fillAbleLoader.setSvgPath(FillAbleLoaderPaths.SVG_WATERDROP)
-      fillAbleLoader.setFillColor(Color.WHITE)
-      fillAbleLoader.setPercentage(percent)
-      fillAbleLoader.start()
+
+      FillAbleLoaderUtils.refreshPercentage(fillAbleLoader, percent)
+      initializeGraph()
     }
   }
 
