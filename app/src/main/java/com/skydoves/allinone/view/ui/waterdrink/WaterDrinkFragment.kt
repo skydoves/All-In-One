@@ -117,6 +117,11 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
             lineChart,
             WaterDrinkItemUtils.getWeeklyEntries(it),
             this)
+        val amounts = WaterDrinkItemUtils.sumOfWaterDrinks(it)
+        total.text = amounts.toString().ml()
+        if (it.isNotEmpty()) {
+          average.text = (amounts / it.size).toString().ml()
+        }
       }
     }
   }

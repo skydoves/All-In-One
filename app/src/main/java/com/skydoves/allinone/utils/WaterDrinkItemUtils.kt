@@ -78,4 +78,12 @@ object WaterDrinkItemUtils {
     }
     return sum
   }
+
+  fun sumOfWaterDrinks(waterList: List<WaterDrink>): Int {
+    var sum = 0
+    for (water in waterList) {
+      sum += water.amount
+    }
+    return sum
+  }
 }
