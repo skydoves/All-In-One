@@ -52,8 +52,6 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
 
   fun getTodayWaterDrinks() = waterDrinks
 
-  fun getWaterDrinksByDate(date: String) = waterDrinkDao.getWaterDrinksByDate(date)
-
   fun getWaterDrinksFromDate(date: String) = waterDrinkDao.getWaterDrinksFromToday(date)
 
   fun insertWaterDrink(waterDrink: WaterDrink) {
