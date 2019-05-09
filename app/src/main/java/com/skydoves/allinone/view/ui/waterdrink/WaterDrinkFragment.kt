@@ -120,7 +120,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
         val amounts = WaterDrinkItemUtils.sumOfWaterDrinks(it)
         total.text = amounts.toString().ml()
         if (it.isNotEmpty()) {
-          average.text = (amounts / it.size).toString().ml()
+          average.text = (amounts / DateUtils.getDateDay()).toString().ml()
         }
       }
     }
