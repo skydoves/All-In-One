@@ -20,6 +20,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.paolorotolo.appintro.AppIntro
 import com.skydoves.allinone.R
+import com.skydoves.allinone.view.ui.setting.local.LocalActivity
 import com.skydoves.allinone.view.ui.setting.water.WaterGoalActivity
 import org.jetbrains.anko.startActivity
 
@@ -46,6 +47,7 @@ class AppIntroActivity : AppIntro() {
   }
 
   private fun doneOrSkip() {
+    startActivity<LocalActivity>()
     startActivity<WaterGoalActivity>()
     finish()
   }

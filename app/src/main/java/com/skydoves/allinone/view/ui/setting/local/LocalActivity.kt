@@ -14,23 +14,16 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.view.ui.setting.local
 
-import com.skydoves.preferenceroom.KeyName
-import com.skydoves.preferenceroom.PreferenceEntity
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.skydoves.allinone.R
 
-@Suppress("unused")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
+class LocalActivity : AppCompatActivity() {
 
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
-
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_local)
+  }
 }

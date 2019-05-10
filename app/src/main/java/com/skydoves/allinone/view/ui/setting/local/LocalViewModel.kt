@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.view.ui.setting.local
 
-import com.skydoves.preferenceroom.KeyName
-import com.skydoves.preferenceroom.PreferenceEntity
+import androidx.lifecycle.ViewModel
+import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
+import timber.log.Timber
+import javax.inject.Inject
 
-@Suppress("unused")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
+class LocalViewModel @Inject
+constructor() : ViewModel() {
 
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
+  private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
 
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
+  init {
+    Timber.d("injection LocalViewModel")
+  }
+
+  fun getLocal() = setting.local
+
+  fun setLocal(local: Int) = setting.putLocal(local)
 }
