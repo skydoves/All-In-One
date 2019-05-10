@@ -43,4 +43,7 @@
   <string name="label_change_local">지역 변경 하기</string>
   <string name="label_seoul">서울특별시</string>
   <string name="label_local_description">자신의 지역을 선택해 주세요. \n\n 매일 아침 정확한 목표 섭취량을 \n제공해 드립니다.</string>
+  <string name="label_select">선택하기</string>
+  <string name="toast_change_local">지역이 변경되었습니다.</string>
+  <string name="toast_change_local_error">지역이 선택되지 않았습니다.</string>
 </resources>

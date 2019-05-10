@@ -44,7 +44,7 @@
       android:layout_weight="1">
 
     <TextView
-        android:id="@+id/local"
+        android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
