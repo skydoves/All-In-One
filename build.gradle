@@ -18,6 +18,7 @@ buildscript {
         roomVersion = '2.1.0-alpha07'
         preferenceroomVersion = '1.1.7'
         daggerVersion = '2.22.1'
+        okhttpVersion = '3.11.0'
         retrofitVersion = '2.3.0'
         timberVersion = '4.7.1'
         baseAdapterVersion = '0.1.3'

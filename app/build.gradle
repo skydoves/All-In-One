@@ -49,6 +49,7 @@ dependencies {
     // network
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-simplexml:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
     // preference room
     implementation "com.github.skydoves:preferenceroom:$preferenceroomVersion"
