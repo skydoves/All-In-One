@@ -23,6 +23,6 @@ import retrofit2.http.Query
 
 interface KMAService {
 
-  @GET("/")
+  @GET("/wid/queryDFSRSS.jsp")
   fun fetchWeather(@Query("zone") zone: String): Call<WeatherResponse>
 }
