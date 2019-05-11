@@ -16,9 +16,13 @@
 
 package com.skydoves.allinone.di
 
+import androidx.annotation.NonNull
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -28,6 +32,18 @@ class NetworkModule {
   @Singleton
   fun provideHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
+        .build()
+  }
+
+  @Provides
+  @Singleton
+  @Named("KMA")
+  fun provideKAMRetrofit(@NonNull okHttpClient: OkHttpClient): Retrofit {
+    return Retrofit.Builder()
+        .client(okHttpClient)
+        .baseUrl("http://www.kma.go.kr/wid/queryDFSRSS.jsp")
+        .addConverterFactory(SimpleXmlConverterFactory.create())
+        .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()
   }
 }
