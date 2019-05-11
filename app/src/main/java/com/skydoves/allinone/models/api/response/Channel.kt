@@ -16,9 +16,12 @@
 
 package com.skydoves.allinone.models.api.response
 
+import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "channel", strict = false)
-data class Channel(
+data class Channel constructor(
+  @field:Element(name = "title")
+  @param:Element(name = "title")
   val title: String
 )

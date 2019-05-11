@@ -16,9 +16,12 @@
 
 package com.skydoves.allinone.models.api.response
 
+import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "rss", strict = false)
-data class WeatherResponse(
+data class WeatherResponse constructor (
+  @field:Element(name = "channel")
+  @param:Element(name = "channel")
   val channel: Channel
 )
