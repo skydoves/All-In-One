@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.di
+package com.skydoves.allinone.api
 
 import androidx.lifecycle.LiveData
-import com.skydoves.allinone.models.api.ApiResponse
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType

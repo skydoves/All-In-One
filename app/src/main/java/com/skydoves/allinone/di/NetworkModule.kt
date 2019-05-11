@@ -17,6 +17,9 @@
 package com.skydoves.allinone.di
 
 import androidx.annotation.NonNull
+import com.skydoves.allinone.api.LiveDataCallAdapterFactory
+import com.skydoves.allinone.api.client.KMAClient
+import com.skydoves.allinone.api.service.KMAService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -41,9 +44,21 @@ class NetworkModule {
   fun provideKAMRetrofit(@NonNull okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("http://www.kma.go.kr/wid/queryDFSRSS.jsp")
+        .baseUrl("http://www.kma.go.kr/wid/queryDFSRSS.jsp/")
         .addConverterFactory(SimpleXmlConverterFactory.create())
         .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()
+  }
+
+  @Provides
+  @Singleton
+  fun provideKMAService(@NonNull @Named("KMA") retrofit: Retrofit): KMAService {
+    return retrofit.create(KMAService::class.java)
+  }
+
+  @Provides
+  @Singleton
+  fun provideKMAClient(@NonNull kmaService: KMAService): KMAClient {
+    return KMAClient(kmaService)
   }
 }

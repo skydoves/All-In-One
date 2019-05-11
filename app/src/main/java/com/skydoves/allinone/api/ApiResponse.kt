@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.models.api
+package com.skydoves.allinone.api
 
 import okhttp3.ResponseBody
 import retrofit2.Response

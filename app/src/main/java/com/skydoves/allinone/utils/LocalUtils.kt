@@ -32,22 +32,22 @@ object LocalUtils {
 
   fun getLocalUrl(index: Int): String {
     when (index) {
-      1 -> return "zone=4182025000"
-      2 -> return "zone=4282025000"
-      3 -> return "zone=4817074000"
-      4 -> return "zone=4729053000"
-      5 -> return "zone=2920054000"
-      6 -> return "zone=2720065000"
-      7 -> return "zone=3023052000"
-      8 -> return "zone=2644058000"
-      9 -> return "zone=3114056000"
-      10 -> return "zone=2871025000"
-      11 -> return "zone=4681025000"
-      12 -> return "zone=4579031000"
-      13 -> return "zone=4376031000"
-      14 -> return "zone=4376031000"
-      15 -> return "zone=5013025300"
-      else -> return "zone=1159068000"
+      1 -> return "4182025000"
+      2 -> return "4282025000"
+      3 -> return "4817074000"
+      4 -> return "4729053000"
+      5 -> return "2920054000"
+      6 -> return "2720065000"
+      7 -> return "3023052000"
+      8 -> return "2644058000"
+      9 -> return "3114056000"
+      10 -> return "2871025000"
+      11 -> return "4681025000"
+      12 -> return "4579031000"
+      13 -> return "4376031000"
+      14 -> return "4376031000"
+      15 -> return "5013025300"
+      else -> return "1159068000"
     }
   }
 }

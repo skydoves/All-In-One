@@ -17,13 +17,36 @@
 package com.skydoves.allinone.view.ui.weather
 
 import androidx.lifecycle.ViewModel
+import com.skydoves.allinone.api.ApiResponse
+import com.skydoves.allinone.api.client.KMAClient
+import com.skydoves.allinone.utils.LocalUtils
 import timber.log.Timber
 import javax.inject.Inject
 
 class WeatherViewModel @Inject
-constructor() : ViewModel() {
+constructor(private val kmaClient: KMAClient) : ViewModel() {
 
   init {
     Timber.d("injection WeatherViewModel")
+  }
+
+  fun test() {
+    Timber.d("test")
+
+    kmaClient.fetchWeather(LocalUtils.getLocalUrl(0)) {
+      when (it) {
+        is ApiResponse.Success -> {
+          Timber.d("Success")
+          Timber.d(it.data?.channel.toString())
+        }
+        is ApiResponse.Failure.Error -> {
+          Timber.d("Failure")
+          Timber.d(it.code.toString())
+        }
+        is ApiResponse.Failure.Exception -> {
+          Timber.d("${it.message}")
+        }
+      }
+    }
   }
 }
