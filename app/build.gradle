@@ -48,6 +48,7 @@ dependencies {
 
     // network
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-simplexml:$retrofitVersion"
 
     // preference room
     implementation "com.github.skydoves:preferenceroom:$preferenceroomVersion"
