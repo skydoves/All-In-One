@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.factory.AppViewModelFactory
 import com.skydoves.allinone.view.ui.main.MainActivityViewModel
 import com.skydoves.allinone.view.ui.outdoor.OutDoorViewModel
+import com.skydoves.allinone.view.ui.setting.local.LocalViewModel
 import com.skydoves.allinone.view.ui.setting.water.WaterGoalViewModel
 import com.skydoves.allinone.view.ui.todo.TodoViewModel
 import com.skydoves.allinone.view.ui.waterdrink.WaterDrinkViewModel
@@ -62,6 +63,11 @@ internal abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(WeatherViewModel::class)
   internal abstract fun bindWeatherViewModel(weatherViewModel: WeatherViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(LocalViewModel::class)
+  internal abstract fun bindLocalViewModel(localViewModel: LocalViewModel): ViewModel
 
   @Binds
   internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory

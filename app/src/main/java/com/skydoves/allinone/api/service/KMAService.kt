@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.api.service
 
-import com.skydoves.preferenceroom.KeyName
-import com.skydoves.preferenceroom.PreferenceEntity
+import com.skydoves.allinone.models.api.response.WeatherResponse
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Query
 
-@Suppress("unused")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
+interface KMAService {
 
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
-
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
+  @GET("/wid/queryDFSRSS.jsp")
+  fun fetchWeather(@Query("zone") zone: String): Call<WeatherResponse>
 }

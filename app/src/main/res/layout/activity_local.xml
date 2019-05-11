@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10"
+    android:background="#31395b"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight="3"
+      android:gravity="center"
+      android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_place_white_24dp"
+        android:tint="@color/waterBlue"/>
+  </LinearLayout>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:layout_gravity="center"
+      android:layout_weight="2"
+      android:fontFamily="sans-serif-thin"
+      android:gravity="center"
+      android:paddingLeft="32dp"
+      android:paddingRight="32dp"
+      android:text="@string/label_local_description"
+      android:textColor="#ffffff"
+      android:textSize="18sp"/>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1">
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-thin"
+        android:text="@string/label_seoul"
+        android:textColor="#3d95c9"
+        android:textSize="23sp"
+        android:textStyle="bold"/>
+
+  </RelativeLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="3"
+      android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/select_local"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="64dp"
+        android:background="#0a9184"
+        android:text="@string/label_select_local"
+        android:textColor="#ffffff"/>
+
+    <Button
+        android:id="@+id/change_local"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="64dp"
+        android:background="#3d95c9"
+        android:text="@string/label_change_local"
+        android:textColor="#ffffff"/>
+  </LinearLayout>
+
+  <Space
+      android:layout_width="fill_parent"
+      android:layout_height="32dp"/>
+</LinearLayout>

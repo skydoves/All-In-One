@@ -14,23 +14,20 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.extension
 
-import com.skydoves.preferenceroom.KeyName
-import com.skydoves.preferenceroom.PreferenceEntity
+import com.skydoves.allinone.api.ApiResponse
+import retrofit2.Call
+import retrofit2.Callback
 
-@Suppress("unused")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
+fun <T> Call<T>.async(onResult: (response: ApiResponse<T>) -> Unit) {
+  enqueue(object : Callback<T> {
+    override fun onResponse(call: Call<T>, response: retrofit2.Response<T>) {
+      onResult(ApiResponse.of { response })
+    }
 
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
-
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
+    override fun onFailure(call: Call<T>, throwable: Throwable) {
+      onResult(ApiResponse.error(throwable))
+    }
+  })
 }

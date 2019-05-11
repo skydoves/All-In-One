@@ -14,23 +14,20 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.api
 
-import com.skydoves.preferenceroom.KeyName
-import com.skydoves.preferenceroom.PreferenceEntity
+import okhttp3.Interceptor
+import okhttp3.Response
+import timber.log.Timber
 
-@Suppress("unused")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
-
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
-
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
+class RequestInterceptor : Interceptor {
+  override fun intercept(chain: Interceptor.Chain): Response {
+    val originalRequest = chain.request()
+    val originalUrl = originalRequest.url()
+    val url = originalUrl.newBuilder().build()
+    val requestBuilder = originalRequest.newBuilder().url(url)
+    val request = requestBuilder.build()
+    Timber.d("network request => $url")
+    return chain.proceed(request)
+  }
 }

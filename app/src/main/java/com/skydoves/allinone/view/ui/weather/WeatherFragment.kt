@@ -25,7 +25,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.vm
-import com.skydoves.allinone.view.ui.main.MainActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -33,7 +32,7 @@ class WeatherFragment : Fragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class) }
+  private val viewModel by lazy { vm(viewModelFactory, WeatherViewModel::class) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -50,5 +49,6 @@ class WeatherFragment : Fragment() {
   }
 
   private fun initializeUI() {
+    viewModel.test()
   }
 }

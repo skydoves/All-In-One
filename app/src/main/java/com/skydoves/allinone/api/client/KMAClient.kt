@@ -14,23 +14,19 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.api.client
 
-import com.skydoves.preferenceroom.KeyName
-import com.skydoves.preferenceroom.PreferenceEntity
+import com.skydoves.allinone.api.ApiResponse
+import com.skydoves.allinone.api.service.KMAService
+import com.skydoves.allinone.extension.async
+import com.skydoves.allinone.models.api.response.WeatherResponse
 
-@Suppress("unused")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
+class KMAClient(private val service: KMAService) {
 
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
-
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
+  fun fetchWeather(
+    zone: String,
+    onResult: (response: ApiResponse<WeatherResponse>) -> Unit
+  ) {
+    service.fetchWeather(zone).async(onResult)
+  }
 }

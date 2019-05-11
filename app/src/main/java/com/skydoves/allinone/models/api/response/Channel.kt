@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.models.api.response
 
-import com.skydoves.preferenceroom.KeyName
-import com.skydoves.preferenceroom.PreferenceEntity
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.Root
 
-@Suppress("unused")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
-
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
-
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
-}
+@Root(name = "channel", strict = false)
+data class Channel constructor(
+  @field:Element(name = "title")
+  @param:Element(name = "title")
+  val title: String
+)
