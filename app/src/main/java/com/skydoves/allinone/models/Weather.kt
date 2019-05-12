@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.models.api.response
+package com.skydoves.allinone.models
 
-import com.skydoves.allinone.models.Channel
-import com.skydoves.allinone.models.Weather
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
-@Root(name = "rss", strict = false)
-data class WeatherResponse constructor (
-  @field:Element(name = "channel")
-  @param:Element(name = "channel")
-  val channel: Channel
-) {
-  fun getWeatherList(): List<Weather> {
-    return this.channel.item.description.body.data
-  }
-}
+@Root(name = "data", strict = false)
+data class Weather constructor(
+  @field:Element(name = "hour")
+  @param:Element(name = "hour")
+  val hour: Int,
+
+  @field:Element(name = "temp")
+  @param:Element(name = "temp")
+  val temp: Float,
+
+  @field:Element(name = "wfKor")
+  @param:Element(name = "wfKor")
+  val wfKor: String,
+
+  @field:Element(name = "reh")
+  @param:Element(name = "reh")
+  val reh: Int
+)
