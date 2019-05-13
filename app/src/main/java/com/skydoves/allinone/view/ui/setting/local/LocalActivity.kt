@@ -35,7 +35,7 @@ class LocalActivity : AppCompatActivity() {
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, LocalViewModel::class) }
 
-  private var local: Int = -1
+  private var local: Int = 0
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
@@ -57,11 +57,8 @@ class LocalActivity : AppCompatActivity() {
   }
 
   private fun setLocal() {
-    if (this.local != -1) {
-      viewModel.setLocal(this.local)
-      toast(getString(R.string.toast_change_local))
-      finish()
-    } else
-      toast(getString(R.string.toast_change_local_error))
+    viewModel.setLocal(this.local)
+    toast(getString(R.string.toast_change_local))
+    finish()
   }
 }

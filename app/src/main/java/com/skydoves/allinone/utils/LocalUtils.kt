@@ -16,6 +16,8 @@
 
 package com.skydoves.allinone.utils
 
+import com.skydoves.allinone.R
+
 object LocalUtils {
 
   val locals = arrayOf(
@@ -48,6 +50,16 @@ object LocalUtils {
       14 -> return "4376031000"
       15 -> return "5013025300"
       else -> return "1159068000"
+    }
+  }
+
+  fun getWeatherIcon(wfKor: String): Int {
+    return when {
+      wfKor.contains("구름 조금") -> R.drawable.ic_sunny_cloud
+      wfKor.contains("구름 많음") -> R.drawable.ic_cloudy
+      wfKor.contains("비") -> R.drawable.ic_rainy
+      wfKor.contains("눈") -> R.drawable.ic_snowy
+      else -> R.drawable.ic_sunny_day
     }
   }
 }
