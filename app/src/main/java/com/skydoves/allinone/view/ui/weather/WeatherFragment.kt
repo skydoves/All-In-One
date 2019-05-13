@@ -25,7 +25,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.vm
+import com.skydoves.allinone.utils.LocalUtils
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.layout_weather.*
 import javax.inject.Inject
 
 class WeatherFragment : Fragment() {
@@ -49,6 +51,7 @@ class WeatherFragment : Fragment() {
   }
 
   private fun initializeUI() {
+    local.text = LocalUtils.getLocalName(viewModel.getLocal())
     viewModel.test()
   }
 }

@@ -35,13 +35,18 @@ class LocalActivity : AppCompatActivity() {
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, LocalViewModel::class) }
 
-  private var local: Int = 0
+  private var local: Int = -1
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_local)
 
+    val prefLocal = viewModel.getLocal()
+    if (prefLocal != -1) {
+      location.text = LocalUtils.getLocalName(prefLocal)
+      this.local = prefLocal
+    }
     select_local.setOnClickListener { showSelectLocalDialog() }
     change_local.setOnClickListener { setLocal() }
   }
@@ -57,8 +62,12 @@ class LocalActivity : AppCompatActivity() {
   }
 
   private fun setLocal() {
-    viewModel.setLocal(this.local)
-    toast(getString(R.string.toast_change_local))
-    finish()
+    if (this.local != -1) {
+      viewModel.setLocal(this.local)
+      toast(getString(R.string.toast_change_local))
+      finish()
+    } else {
+      toast(getString(R.string.toast_change_local_error))
+    }
   }
 }

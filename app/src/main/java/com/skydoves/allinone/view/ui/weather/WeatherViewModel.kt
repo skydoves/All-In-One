@@ -19,6 +19,7 @@ package com.skydoves.allinone.view.ui.weather
 import androidx.lifecycle.ViewModel
 import com.skydoves.allinone.api.ApiResponse
 import com.skydoves.allinone.api.client.KMAClient
+import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.utils.LocalUtils
 import timber.log.Timber
 import javax.inject.Inject
@@ -26,13 +27,13 @@ import javax.inject.Inject
 class WeatherViewModel @Inject
 constructor(private val kmaClient: KMAClient) : ViewModel() {
 
+  private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
+
   init {
     Timber.d("injection WeatherViewModel")
   }
 
   fun test() {
-    Timber.d("test")
-
     kmaClient.fetchWeather(LocalUtils.getLocalUrl(0)) {
       when (it) {
         is ApiResponse.Success -> {
@@ -49,4 +50,6 @@ constructor(private val kmaClient: KMAClient) : ViewModel() {
       }
     }
   }
+
+  fun getLocal() = setting.local
 }
