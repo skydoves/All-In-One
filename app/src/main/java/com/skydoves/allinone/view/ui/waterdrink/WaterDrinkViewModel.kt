@@ -18,8 +18,8 @@ package com.skydoves.allinone.view.ui.waterdrink
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
@@ -41,7 +41,7 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
     Timber.d("injection WaterDrinkViewModel")
 
     waterDrinkLiveData.value = WaterDrinkItemUtils.getDummyWaterDrink()
-    waterDrinks = Transformations.switchMap(waterDrinkLiveData) {
+    waterDrinks = waterDrinkLiveData.switchMap {
       waterDrinkLiveData.value?.let {
         waterDrinkDao.getWaterDrinksByDate(WaterDrinkItemUtils.getDateString(OffsetDateTime.now())) }
           ?: AbsentLiveData.create()
