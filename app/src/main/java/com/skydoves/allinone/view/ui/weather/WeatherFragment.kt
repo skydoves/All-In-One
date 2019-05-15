@@ -18,16 +18,19 @@ package com.skydoves.allinone.view.ui.weather
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.LocalUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_weather.*
+import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 class WeatherFragment : Fragment() {
@@ -52,6 +55,15 @@ class WeatherFragment : Fragment() {
 
   private fun initializeUI() {
     local.text = LocalUtils.getLocalName(viewModel.getLocal())
-    viewModel.test()
+    observeLiveData()
+  }
+
+  private fun observeLiveData() {
+    observeLiveData(viewModel.weatherLiveData()) {
+      Log.e("Test", it.toString())
+    }
+    observeLiveData(viewModel.toastLiveData()) {
+      toast(it)
+    }
   }
 }
