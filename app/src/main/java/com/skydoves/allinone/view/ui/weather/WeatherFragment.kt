@@ -22,6 +22,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
@@ -60,7 +61,14 @@ class WeatherFragment : Fragment() {
 
   private fun observeLiveData() {
     observeLiveData(viewModel.weatherLiveData()) {
-      Log.e("Test", it.toString())
+      if (it.isNotEmpty()) {
+        context?.let { context ->
+          val weather = it[0]
+          status.text = weather.wfKor
+          icon_weather.setImageDrawable(ContextCompat.getDrawable(context, LocalUtils.getWeatherIcon(weather.wfKor)))
+          degree.text = weather.temp.toInt().toString()
+        }
+      }
     }
     observeLiveData(viewModel.toastLiveData()) {
       toast(it)
