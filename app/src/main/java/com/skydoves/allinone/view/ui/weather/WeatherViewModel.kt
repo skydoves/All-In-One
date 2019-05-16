@@ -16,11 +16,13 @@
 
 package com.skydoves.allinone.view.ui.weather
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import com.skydoves.allinone.api.ApiResponse
+import com.skydoves.allinone.api.client.GoKrClient
 import com.skydoves.allinone.api.client.KMAClient
 import com.skydoves.allinone.models.Weather
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
@@ -30,7 +32,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class WeatherViewModel @Inject
-constructor(private val kmaClient: KMAClient) : ViewModel() {
+constructor(
+  private val kmaClient: KMAClient,
+  private val goKrClient: GoKrClient
+) : ViewModel() {
 
   private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
   private val weatherLiveData: MutableLiveData<Int> = MutableLiveData()
@@ -44,6 +49,8 @@ constructor(private val kmaClient: KMAClient) : ViewModel() {
     weathers = weatherLiveData.switchMap {
       weatherLiveData.value?.let { fetchWeatherList(it) } ?: AbsentLiveData.create()
     }
+
+    fetchAir()
   }
 
   private fun fetchWeatherList(local: Int): LiveData<List<Weather>> {
@@ -59,6 +66,19 @@ constructor(private val kmaClient: KMAClient) : ViewModel() {
       }
     }
     return weathersLiveData
+  }
+
+  private fun fetchAir() {
+    goKrClient.fetchAir(10, LocalUtils.shortLocals[0]) {
+      when (it) {
+        is ApiResponse.Success ->
+          Log.e("Test", it.data.toString())
+        is ApiResponse.Failure.Error ->
+          toast.postValue("${it.code}: ${it.responseBody?.string()}")
+        is ApiResponse.Failure.Exception ->
+          toast.postValue("${it.message}")
+      }
+    }
   }
 
   fun weatherLiveData() = weathers

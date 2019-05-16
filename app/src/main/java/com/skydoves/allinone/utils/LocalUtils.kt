@@ -19,6 +19,7 @@ package com.skydoves.allinone.utils
 import com.github.mikephil.charting.data.Entry
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.Weather
+import org.threeten.bp.OffsetDateTime
 
 object LocalUtils {
 
@@ -29,6 +30,15 @@ object LocalUtils {
     "울산광역시", "인천광역시", "전라남도",
     "전라북도", "충청북도", "충청남도",
     "제주특별자치도")
+
+  val shortLocals = arrayOf(
+      "서울", "경기", "강원",
+      "경남", "경북", "광주",
+      "대구", "대전", "부산",
+      "울산", "인천", "전남",
+      "전북", "충북", "충남",
+      "제주"
+  )
 
   fun getLocalName(index: Int): String {
     return locals[index]
@@ -81,5 +91,15 @@ object LocalUtils {
       if (weathers.indexOf(weather) == 5) break
     }
     return entries
+  }
+
+  fun getTimeFlowBackground(): Int {
+    val time = OffsetDateTime.now().hour
+    return when {
+      time in 7..14 -> R.drawable.bg_morning
+      time <= 17 -> R.drawable.bg_lunch
+      time <= 19 -> R.drawable.bg_afternoon
+      else -> R.drawable.bg_night
+    }
   }
 }

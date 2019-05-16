@@ -99,9 +99,9 @@ object LineChartUtils {
   }
 
   fun setWeatherLineChart(
-      lineChart: LineChart,
-      labels: List<String>,
-      entries: List<Entry>
+    lineChart: LineChart,
+    labels: List<String>,
+    entries: List<Entry>
   ) {
     val dataSet = LineDataSet(entries, "")
     val data = LineData(labels, dataSet)
