@@ -22,6 +22,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler
 
 class DataSetValueFormatter : ValueFormatter {
   override fun getFormattedValue(value: Float, entry: Entry, dataSetIndex: Int, viewPortHandler: ViewPortHandler): String {
-    return Math.round(value).toString() + ""
+    return Math.round(value).toString() + "°"
   }
 }

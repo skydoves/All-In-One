@@ -46,4 +46,5 @@
   <string name="label_select">선택하기</string>
   <string name="toast_change_local">지역이 변경되었습니다.</string>
   <string name="toast_change_local_error">지역이 선택되지 않았습니다.</string>
+  <string name="label_degree">°</string>
 </resources>

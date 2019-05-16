@@ -18,7 +18,6 @@ package com.skydoves.allinone.view.ui.weather
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,9 +27,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
+import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.LocalUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_weather.*
+import org.jetbrains.anko.support.v4.fragmentTabHost
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
@@ -67,6 +68,7 @@ class WeatherFragment : Fragment() {
           status.text = weather.wfKor
           icon_weather.setImageDrawable(ContextCompat.getDrawable(context, LocalUtils.getWeatherIcon(weather.wfKor)))
           degree.text = weather.temp.toInt().toString()
+          LineChartUtils.setWeatherLineChart(lineChart, LocalUtils.getWeatherNewLabels(it), LocalUtils.getWeatherNewDegrees(it))
         }
       }
     }

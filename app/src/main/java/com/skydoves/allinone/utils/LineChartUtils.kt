@@ -87,7 +87,7 @@ object LineChartUtils {
     leftAxis.textSize = 14f
     leftAxis.setStartAtZero(true)
     leftAxis.spaceTop = 45f
-    leftAxis.valueFormatter = LineChartYAxisFormatter()
+    leftAxis.valueFormatter = WaterDrinkLineChartFormatter()
 
     // dataSet settings
     dataSet.setDrawFilled(true)
@@ -96,5 +96,59 @@ object LineChartUtils {
     dataSet.valueTextColor = Color.WHITE
     dataSet.enableDashedHighlightLine(10f, 5f, 0f)
     dataSet.valueFormatter = DataSetValueFormatter()
+  }
+
+  fun setWeatherLineChart(
+      lineChart: LineChart,
+      labels: List<String>,
+      entries: List<Entry>
+  ) {
+    val dataSet = LineDataSet(entries, "")
+    val data = LineData(labels, dataSet)
+    lineChart.data = data
+
+    val computed = intArrayOf(Color.TRANSPARENT)
+    val label = arrayOf("")
+    lineChart.setDescription("")
+    lineChart.setDescriptionTextSize(16f)
+    lineChart.setDescriptionColor(Color.WHITE)
+    lineChart.legend.isEnabled = true
+    lineChart.legend.isWordWrapEnabled = true
+    lineChart.legend.textColor = Color.TRANSPARENT
+    lineChart.legend.setCustom(computed, label)
+
+    lineChart.setDrawGridBackground(false)
+    lineChart.axisLeft.setDrawGridLines(false)
+    lineChart.axisRight.setDrawGridLines(false)
+    lineChart.axisRight.setDrawAxisLine(false)
+    lineChart.axisRight.setDrawLabels(false)
+    lineChart.xAxis.setDrawAxisLine(false)
+    lineChart.xAxis.setDrawGridLines(false)
+
+    lineChart.setPinchZoom(false)
+    lineChart.isDragEnabled = false
+    lineChart.setScaleEnabled(false)
+
+    // X - axis settings
+    val xAxis = lineChart.xAxis
+    xAxis.textSize = 15f
+    xAxis.spaceBetweenLabels = 1
+    xAxis.position = XAxis.XAxisPosition.BOTTOM
+    xAxis.textColor = Color.WHITE
+
+    // Y - axis settings
+    val leftAxis = lineChart.axisLeft
+    leftAxis.setStartAtZero(false)
+    leftAxis.setDrawLabels(false)
+    leftAxis.setDrawAxisLine(false)
+
+    // dataSet settings
+    dataSet.circleSize = 5f
+    dataSet.valueTextSize = 15f
+    dataSet.valueTextColor = Color.WHITE
+    dataSet.enableDashedHighlightLine(10f, 5f, 0f)
+    dataSet.valueFormatter = DataSetValueFormatter()
+    lineChart.notifyDataSetChanged()
+    lineChart.invalidate()
   }
 }

@@ -16,7 +16,9 @@
 
 package com.skydoves.allinone.utils
 
+import com.github.mikephil.charting.data.Entry
 import com.skydoves.allinone.R
+import com.skydoves.allinone.models.Weather
 
 object LocalUtils {
 
@@ -61,5 +63,23 @@ object LocalUtils {
       wfKor.contains("눈") -> R.drawable.ic_snowy
       else -> R.drawable.ic_sunny_day
     }
+  }
+
+  fun getWeatherNewLabels(weathers: List<Weather>): List<String> {
+    val labels = ArrayList<String>()
+    for (weather in weathers) {
+      labels.add("${weather.hour}시")
+      if (weathers.indexOf(weather) == 5) break
+    }
+    return labels
+  }
+
+  fun getWeatherNewDegrees(weathers: List<Weather>): List<Entry> {
+    val entries = ArrayList<Entry>()
+    for (weather in weathers) {
+      entries.add(Entry(weather.temp.toInt().toFloat(), weathers.indexOf(weather)))
+      if (weathers.indexOf(weather) == 5) break
+    }
+    return entries
   }
 }

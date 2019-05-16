@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_morning"
-                android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/bg_morning"
+  android:orientation="vertical">
 
   <TextView
     android:id="@+id/local"
@@ -15,12 +15,11 @@
     android:gravity="center"
     android:textColor="@color/white"
     android:textSize="25sp"
-    tools:text="서울특별시"/>
+    tools:text="서울특별시" />
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
     android:orientation="vertical"
     android:padding="40dp">
 
@@ -33,17 +32,17 @@
         android:id="@+id/icon_weather"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        tools:src="@drawable/ic_sunny_day"/>
+        tools:src="@drawable/ic_sunny_day" />
 
       <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_marginStart="15dp"
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:layout_gravity="center_vertical"
-        tools:text="맑음"/>
+        tools:text="맑음" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,16 +57,38 @@
         android:fontFamily="@font/alexandria"
         android:textColor="@color/white"
         android:textSize="150sp"
-        tools:text="23"/>
+        tools:text="23" />
 
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textColor="@color/white"
-        android:textSize="70sp"
         android:layout_gravity="top|fill_vertical"
-        android:text="°"/>
+        android:fontFamily="sans-serif"
+        android:text="@string/label_degree"
+        android:textColor="@color/white"
+        android:textSize="70sp" />
     </LinearLayout>
   </LinearLayout>
-</RelativeLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="5"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+      android:id="@+id/lineChart"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="5"
+      android:layout_margin="25dp"
+      android:layout_gravity="bottom"
+      android:foregroundGravity="center" />
+  </LinearLayout>
+
+</LinearLayout>

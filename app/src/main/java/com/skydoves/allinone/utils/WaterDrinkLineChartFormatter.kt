@@ -19,7 +19,7 @@ package com.skydoves.allinone.utils
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.formatter.YAxisValueFormatter
 
-class LineChartYAxisFormatter : YAxisValueFormatter {
+class WaterDrinkLineChartFormatter : YAxisValueFormatter {
   override fun getFormattedValue(value: Float, yAxis: YAxis): String {
     return Math.round(value).toString() + "ml"
   }
