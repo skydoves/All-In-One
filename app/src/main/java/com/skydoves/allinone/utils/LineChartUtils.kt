@@ -95,7 +95,7 @@ object LineChartUtils {
     dataSet.valueTextSize = 13f
     dataSet.valueTextColor = Color.WHITE
     dataSet.enableDashedHighlightLine(10f, 5f, 0f)
-    dataSet.valueFormatter = DataSetValueFormatter()
+    dataSet.valueFormatter = WaterValueFormatter()
   }
 
   fun setWeatherLineChart(
@@ -124,6 +124,7 @@ object LineChartUtils {
     lineChart.axisRight.setDrawLabels(false)
     lineChart.xAxis.setDrawAxisLine(false)
     lineChart.xAxis.setDrawGridLines(false)
+    lineChart.setExtraOffsets(45f, 0f, 45f, 0f)
 
     lineChart.setPinchZoom(false)
     lineChart.isDragEnabled = false
@@ -141,13 +142,13 @@ object LineChartUtils {
     leftAxis.setStartAtZero(false)
     leftAxis.setDrawLabels(false)
     leftAxis.setDrawAxisLine(false)
+    leftAxis.spaceTop = 45f
 
     // dataSet settings
     dataSet.circleSize = 5f
     dataSet.valueTextSize = 15f
     dataSet.valueTextColor = Color.WHITE
-    dataSet.enableDashedHighlightLine(10f, 5f, 0f)
-    dataSet.valueFormatter = DataSetValueFormatter()
+    dataSet.valueFormatter = DegreeValueFormatter()
     lineChart.notifyDataSetChanged()
     lineChart.invalidate()
   }

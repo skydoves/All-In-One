@@ -33,6 +33,7 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_weather.*
 import org.jetbrains.anko.backgroundDrawable
 import org.jetbrains.anko.support.v4.toast
+import timber.log.Timber
 import javax.inject.Inject
 
 class WeatherFragment : Fragment() {
@@ -74,6 +75,9 @@ class WeatherFragment : Fragment() {
           LineChartUtils.setWeatherLineChart(lineChart, LocalUtils.getWeatherNewLabels(it), LocalUtils.getWeatherNewDegrees(it))
         }
       }
+    }
+    observeLiveData(viewModel.airLiveData()) {
+      Timber.d(it.toString())
     }
     observeLiveData(viewModel.toastLiveData()) {
       toast(it)

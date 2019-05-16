@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.models
+package com.skydoves.allinone.utils
 
-data class Air constructor(
-  val stationName: String,
-  val pm10Value: String,
-  val pm25Value: String
-)
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.utils.ViewPortHandler
+
+class DegreeValueFormatter : ValueFormatter {
+  override fun getFormattedValue(value: Float, entry: Entry, dataSetIndex: Int, viewPortHandler: ViewPortHandler): String {
+    return Math.round(value).toString() + "°"
+  }
+}

@@ -20,8 +20,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ViewPortHandler
 
-class DataSetValueFormatter : ValueFormatter {
+class WaterValueFormatter : ValueFormatter {
   override fun getFormattedValue(value: Float, entry: Entry, dataSetIndex: Int, viewPortHandler: ViewPortHandler): String {
-    return Math.round(value).toString() + "°"
+    return Math.round(value).toString()
   }
 }

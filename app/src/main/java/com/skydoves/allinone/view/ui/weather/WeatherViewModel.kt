@@ -16,7 +16,6 @@
 
 package com.skydoves.allinone.view.ui.weather
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,6 +23,7 @@ import androidx.lifecycle.switchMap
 import com.skydoves.allinone.api.ApiResponse
 import com.skydoves.allinone.api.client.GoKrClient
 import com.skydoves.allinone.api.client.KMAClient
+import com.skydoves.allinone.models.Air
 import com.skydoves.allinone.models.Weather
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.utils.AbsentLiveData
@@ -40,6 +40,8 @@ constructor(
   private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
   private val weatherLiveData: MutableLiveData<Int> = MutableLiveData()
   private val weathers: LiveData<List<Weather>>
+  private val airLiveData: MutableLiveData<Int> = MutableLiveData()
+  private val airs: LiveData<List<Air>>
   private val toast: MutableLiveData<String> = MutableLiveData()
 
   init {
@@ -50,7 +52,10 @@ constructor(
       weatherLiveData.value?.let { fetchWeatherList(it) } ?: AbsentLiveData.create()
     }
 
-    fetchAir()
+    airLiveData.value = getLocal()
+    airs = airLiveData.switchMap {
+      airLiveData.value?.let { fetchAir(it) } ?: AbsentLiveData.create()
+    }
   }
 
   private fun fetchWeatherList(local: Int): LiveData<List<Weather>> {
@@ -68,20 +73,24 @@ constructor(
     return weathersLiveData
   }
 
-  private fun fetchAir() {
-    goKrClient.fetchAir(10, LocalUtils.shortLocals[0]) {
+  private fun fetchAir(local: Int): LiveData<List<Air>> {
+    val airsLiveData: MutableLiveData<List<Air>> = MutableLiveData()
+    goKrClient.fetchAir(10, LocalUtils.getShortLocalName(local)) {
       when (it) {
         is ApiResponse.Success ->
-          Log.e("Test", it.data.toString())
+          airsLiveData.postValue(it.data?.list)
         is ApiResponse.Failure.Error ->
           toast.postValue("${it.code}: ${it.responseBody?.string()}")
         is ApiResponse.Failure.Exception ->
           toast.postValue("${it.message}")
       }
     }
+    return airsLiveData
   }
 
   fun weatherLiveData() = weathers
+
+  fun airLiveData() = airs
 
   fun toastLiveData() = toast
 

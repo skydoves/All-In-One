@@ -31,7 +31,7 @@ object LocalUtils {
     "전라북도", "충청북도", "충청남도",
     "제주특별자치도")
 
-  val shortLocals = arrayOf(
+  private val shortLocals = arrayOf(
       "서울", "경기", "강원",
       "경남", "경북", "광주",
       "대구", "대전", "부산",
@@ -42,6 +42,10 @@ object LocalUtils {
 
   fun getLocalName(index: Int): String {
     return locals[index]
+  }
+
+  fun getShortLocalName(index: Int): String {
+    return shortLocals[index]
   }
 
   fun getLocalUrl(index: Int): String {
@@ -95,11 +99,12 @@ object LocalUtils {
 
   fun getTimeFlowBackground(): Int {
     val time = OffsetDateTime.now().hour
-    return when {
-      time in 7..14 -> R.drawable.bg_morning
-      time <= 17 -> R.drawable.bg_lunch
-      time <= 19 -> R.drawable.bg_afternoon
-      else -> R.drawable.bg_night
+    return when (time) {
+      in 0..6 -> R.drawable.bg_night
+      in 14..17 -> R.drawable.bg_lunch
+      in 18..19 -> R.drawable.bg_afternoon
+      in 20..24 -> R.drawable.bg_night
+      else -> R.drawable.bg_morning
     }
   }
 }
