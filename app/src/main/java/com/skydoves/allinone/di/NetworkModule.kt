@@ -17,37 +17,64 @@
 package com.skydoves.allinone.di
 
 import androidx.annotation.NonNull
+import com.skydoves.allinone.api.GoKrRequestInterceptor
+import com.skydoves.allinone.api.KMARequestInterceptor
 import com.skydoves.allinone.api.LiveDataCallAdapterFactory
-import com.skydoves.allinone.api.RequestInterceptor
+import com.skydoves.allinone.api.client.GoKrClient
 import com.skydoves.allinone.api.client.KMAClient
+import com.skydoves.allinone.api.service.GoKrService
 import com.skydoves.allinone.api.service.KMAService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
+@Suppress("SpellCheckingInspection")
 @Module
 class NetworkModule {
 
   @Provides
   @Singleton
+  @Named("KMA")
   fun provideHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
-        .addInterceptor(RequestInterceptor())
+        .addInterceptor(KMARequestInterceptor())
+        .build()
+  }
+
+  @Provides
+  @Singleton
+  @Named("GOKR")
+  fun provideGOKRHttpClient(): OkHttpClient {
+    return OkHttpClient.Builder()
+        .addInterceptor(GoKrRequestInterceptor())
         .build()
   }
 
   @Provides
   @Singleton
   @Named("KMA")
-  fun provideKAMRetrofit(@NonNull okHttpClient: OkHttpClient): Retrofit {
+  fun provideKAMRetrofit(@NonNull @Named("KMA") okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl("http://www.kma.go.kr/")
         .addConverterFactory(SimpleXmlConverterFactory.create())
+        .addCallAdapterFactory(LiveDataCallAdapterFactory())
+        .build()
+  }
+
+  @Provides
+  @Singleton
+  @Named("GOKR")
+  fun provideGOKRRetrofit(@NonNull @Named("GOKR") okHttpClient: OkHttpClient): Retrofit {
+    return Retrofit.Builder()
+        .client(okHttpClient)
+        .baseUrl("http://openapi.airkorea.or.kr/")
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()
   }
@@ -62,5 +89,17 @@ class NetworkModule {
   @Singleton
   fun provideKMAClient(@NonNull kmaService: KMAService): KMAClient {
     return KMAClient(kmaService)
+  }
+
+  @Provides
+  @Singleton
+  fun provideGoKRService(@NonNull @Named("GOKR") retrofit: Retrofit): GoKrService {
+    return retrofit.create(GoKrService::class.java)
+  }
+
+  @Provides
+  @Singleton
+  fun provideGoKrClient(@NonNull goKrService: GoKrService): GoKrClient {
+    return GoKrClient(goKrService)
   }
 }

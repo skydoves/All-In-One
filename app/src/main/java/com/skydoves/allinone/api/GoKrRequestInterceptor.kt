@@ -16,15 +16,21 @@
 
 package com.skydoves.allinone.api
 
+import com.skydoves.allinone.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import timber.log.Timber
 
-class RequestInterceptor : Interceptor {
+class GoKrRequestInterceptor : Interceptor {
   override fun intercept(chain: Interceptor.Chain): Response {
     val originalRequest = chain.request()
     val originalUrl = originalRequest.url()
-    val url = originalUrl.newBuilder().build()
+    val url = originalUrl.newBuilder()
+        .addEncodedQueryParameter("serviceKey", BuildConfig.GOKR_API_KEY)
+        .addQueryParameter("pageNo", "1")
+        .addQueryParameter("ver", "1.3")
+        .addQueryParameter("_returnType", "json")
+        .build()
     val requestBuilder = originalRequest.newBuilder().url(url)
     val request = requestBuilder.build()
     Timber.d("network request => $url")
