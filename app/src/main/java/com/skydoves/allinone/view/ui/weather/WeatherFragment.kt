@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.scwang.smartrefresh.header.PhoenixHeader
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.applyPm10Color
 import com.skydoves.allinone.extension.applyPm25Color
@@ -60,6 +61,11 @@ class WeatherFragment : Fragment() {
   private fun initializeUI() {
     context?.let {
       layout_weather.backgroundDrawable = ContextCompat.getDrawable(it, LocalUtils.getTimeFlowBackground())
+      refreshLayout.setRefreshHeader(PhoenixHeader(it))
+      refreshLayout.setOnRefreshListener {
+        refreshLayout.finishRefresh(1500)
+        viewModel.publishInitData()
+      }
     }
     local.text = LocalUtils.getLocalName(viewModel.getLocal())
     observeLiveData()

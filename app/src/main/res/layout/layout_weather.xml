@@ -1,223 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/layout_weather"
+  android:id="@+id/refreshLayout"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/bg_morning"
-  android:orientation="vertical">
-
-  <TextView
-    android:id="@+id/local"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:alpha="0.8"
-    android:gravity="center"
-    android:textColor="@color/white"
-    android:textSize="25sp"
-    tools:text="서울특별시" />
+  android:layout_height="match_parent">
 
   <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingLeft="40dp"
-    android:paddingRight="40dp"
-    android:paddingTop="40dp">
-
-    <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:orientation="vertical">
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-          android:id="@+id/icon_weather"
-          android:layout_width="60dp"
-          android:layout_height="60dp"
-          tools:src="@drawable/ic_sunny_day" />
-
-        <TextView
-          android:id="@+id/status"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginStart="15dp"
-          android:textColor="@color/white"
-          android:textSize="25sp"
-          tools:text="맑음" />
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-          android:id="@+id/degree"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:fontFamily="@font/alexandria"
-          android:textColor="@color/white"
-          android:textSize="150sp"
-          tools:text="23" />
-
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="top|fill_vertical"
-          android:fontFamily="sans-serif"
-          android:text="@string/label_degree"
-          android:textColor="@color/white"
-          android:textSize="70sp" />
-      </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="vertical">
-
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
-          android:layout_marginStart="15dp"
-          android:text="@string/label_reh"
-          android:textColor="@color/white"
-          android:textSize="21sp" />
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginStart="10dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginEnd="10dp"
-          android:layout_marginBottom="5dp"
-          android:alpha="0.8"
-          android:background="@color/white" />
-
-        <TextView
-          android:id="@+id/reh"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_marginStart="15dp"
-          android:layout_marginBottom="25dp"
-          android:textColor="@color/white"
-          android:textSize="21sp"
-          tools:text="40" />
-      </LinearLayout>
-    </LinearLayout>
-  </LinearLayout>
-
-  <LinearLayout
+    android:id="@+id/layout_weather"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10">
+    android:background="@drawable/bg_morning">
+
+    <TextView
+      android:id="@+id/local"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:alpha="0.8"
+      android:gravity="center"
+      android:textColor="@color/white"
+      android:textSize="25sp"
+      tools:text="서울특별시" />
 
     <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="5"
+      android:layout_height="wrap_content"
       android:orientation="horizontal"
-      android:weightSum="10"
-      android:paddingTop="20dp">
+      android:paddingLeft="40dp"
+      android:paddingRight="40dp"
+      android:paddingTop="40dp">
 
       <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:gravity="center"
-          android:layout_marginStart="15dp"
-          android:text="@string/label_pm10"
-          android:textColor="@color/white"
-          android:textSize="21sp" />
 
         <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginStart="40dp"
-          android:layout_marginEnd="40dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginBottom="5dp"
-          android:alpha="0.8"
-          android:background="@color/white" />
-
-        <TextView
-          android:id="@+id/pm10"
-          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:gravity="center"
-          android:layout_marginStart="15dp"
-          android:layout_marginBottom="25dp"
-          android:textColor="@color/white"
-          android:textSize="21sp"
-          tools:text="40" />
-      </LinearLayout>
+          android:orientation="horizontal">
 
-      <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:orientation="vertical">
+          <ImageView
+            android:id="@+id/icon_weather"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:src="@drawable/ic_sunny_day" />
 
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:gravity="center"
-          android:layout_marginStart="15dp"
-          android:text="@string/label_pm25"
-          android:textColor="@color/white"
-          android:textSize="21sp" />
+          <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            tools:text="맑음" />
+        </LinearLayout>
 
         <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginStart="40dp"
-          android:layout_marginEnd="40dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginBottom="5dp"
-          android:alpha="0.8"
-          android:background="@color/white" />
-
-        <TextView
-          android:id="@+id/pm25"
-          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:gravity="center"
-          android:layout_marginStart="15dp"
-          android:layout_marginBottom="25dp"
-          android:textColor="@color/white"
-          android:textSize="21sp"
-          tools:text="40" />
+          android:orientation="horizontal">
+
+          <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alexandria"
+            android:textColor="@color/white"
+            android:textSize="150sp"
+            tools:text="23" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|fill_vertical"
+            android:fontFamily="sans-serif"
+            android:text="@string/label_degree"
+            android:textColor="@color/white"
+            android:textSize="70sp" />
+        </LinearLayout>
       </LinearLayout>
 
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="bottom"
+          android:orientation="vertical">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="15dp"
+            android:text="@string/label_reh"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:alpha="0.8"
+            android:background="@color/white" />
+
+          <TextView
+            android:id="@+id/reh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="25dp"
+            android:textColor="@color/white"
+            android:textSize="21sp"
+            tools:text="40" />
+        </LinearLayout>
+      </LinearLayout>
     </LinearLayout>
 
-    <com.github.mikephil.charting.charts.LineChart
-      android:id="@+id/lineChart"
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_gravity="bottom"
-      android:layout_marginBottom="25dp"
-      android:layout_weight="5"
-      android:foregroundGravity="center" />
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:weightSum="10">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="5"
+          android:orientation="vertical">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:text="@string/label_pm10"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:alpha="0.8"
+            android:background="@color/white" />
+
+          <TextView
+            android:id="@+id/pm10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="25dp"
+            android:textColor="@color/white"
+            android:textSize="21sp"
+            tools:text="40" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="5"
+          android:orientation="vertical">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:text="@string/label_pm25"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:alpha="0.8"
+            android:background="@color/white" />
+
+          <TextView
+            android:id="@+id/pm25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="25dp"
+            android:textColor="@color/white"
+            android:textSize="21sp"
+            tools:text="40" />
+        </LinearLayout>
+      </LinearLayout>
+
+      <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="25dp"
+        android:layout_weight="5"
+        android:foregroundGravity="center" />
+    </LinearLayout>
   </LinearLayout>
-</LinearLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

@@ -47,15 +47,20 @@ constructor(
   init {
     Timber.d("injection WeatherViewModel")
 
-    weatherLiveData.value = getLocal()
+    publishInitData()
+
     weathers = weatherLiveData.switchMap {
       weatherLiveData.value?.let { fetchWeatherList(it) } ?: AbsentLiveData.create()
     }
 
-    airLiveData.value = getLocal()
     airs = airLiveData.switchMap {
       airLiveData.value?.let { fetchAir(it) } ?: AbsentLiveData.create()
     }
+  }
+
+  fun publishInitData() {
+    weatherLiveData.value = getLocal()
+    airLiveData.value = getLocal()
   }
 
   private fun fetchWeatherList(local: Int): LiveData<List<Weather>> {
