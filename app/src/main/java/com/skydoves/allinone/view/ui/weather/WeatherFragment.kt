@@ -34,6 +34,7 @@ import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.LocalUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_weather.*
+import kotlinx.android.synthetic.main.layout_weather_list.*
 import org.jetbrains.anko.backgroundDrawable
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
@@ -80,6 +81,8 @@ class WeatherFragment : Fragment() {
           icon_weather.setImageDrawable(ContextCompat.getDrawable(context, LocalUtils.getWeatherIcon(weather.wfKor)))
           degree.text = weather.temp.toInt().toString()
           reh.text = weather.reh.toString()
+
+          LocalUtils.setWeatherIcons(context, it, weather_list)
           LineChartUtils.setWeatherLineChart(lineChart, LocalUtils.getWeatherNewLabels(it), LocalUtils.getWeatherNewDegrees(it))
         }
       }

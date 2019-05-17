@@ -16,9 +16,13 @@
 
 package com.skydoves.allinone.utils
 
+import android.content.Context
+import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.data.Entry
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.Weather
+import kotlinx.android.synthetic.main.layout_weather_list.view.*
 import org.threeten.bp.OffsetDateTime
 
 object LocalUtils {
@@ -71,7 +75,7 @@ object LocalUtils {
 
   fun getWeatherIcon(wfKor: String): Int {
     return when {
-      wfKor.contains("구름 조금") -> R.drawable.ic_sunny_cloud
+      wfKor.contains("구름 조금") || wfKor.contains("흐림") -> R.drawable.ic_sunny_cloud
       wfKor.contains("구름 많음") -> R.drawable.ic_cloudy
       wfKor.contains("비") -> R.drawable.ic_rainy
       wfKor.contains("눈") -> R.drawable.ic_snowy
@@ -105,6 +109,17 @@ object LocalUtils {
       in 18..19 -> R.drawable.bg_afternoon
       in 20..24 -> R.drawable.bg_night
       else -> R.drawable.bg_morning
+    }
+  }
+
+  fun setWeatherIcons(context: Context, weathers: List<Weather>, layout: LinearLayout) {
+    if (weathers.isNotEmpty()) {
+      layout.day0.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[0].wfKor)))
+      layout.day1.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[1].wfKor)))
+      layout.day2.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[2].wfKor)))
+      layout.day3.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[3].wfKor)))
+      layout.day4.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[4].wfKor)))
+      layout.day5.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[5].wfKor)))
     }
   }
 }

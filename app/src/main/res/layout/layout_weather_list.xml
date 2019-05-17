@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/weather_list"
+  android:layout_width="match_parent"
+  android:layout_height="45dp"
+  android:orientation="horizontal"
+  android:weightSum="6"
+  android:paddingLeft="20dp"
+  android:paddingRight="20dp">
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
+      android:id="@+id/day0"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:layout_gravity="center"
+      tools:src="@drawable/ic_sunny_day"/>
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
+      android:id="@+id/day1"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:layout_gravity="center"
+      tools:src="@drawable/ic_sunny_day"/>
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
+      android:id="@+id/day2"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:layout_gravity="center"
+      tools:src="@drawable/ic_sunny_day"/>
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
+      android:id="@+id/day3"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:layout_gravity="center"
+      tools:src="@drawable/ic_sunny_day"/>
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
+      android:id="@+id/day4"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:layout_gravity="center"
+      tools:src="@drawable/ic_sunny_day"/>
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
+      android:id="@+id/day5"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:layout_gravity="center"
+      tools:src="@drawable/ic_sunny_day"/>
+  </LinearLayout>
+</LinearLayout>

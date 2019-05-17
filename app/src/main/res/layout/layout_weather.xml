@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/refreshLayout"
   android:layout_width="match_parent"
@@ -29,7 +30,7 @@
       android:orientation="horizontal"
       android:paddingLeft="40dp"
       android:paddingRight="40dp"
-      android:paddingTop="40dp">
+      android:paddingTop="20dp">
 
       <LinearLayout
         android:layout_width="wrap_content"
@@ -126,19 +127,17 @@
       </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      android:weightSum="10">
+      android:layout_height="match_parent">
 
       <LinearLayout
+        android:id="@+id/layout_dust"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="10"
-        android:paddingTop="20dp">
+>
 
         <LinearLayout
           android:layout_width="0dp"
@@ -215,14 +214,24 @@
         </LinearLayout>
       </LinearLayout>
 
-      <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
+      <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="25dp"
-        android:layout_weight="5"
-        android:foregroundGravity="center" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <include
+          android:layout_width="match_parent"
+          android:layout_height="45dp"
+          layout="@layout/layout_weather_list"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+          android:id="@+id/lineChart"
+          android:layout_width="match_parent"
+          android:layout_height="100dp"
+          android:layout_marginBottom="25dp"
+          android:foregroundGravity="center" />
+      </LinearLayout>
+    </RelativeLayout>
   </LinearLayout>
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>
