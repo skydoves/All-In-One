@@ -92,6 +92,8 @@ dependencies {
     implementation "com.github.skydoves:powermenu:$powermenuVersion"
     implementation "com.github.skydoves:elasticviews:$elasticviewVersion"
     implementation "com.github.Yalantis:GuillotineMenu-Android:$guillotineMenuVersion"
+    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$smartRefreshVersion"
+    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$smartRefreshVersion"
 
     // debugging
     implementation "com.jakewharton.timber:timber:$timberVersion"
