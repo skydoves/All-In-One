@@ -47,4 +47,7 @@
   <string name="toast_change_local">지역이 변경되었습니다.</string>
   <string name="toast_change_local_error">지역이 선택되지 않았습니다.</string>
   <string name="label_degree">°</string>
+  <string name="label_reh">습도</string>
+  <string name="label_pm10">미세먼지</string>
+  <string name="label_pm25">초미세먼지</string>
 </resources>

@@ -25,6 +25,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.applyPm10Color
+import com.skydoves.allinone.extension.applyPm25Color
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.LineChartUtils
@@ -33,7 +35,6 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_weather.*
 import org.jetbrains.anko.backgroundDrawable
 import org.jetbrains.anko.support.v4.toast
-import timber.log.Timber
 import javax.inject.Inject
 
 class WeatherFragment : Fragment() {
@@ -72,12 +73,21 @@ class WeatherFragment : Fragment() {
           status.text = weather.wfKor
           icon_weather.setImageDrawable(ContextCompat.getDrawable(context, LocalUtils.getWeatherIcon(weather.wfKor)))
           degree.text = weather.temp.toInt().toString()
+          reh.text = weather.reh.toString()
           LineChartUtils.setWeatherLineChart(lineChart, LocalUtils.getWeatherNewLabels(it), LocalUtils.getWeatherNewDegrees(it))
         }
       }
     }
     observeLiveData(viewModel.airLiveData()) {
-      Timber.d(it.toString())
+      if (it.isNotEmpty()) {
+        pm10.text = it[0].pm10Value
+        pm25.text = it[0].pm25Value
+        try {
+          pm10.applyPm10Color(it[0].pm10Value.toInt())
+          pm25.applyPm25Color(it[0].pm25Value.toInt())
+        } catch (e: Exception) {
+        }
+      }
     }
     observeLiveData(viewModel.toastLiveData()) {
       toast(it)
