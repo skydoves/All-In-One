@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.data.Entry
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.Weather
+import com.skydoves.allinone.persistence.preference.Preference_Weathers
 import kotlinx.android.synthetic.main.layout_weather_list.view.*
 import org.threeten.bp.OffsetDateTime
 
@@ -75,7 +76,7 @@ object LocalUtils {
 
   fun getWeatherIcon(wfKor: String): Int {
     return when {
-      wfKor.contains("구름 조금") || wfKor.contains("흐림") -> R.drawable.ic_sunny_cloud
+      wfKor.contains("구름 조금") or wfKor.contains("흐림") -> R.drawable.ic_sunny_cloud
       wfKor.contains("구름 많음") -> R.drawable.ic_cloudy
       wfKor.contains("비") -> R.drawable.ic_rainy
       wfKor.contains("눈") -> R.drawable.ic_snowy
@@ -104,11 +105,10 @@ object LocalUtils {
   fun getTimeFlowBackground(): Int {
     val time = OffsetDateTime.now().hour
     return when (time) {
-      in 0..6 -> R.drawable.bg_night
-      in 14..17 -> R.drawable.bg_lunch
-      in 18..19 -> R.drawable.bg_afternoon
-      in 20..24 -> R.drawable.bg_night
-      else -> R.drawable.bg_morning
+      in 0..5 -> R.drawable.bg_night
+      in 6..16 -> R.drawable.bg_morning
+      in 17..19 -> R.drawable.bg_afternoon
+      else -> R.drawable.bg_night
     }
   }
 
@@ -121,5 +121,16 @@ object LocalUtils {
       layout.day4.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[4].wfKor)))
       layout.day5.setImageDrawable(ContextCompat.getDrawable(context, getWeatherIcon(weathers[5].wfKor)))
     }
+  }
+
+  fun getRecommendDrinkByAir(weather: Preference_Weathers): Int {
+    var sum = 0
+    val reh = weather.weather?.reh
+    val pm10 = weather.air?.pm10Value
+    val pm25 = weather.air?.pm25Value
+    reh?.let { sum -= it }
+    pm10?.let { sum += it.toInt() }
+    pm25?.let { sum += it.toInt() }
+    return sum
   }
 }

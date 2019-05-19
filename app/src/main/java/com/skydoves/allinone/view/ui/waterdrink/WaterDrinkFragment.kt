@@ -105,6 +105,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     }
 
     goal.text = viewModel.getWaterGoal().toString().ml()
+    recommend.text = viewModel.getRecommendWater().toString().ml()
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
     duration.text = DateUtils.getFarDay(0) + " ~ " + DateUtils.getFarDay( 6)
   }

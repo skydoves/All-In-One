@@ -38,6 +38,7 @@ constructor(
 ) : ViewModel() {
 
   private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
+  private val weather = PreferenceComponent_PreferenceComponent.getInstance().Weathers()
   private val weatherLiveData: MutableLiveData<Int> = MutableLiveData()
   private val weathers: LiveData<List<Weather>>
   private val airLiveData: MutableLiveData<Int> = MutableLiveData()
@@ -67,8 +68,10 @@ constructor(
     val weathersLiveData: MutableLiveData<List<Weather>> = MutableLiveData()
     kmaClient.fetchWeather(LocalUtils.getLocalUrl(local)) {
       when (it) {
-        is ApiResponse.Success ->
+        is ApiResponse.Success -> {
           weathersLiveData.postValue(it.data?.getWeatherList())
+          weather.putWeather(it.data?.getWeatherList()?.get(0))
+        }
         is ApiResponse.Failure.Error ->
           toast.postValue("${it.code}: ${it.responseBody?.string()}")
         is ApiResponse.Failure.Exception ->
@@ -82,8 +85,10 @@ constructor(
     val airsLiveData: MutableLiveData<List<Air>> = MutableLiveData()
     goKrClient.fetchAir(10, LocalUtils.getShortLocalName(local)) {
       when (it) {
-        is ApiResponse.Success ->
+        is ApiResponse.Success -> {
           airsLiveData.postValue(it.data?.list)
+          weather.putAir(it.data?.list?.get(0))
+        }
         is ApiResponse.Failure.Error ->
           toast.postValue("${it.code}: ${it.responseBody?.string()}")
         is ApiResponse.Failure.Exception ->
@@ -100,4 +105,6 @@ constructor(
   fun toastLiveData() = toast
 
   fun getLocal() = setting.local
+
+  fun getWeather() = weather
 }

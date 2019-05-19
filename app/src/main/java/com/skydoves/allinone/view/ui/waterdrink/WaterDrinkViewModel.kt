@@ -24,6 +24,7 @@ import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
 import com.skydoves.allinone.utils.AbsentLiveData
+import com.skydoves.allinone.utils.LocalUtils
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
@@ -33,6 +34,7 @@ class WaterDrinkViewModel @Inject
 constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
 
   private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
+  private val weather = PreferenceComponent_PreferenceComponent.getInstance().Weathers()
 
   private val waterDrinkLiveData: MutableLiveData<WaterDrink> = MutableLiveData()
   private val waterDrinks: LiveData<List<WaterDrink>>
@@ -53,6 +55,8 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
   fun getTodayWaterDrinks() = waterDrinks
 
   fun getWaterDrinksFromDate(date: String) = waterDrinkDao.getWaterDrinksFromToday(date)
+
+  fun getRecommendWater() = getWaterGoal() + LocalUtils.getRecommendDrinkByAir(weather)
 
   fun insertWaterDrink(waterDrink: WaterDrink) {
     waterDrink.timeStamp = OffsetDateTime.now()

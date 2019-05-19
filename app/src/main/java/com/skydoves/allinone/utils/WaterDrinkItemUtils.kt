@@ -81,8 +81,8 @@ object WaterDrinkItemUtils {
 
   fun sumOfWaterDrinks(waterList: List<WaterDrink>): Int {
     var sum = 0
-    for (water in waterList) {
-      sum += water.amount
+    for (i in 0..DateUtils.getDateDay()) {
+      sum += sumOfWaterByDay(waterList, DateUtils.getFarDay(i - DateUtils.getDateDay()))
     }
     return sum
   }

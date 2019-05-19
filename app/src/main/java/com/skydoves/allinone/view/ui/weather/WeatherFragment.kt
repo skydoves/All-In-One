@@ -69,6 +69,10 @@ class WeatherFragment : Fragment() {
       }
     }
     local.text = LocalUtils.getLocalName(viewModel.getLocal())
+    degree.text = viewModel.getWeather().weather?.temp?.toInt().toString()
+    reh.text = viewModel.getWeather().weather?.reh.toString()
+    pm10.text = viewModel.getWeather().air?.pm10Value.toString()
+    pm25.text = viewModel.getWeather().air?.pm25Value.toString()
     observeLiveData()
   }
 
