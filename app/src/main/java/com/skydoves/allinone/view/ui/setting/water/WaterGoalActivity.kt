@@ -20,6 +20,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
+import com.skydoves.allinone.bus.LiveDataBus
 import com.skydoves.allinone.extension.vm
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_water_goal.*
@@ -47,6 +48,7 @@ class WaterGoalActivity : AppCompatActivity() {
         true -> {
           viewModel.setWaterGoal(goal.toInt())
           toast(getString(R.string.toast_setGoal))
+          LiveDataBus.sendEvent(LiveDataBus.EVENT_CHANGED_WATER_DRINK, 0)
           finish()
         }
         false -> toast(getString(R.string.toast_wrong_goal))

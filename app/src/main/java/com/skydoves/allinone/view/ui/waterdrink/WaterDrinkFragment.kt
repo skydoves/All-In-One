@@ -24,6 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.github.jorgecastillo.FillableLoader
 import com.github.jorgecastillo.FillableLoaderBuilder
@@ -32,8 +33,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.skydoves.allinone.R
+import com.skydoves.allinone.bus.EventLiveData
+import com.skydoves.allinone.bus.LiveDataBus
 import com.skydoves.allinone.extension.gone
 import com.skydoves.allinone.extension.ml
+import com.skydoves.allinone.extension.observeEventBus
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.observeLiveDataOnce
 import com.skydoves.allinone.extension.visible
@@ -79,6 +83,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     super.onViewCreated(view, savedInstanceState)
     initializeUI()
     observeLiveData()
+    observeEvents()
   }
 
   private fun initializeUI() {
@@ -169,6 +174,12 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
       FillAbleLoaderUtils.refreshPercentage(fillAbleLoader, percent)
       initializeGraph()
+    }
+  }
+
+  private fun observeEvents() {
+    observeEventBus<Int>(LiveDataBus.EVENT_CHANGED_WATER_DRINK) {
+      initializeUI()
     }
   }
 
