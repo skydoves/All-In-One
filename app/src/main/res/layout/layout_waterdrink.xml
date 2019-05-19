@@ -80,24 +80,24 @@
         tools:text="2000 ml" />
 
       <TextView
-        android:id="@+id/label_fineDust"
-        android:layout_width="match_parent"
+        android:id="@+id/label_recommend"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider"
         android:layout_marginStart="23dp"
         android:layout_marginTop="10dp"
         android:gravity="start"
         android:scrollbars="vertical"
-        android:text="@string/label_today_weather"
+        android:text="@string/label_recommend_amount"
         android:textColor="@color/waterBlue"
         android:textSize="15sp"
         android:textStyle="bold" />
 
       <TextView
-        android:id="@+id/fineDust"
+        android:id="@+id/recommend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label_fineDust"
+        android:layout_below="@+id/label_recommend"
         android:layout_marginStart="23dp"
         android:layout_marginTop="10dp"
         android:gravity="start"
@@ -105,7 +105,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:text="75" />
+        tools:text="2000 ml" />
 
       <TextView
         android:id="@+id/percentage"

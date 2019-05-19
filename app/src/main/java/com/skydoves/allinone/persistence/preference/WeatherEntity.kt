@@ -16,23 +16,24 @@
 
 package com.skydoves.allinone.persistence.preference
 
+import com.skydoves.allinone.models.Air
+import com.skydoves.allinone.models.Weather
+import com.skydoves.allinone.persistence.preference.converter.BaseGsonConverter
 import com.skydoves.preferenceroom.EncryptEntity
 import com.skydoves.preferenceroom.KeyName
 import com.skydoves.preferenceroom.PreferenceEntity
+import com.skydoves.preferenceroom.TypeConverter
 
 @Suppress("unused")
 @EncryptEntity("skydoves01234567")
-@PreferenceEntity("Settings")
-open class SettingEntity {
-  @JvmField
-  @KeyName("intro")
-  val introShowed: Boolean = false
+@PreferenceEntity("Weathers")
+open class WeatherEntity {
 
-  @JvmField
-  @KeyName("waterGoal")
-  val waterGoal: Int = 2000
+  @KeyName("weather")
+  @TypeConverter(BaseGsonConverter::class)
+  @JvmField val weather: Weather? = null
 
-  @JvmField
-  @KeyName("local")
-  val local: Int = 0
+  @KeyName("air")
+  @TypeConverter(BaseGsonConverter::class)
+  @JvmField val air: Air? = null
 }

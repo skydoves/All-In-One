@@ -14,12 +14,24 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.persistence.preference
+package com.skydoves.allinone.persistence.preference.converter
 
-import com.skydoves.allinone.view.ui.main.MainActivityViewModel
-import com.skydoves.preferenceroom.PreferenceComponent
+import com.google.gson.Gson
+import com.skydoves.preferenceroom.PreferenceTypeConverter
 
-@PreferenceComponent(entities = [SettingEntity::class, WeatherEntity::class])
-interface PreferenceComponent {
-  fun inject(target: MainActivityViewModel)
+@Suppress("SpellCheckingInspection")
+class BaseGsonConverter<T>(clazz: Class<T>) : PreferenceTypeConverter<T>(clazz) {
+
+  private val gson: Gson = Gson()
+
+  override fun convertObject(obj: T?): String {
+    return gson.toJson(obj)
+  }
+
+  override fun convertType(string: String?): T? {
+    return when (string == null) {
+      true -> null
+      else -> gson.fromJson(string, clazz)
+    }
+  }
 }
