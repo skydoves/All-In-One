@@ -51,4 +51,8 @@
   <string name="label_pm10">미세먼지</string>
   <string name="label_pm25">초미세먼지</string>
   <string name="label_recommend_amount">권장 섭취량</string>
+  <string name="label_settings">환경 설정</string>
+  <string name="label_nfc">NFC</string>
+  <string name="label_target">목표 설정</string>
+  <string name="label_color_drop">물방을 색상 변경</string>
 </resources>

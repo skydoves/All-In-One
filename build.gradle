@@ -28,7 +28,7 @@ buildscript {
         navigationTabVersion = '1.2.5'
         fillableVersion = '1.03@aar'
         needsVersion = '1.0.2'
-        powermenuVersion = '2.0.9'
+        powermenuVersion = '2.1.0'
         elasticviewVersion = '2.0.3'
         mpChartVersion = 'v2.1.6'
         smartRefreshVersion = '1.1.0-andx-8'
