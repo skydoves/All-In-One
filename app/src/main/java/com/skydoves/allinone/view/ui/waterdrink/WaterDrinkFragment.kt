@@ -22,9 +22,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.github.jorgecastillo.FillableLoader
 import com.github.jorgecastillo.FillableLoaderBuilder
@@ -33,7 +31,6 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.skydoves.allinone.R
-import com.skydoves.allinone.bus.EventLiveData
 import com.skydoves.allinone.bus.LiveDataBus
 import com.skydoves.allinone.extension.gone
 import com.skydoves.allinone.extension.ml
@@ -42,6 +39,7 @@ import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.observeLiveDataOnce
 import com.skydoves.allinone.extension.visible
 import com.skydoves.allinone.extension.vm
+import com.skydoves.allinone.utils.ColorPickerUtils
 import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
@@ -49,6 +47,7 @@ import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.PowerMenuUtils
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import com.skydoves.allinone.view.ui.setting.water.WaterGoalActivity
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
@@ -66,6 +65,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
 
+  private var percent: Float = 0f
   private lateinit var fillAbleLoader: FillableLoader
   private lateinit var layoutMenu: GuillotineAnimation
   private lateinit var powerMenu: PowerMenu
@@ -93,8 +93,8 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
         .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
         .layoutParams(FillAbleLoaderUtils.getParams(it))
         .originalDimensions(290, 425)
-        .fillColor(ContextCompat.getColor(it, R.color.waterBlue))
-        .strokeColor(ContextCompat.getColor(it, R.color.waterBlue))
+        .fillColor(WaterDrinkItemUtils.getDefaultWaterDropColor(it, viewModel.getWaterDropColor()))
+        .strokeColor(WaterDrinkItemUtils.getDefaultWaterDropColor(it, viewModel.getWaterDropColor()))
         .strokeDrawingDuration(0)
         .clippingTransform(WavesClippingTransform())
         .fillDuration(3000)
@@ -168,8 +168,10 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       val percent = (todayAmounts.toFloat() / viewModel.getWaterGoal().toFloat() * 100)
       if (percent < 100) {
         percentage.text = "${percent.toInt()}%"
+        this.percent = percent
       } else {
         percentage.text = "100%"
+        this.percent = 100f
       }
 
       FillAbleLoaderUtils.refreshPercentage(fillAbleLoader, percent)
@@ -188,9 +190,18 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       when (position) {
         1 -> Unit
         2 -> startActivity<WaterGoalActivity>()
+        3 -> context?.let { ColorPickerUtils.showColorPickerDialog(it, onColorEnvelopListener) }
       }
       powerMenu.dismiss()
   }
+
+  private val onColorEnvelopListener =
+      ColorEnvelopeListener { envelope, _ ->
+        viewModel.setWaterDropColor(envelope.color)
+        parentView.removeView(fillAbleLoader)
+        initializeUI()
+        FillAbleLoaderUtils.refreshPercentage(fillAbleLoader, this.percent)
+      }
 
   override fun onNothingSelected() = Unit
 
