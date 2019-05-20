@@ -88,21 +88,8 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
   private fun initializeUI() {
     context?.let {
-      val loaderBuilder = FillableLoaderBuilder()
-      this.fillAbleLoader = loaderBuilder.parentView(parentView)
-        .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
-        .layoutParams(FillAbleLoaderUtils.getParams(it))
-        .originalDimensions(290, 425)
-        .fillColor(WaterDrinkItemUtils.getDefaultWaterDropColor(it, viewModel.getWaterDropColor()))
-        .strokeColor(WaterDrinkItemUtils.getDefaultWaterDropColor(it, viewModel.getWaterDropColor()))
-        .strokeDrawingDuration(0)
-        .clippingTransform(WavesClippingTransform())
-        .fillDuration(3000)
-        .build()
-
-      percentage.bringToFront()
+      initializeWaterDrop(it)
       initializeGraph()
-
       this.powerMenu =
         PowerMenuUtils.getSettingPowerMenu(it,
           lifecycleOwner = this,
@@ -125,6 +112,21 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     recommend.text = viewModel.getRecommendWater().toString().ml()
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
     duration.text = DateUtils.getFarDay(0) + " ~ " + DateUtils.getFarDay( 6)
+  }
+
+  private fun initializeWaterDrop(context: Context) {
+    val loaderBuilder = FillableLoaderBuilder()
+    this.fillAbleLoader = loaderBuilder.parentView(parentView)
+        .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
+        .layoutParams(FillAbleLoaderUtils.getParams(context))
+        .originalDimensions(290, 425)
+        .fillColor(WaterDrinkItemUtils.getDefaultWaterDropColor(context, viewModel.getWaterDropColor()))
+        .strokeColor(WaterDrinkItemUtils.getDefaultWaterDropColor(context, viewModel.getWaterDropColor()))
+        .strokeDrawingDuration(0)
+        .clippingTransform(WavesClippingTransform())
+        .fillDuration(3000)
+        .build()
+    percentage.bringToFront()
   }
 
   private fun initializeGraph() {
@@ -199,7 +201,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       ColorEnvelopeListener { envelope, _ ->
         viewModel.setWaterDropColor(envelope.color)
         parentView.removeView(fillAbleLoader)
-        initializeUI()
+        context?.let { initializeWaterDrop(it) }
         FillAbleLoaderUtils.refreshPercentage(fillAbleLoader, this.percent)
       }
 
