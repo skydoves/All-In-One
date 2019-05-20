@@ -16,6 +16,8 @@
 
 package com.skydoves.allinone.utils
 
+import android.content.Context
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.data.Entry
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.entities.WaterDrink
@@ -85,5 +87,10 @@ object WaterDrinkItemUtils {
       sum += sumOfWaterByDay(waterList, DateUtils.getFarDay(i - DateUtils.getDateDay()))
     }
     return sum
+  }
+
+  fun getDefaultWaterDropColor(context: Context, color: Int): Int {
+    return if (color == -1) ContextCompat.getColor(context, R.color.waterBlue)
+    else color
   }
 }

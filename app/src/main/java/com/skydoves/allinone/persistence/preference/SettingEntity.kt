@@ -35,4 +35,8 @@ open class SettingEntity {
   @JvmField
   @KeyName("local")
   val local: Int = 0
+
+  @JvmField
+  @KeyName("waterColor")
+  val waterColor: Int = -1
 }

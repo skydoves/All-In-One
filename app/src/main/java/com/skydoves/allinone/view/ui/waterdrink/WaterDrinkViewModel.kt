@@ -58,6 +58,10 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
 
   fun getRecommendWater() = getWaterGoal() + LocalUtils.getRecommendDrinkByAir(weather)
 
+  fun getWaterDropColor() = setting.waterColor
+
+  fun setWaterDropColor(color: Int) = setting.putWaterColor(color)
+
   fun insertWaterDrink(waterDrink: WaterDrink) {
     waterDrink.timeStamp = OffsetDateTime.now()
     waterDrinkDao.insertWaterDrink(waterDrink)

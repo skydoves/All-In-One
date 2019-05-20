@@ -29,6 +29,7 @@ buildscript {
         fillableVersion = '1.03@aar'
         needsVersion = '1.0.2'
         powermenuVersion = '2.1.0'
+        colorpickerviewVersion = '2.1.3'
         elasticviewVersion = '2.0.3'
         mpChartVersion = 'v2.1.6'
         smartRefreshVersion = '1.1.0-andx-8'
@@ -45,7 +46,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:3.4.0"
+        classpath "com.android.tools.build:gradle:3.4.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$versionsPluginVersion"
