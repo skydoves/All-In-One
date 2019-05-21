@@ -128,9 +128,13 @@ object LocalUtils {
     val reh = weather.weather?.reh
     val pm10 = weather.air?.pm10Value
     val pm25 = weather.air?.pm25Value
-    reh?.let { sum -= it }
-    pm10?.let { sum += it.toInt() }
-    pm25?.let { sum += it.toInt() }
+    try {
+      reh?.let { sum -= it }
+      pm10?.let { sum += it.toInt() }
+      pm25?.let { sum += it.toInt() }
+    } catch (e: Exception) {
+      e.printStackTrace()
+    }
     return sum
   }
 }
