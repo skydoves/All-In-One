@@ -56,4 +56,7 @@
   <string name="label_target">목표 설정</string>
   <string name="label_color_drop">물방을 색상 변경</string>
   <string name="label_dashboard">대시보드</string>
+  <string name="label_todo">오늘 할 일</string>
+  <string name="label_completed">임무 완료</string>
+  <string name="label_task">Task</string>
 </resources>

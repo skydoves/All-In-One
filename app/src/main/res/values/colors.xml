@@ -10,10 +10,11 @@
     <color name="preview">#b0abb0</color>
     <color name="black">#000000</color>
     <color name="waterBlue">#3d95c9</color>
+    <color name="skyBlue">#57A8D8</color>
     <color name="yellow">#FFC107</color>
     <color name="red">#F44336</color>
-
     <color name="white">#ffffff</color>
     <color name="white_two">#fafafa</color>
     <color name="white_three">#f4f4f4</color>
+    <color name="warm_pink">#C53866</color>
 </resources>
