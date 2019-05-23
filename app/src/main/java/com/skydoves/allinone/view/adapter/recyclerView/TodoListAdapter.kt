@@ -33,8 +33,10 @@ class TodoListAdapter(val context: Context?) : BaseAdapter() {
     addSection(ArrayList<String>())
     addSection(ArrayList<Todo>())
 
-    addItemOnSection(0, listOf(context?.getString(R.string.label_todo)))
-    addItemOnSection(2, listOf(context?.getString(R.string.label_completed)))
+    context?.let {
+      addItemOnSection(0, it.getString(R.string.label_todo))
+      addItemOnSection(2, it.getString(R.string.label_completed))
+    }
     notifyDataSetChanged()
   }
 

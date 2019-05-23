@@ -11,8 +11,7 @@
     android:id="@+id/todo_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textColor="@color/white_two"
-    android:textSize="32sp"
-    android:textStyle="bold"
+    android:textColor="@color/white_three"
+    android:textSize="21sp"
     tools:text="Tasks" />
 </LinearLayout>

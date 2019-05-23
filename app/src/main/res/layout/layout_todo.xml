@@ -17,7 +17,8 @@
       android:layout_height="wrap_content"
       android:text="@string/label_dashboard"
       android:textColor="@color/white_two"
-      android:textSize="26sp" />
+      android:textSize="27sp"
+      android:textStyle="bold"/>
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -28,9 +29,9 @@
         android:layout_width="0dp"
         android:layout_height="110dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
         android:layout_weight="1"
-        app:cardBackgroundColor="@color/warm_pink"
+        android:padding="10dp"
+        app:cardBackgroundColor="@color/skyBlue"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp">
 
@@ -43,7 +44,7 @@
           <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_completed"
+            android:text="@string/label_todo"
             android:textColor="@color/white_two"
             android:textSize="16sp" />
 
@@ -79,9 +80,9 @@
         android:layout_width="0dp"
         android:layout_height="110dp"
         android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
         android:layout_weight="1"
-        android:padding="10dp"
-        app:cardBackgroundColor="@color/skyBlue"
+        app:cardBackgroundColor="@color/warm_pink"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp">
 
@@ -94,7 +95,7 @@
           <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_todo"
+            android:text="@string/label_completed"
             android:textColor="@color/white_two"
             android:textSize="16sp" />
 
