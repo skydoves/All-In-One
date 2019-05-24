@@ -20,6 +20,7 @@ import android.app.Application
 import androidx.annotation.NonNull
 import androidx.room.Room
 import com.skydoves.allinone.persistence.room.AppDatabase
+import com.skydoves.allinone.persistence.room.dao.TodoDao
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
 import dagger.Module
 import dagger.Provides
@@ -40,5 +41,11 @@ class PersistenceModule {
   @Singleton
   fun provideWaterDrinkDao(@NonNull database: AppDatabase): WaterDrinkDao {
     return database.waterDrinkDao()
+  }
+
+  @Provides
+  @Singleton
+  fun provodeTodoDao(@NonNull database: AppDatabase): TodoDao {
+    return database.todoDao()
   }
 }

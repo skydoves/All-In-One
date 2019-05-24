@@ -22,6 +22,7 @@ import androidx.room.TypeConverters
 import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.room.converter.TimeStampConverter
+import com.skydoves.allinone.persistence.room.dao.TodoDao
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
 
 @Database(entities = [(Todo::class), (WaterDrink::class)],
@@ -29,4 +30,5 @@ import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
 @TypeConverters(TimeStampConverter::class)
 abstract class AppDatabase : RoomDatabase() {
   abstract fun waterDrinkDao(): WaterDrinkDao
+  abstract fun todoDao(): TodoDao
 }

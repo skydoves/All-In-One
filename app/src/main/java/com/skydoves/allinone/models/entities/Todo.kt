@@ -25,19 +25,17 @@ import org.threeten.bp.OffsetDateTime
 @Entity(primaryKeys = [("timeStamp")])
 data class Todo(
   val timeStamp: OffsetDateTime,
-  val title: String,
-  val summary: String,
-  val contents: String,
+  val title: String?,
+  val contents: String?,
   val icon: Int,
   val progress: Int
 ) : Parcelable {
   constructor(source: Parcel) : this(
-      source.readSerializable() as OffsetDateTime,
-      source.readString(),
-      source.readString(),
-      source.readString(),
-      source.readInt(),
-      source.readInt()
+    source.readSerializable() as OffsetDateTime,
+    source.readString(),
+    source.readString(),
+    source.readInt(),
+    source.readInt()
   )
 
   override fun describeContents() = 0
@@ -45,7 +43,6 @@ data class Todo(
   override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
     writeSerializable(timeStamp)
     writeString(title)
-    writeString(summary)
     writeString(contents)
     writeInt(icon)
     writeInt(progress)

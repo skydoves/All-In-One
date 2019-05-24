@@ -41,12 +41,12 @@ class TodoListAdapter(
 
     context?.let {
       addItemOnSection(0, it.getString(R.string.label_todo))
-      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "summary", "content", 0, 0))
-      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "summary", "content", 0, 0))
-      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "summary", "content", 0, 0))
+      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "content", 0, 0))
+      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "content", 0, 0))
+      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "content", 0, 0))
       addItemOnSection(2, it.getString(R.string.label_completed))
-      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "summary", "content", 0, 0))
-      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "summary", "content", 0, 0))
+      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "content", 0, 0))
+      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "content", 0, 0))
     }
     notifyDataSetChanged()
   }

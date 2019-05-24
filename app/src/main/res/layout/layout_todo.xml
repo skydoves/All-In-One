@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="25dp">
+    android:padding="16dp">
 
     <TextView
       android:layout_width="wrap_content"
@@ -32,6 +32,7 @@
         android:layout_weight="1"
         android:padding="10dp"
         app:cardBackgroundColor="@color/skyBlue"
+        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp">
 
@@ -83,6 +84,7 @@
         android:layout_marginStart="15dp"
         android:layout_weight="1"
         app:cardBackgroundColor="@color/warm_pink"
+        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp">
 
