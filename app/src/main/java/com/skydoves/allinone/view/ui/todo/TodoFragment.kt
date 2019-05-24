@@ -26,18 +26,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.vm
+import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.view.adapter.recyclerView.TodoListAdapter
 import com.skydoves.allinone.view.ui.main.MainActivityViewModel
+import com.skydoves.allinone.view.viewholder.TodoViewHolder
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_todo.*
 import javax.inject.Inject
 
-class TodoFragment : Fragment() {
+class TodoFragment : Fragment(), TodoViewHolder.Delegate {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class) }
-  private val adapter by lazy { TodoListAdapter(context) }
+  private val adapter by lazy { TodoListAdapter(context, this) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -56,5 +58,8 @@ class TodoFragment : Fragment() {
   private fun initializeUI() {
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = adapter
+  }
+
+  override fun onItemClick(todo: Todo) {
   }
 }

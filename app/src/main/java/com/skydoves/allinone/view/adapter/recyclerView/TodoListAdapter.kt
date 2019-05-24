@@ -21,11 +21,17 @@ import android.view.View
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.view.viewholder.TodoTitleViewHolder
+import com.skydoves.allinone.view.viewholder.TodoViewHolder
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
+import org.threeten.bp.OffsetDateTime
 
-class TodoListAdapter(val context: Context?) : BaseAdapter() {
+class TodoListAdapter(
+  context: Context?,
+  private val delegate: TodoViewHolder.Delegate
+)
+  : BaseAdapter() {
 
   init {
     addSection(ArrayList<String>())
@@ -35,22 +41,27 @@ class TodoListAdapter(val context: Context?) : BaseAdapter() {
 
     context?.let {
       addItemOnSection(0, it.getString(R.string.label_todo))
+      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "summary", "content", 0, 0))
+      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "summary", "content", 0, 0))
+      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "summary", "content", 0, 0))
       addItemOnSection(2, it.getString(R.string.label_completed))
+      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "summary", "content", 0, 0))
+      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "summary", "content", 0, 0))
     }
     notifyDataSetChanged()
   }
 
   override fun layout(sectionRow: SectionRow): Int {
-    return when (sectionRow.row) {
-      0 or 2 -> R.layout.item_todo_title
-      else -> R.layout.item_todo_title
+    return when (sectionRow.section) {
+      0, 2 -> R.layout.item_todo_title
+      else -> R.layout.item_todo
     }
   }
 
   override fun viewHolder(layout: Int, view: View): BaseViewHolder {
     return when (layout) {
       R.layout.item_todo_title -> TodoTitleViewHolder(view)
-      else -> TodoTitleViewHolder(view)
+      else -> TodoViewHolder(delegate, view)
     }
   }
 }
