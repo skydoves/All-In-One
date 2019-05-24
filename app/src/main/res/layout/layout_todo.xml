@@ -31,8 +31,8 @@
         android:layout_marginTop="15dp"
         android:layout_weight="1"
         android:padding="10dp"
-        app:cardBackgroundColor="@color/skyBlue"
         android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/skyBlue"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp">
 
@@ -56,12 +56,14 @@
             android:orientation="horizontal">
 
             <TextView
+              android:id="@+id/task_todo"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="10dp"
               android:textColor="@color/white_two"
               android:textSize="32sp"
               android:textStyle="bold"
+              android:text="@string/_0"
               tools:text="5" />
 
             <TextView
@@ -83,8 +85,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_weight="1"
-        app:cardBackgroundColor="@color/warm_pink"
         android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/warm_pink"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp">
 
@@ -108,12 +110,14 @@
             android:orientation="horizontal">
 
             <TextView
+              android:id="@+id/task_complete"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="10dp"
               android:textColor="@color/white_two"
               android:textSize="32sp"
               android:textStyle="bold"
+              android:text="@string/_0"
               tools:text="5" />
 
             <TextView

@@ -16,14 +16,32 @@
 
 package com.skydoves.allinone.view.ui.todo
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
+import com.skydoves.allinone.models.entities.Todo
+import com.skydoves.allinone.persistence.room.dao.TodoDao
+import com.skydoves.allinone.utils.AbsentLiveData
+import com.skydoves.allinone.utils.DateUtils
 import timber.log.Timber
 import javax.inject.Inject
 
 class TodoViewModel @Inject
-constructor() : ViewModel() {
+constructor(private val todoDao: TodoDao) : ViewModel() {
+
+  private val trigger: MutableLiveData<Int> = MutableLiveData()
+  private val todoList: LiveData<List<Todo>>
 
   init {
     Timber.d("injection TodoViewModel")
+
+    trigger.value = 0
+    todoList = trigger.switchMap {
+      trigger.value?.let { todoDao.getTodoFromDay(DateUtils.getSinceToday()) }
+        ?: AbsentLiveData.create()
+    }
   }
+
+  fun getTodoList() = todoList
 }

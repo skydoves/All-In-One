@@ -59,4 +59,5 @@
   <string name="label_todo">오늘 할 일</string>
   <string name="label_completed">임무 완료</string>
   <string name="label_task">Task</string>
+  <string name="_0">0</string>
 </resources>

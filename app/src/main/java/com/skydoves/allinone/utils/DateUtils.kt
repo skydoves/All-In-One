@@ -69,4 +69,13 @@ object DateUtils {
       .withNano(0)
     return time.toString()
   }
+
+  fun getSinceToday(): String {
+    val time = OffsetDateTime.now()
+      .withHour(0)
+      .withMinute(0)
+      .withSecond(0)
+      .withNano(0)
+    return time.toString()
+  }
 }
