@@ -26,6 +26,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.observeLiveData
+import com.skydoves.allinone.extension.slideFromRightAnimation
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.utils.TodoUtils
@@ -66,6 +67,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
     observeLiveData(viewModel.getTodoList()) {
       task_todo.text = TodoUtils.getTodoSize(it).toString()
       task_complete.text = TodoUtils.getCompleteSize(it).toString()
+      recyclerView.slideFromRightAnimation()
     }
   }
 

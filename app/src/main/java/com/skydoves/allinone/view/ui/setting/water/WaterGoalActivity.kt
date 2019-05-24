@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.bus.LiveDataBus
+import com.skydoves.allinone.extension.overridePendingDown
 import com.skydoves.allinone.extension.vm
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_water_goal.*
@@ -58,5 +59,10 @@ class WaterGoalActivity : AppCompatActivity() {
 
   private fun validate(text: String): Boolean {
     return !(text.isEmpty() || text == "0")
+  }
+
+  override fun onBackPressed() {
+    super.onBackPressed()
+    overridePendingDown()
   }
 }

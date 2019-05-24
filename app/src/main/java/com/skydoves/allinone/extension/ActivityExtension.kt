@@ -18,8 +18,11 @@ package com.skydoves.allinone.extension
 
 import android.app.Activity
 import android.os.Build
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.ViewAnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.skydoves.allinone.R
 
@@ -37,4 +40,28 @@ fun Activity.circularRevealedAtCenter(view: View) {
     anim.duration = 550
     anim.start()
   }
+}
+
+fun Activity.textWatcher(afterTextChanged: () -> Unit): TextWatcher {
+  return object : TextWatcher {
+    override fun afterTextChanged(p0: Editable?) {
+      afterTextChanged()
+    }
+
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+    }
+
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+    }
+  }
+}
+
+fun Activity.overridePendingUp() {
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+    overridePendingTransition(R.anim.slide_in_up, R.anim.slide_no_change)
+}
+
+fun Activity.overridePendingDown() {
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+    overridePendingTransition(R.anim.slide_no_change, R.anim.slide_out_down)
 }

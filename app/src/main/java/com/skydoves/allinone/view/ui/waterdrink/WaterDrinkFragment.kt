@@ -37,6 +37,7 @@ import com.skydoves.allinone.extension.ml
 import com.skydoves.allinone.extension.observeEventBus
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.observeLiveDataOnce
+import com.skydoves.allinone.extension.overridePendingUp
 import com.skydoves.allinone.extension.visible
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.ColorPickerUtils
@@ -191,7 +192,10 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     OnMenuItemClickListener<PowerMenuItem> { position, _ ->
       when (position) {
         1 -> Unit
-        2 -> startActivity<WaterGoalActivity>()
+        2 -> {
+          startActivity<WaterGoalActivity>()
+          activity?.overridePendingUp()
+        }
         3 -> context?.let { ColorPickerUtils.showColorPickerDialog(it, onColorEnvelopListener) }
       }
       powerMenu.dismiss()

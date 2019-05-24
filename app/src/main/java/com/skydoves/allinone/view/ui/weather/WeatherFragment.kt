@@ -33,7 +33,9 @@ import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.LocalUtils
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.layout_water_drink_graph.*
 import kotlinx.android.synthetic.main.layout_weather.*
+import kotlinx.android.synthetic.main.layout_weather.lineChart
 import kotlinx.android.synthetic.main.layout_weather_list.*
 import org.jetbrains.anko.backgroundDrawable
 import org.jetbrains.anko.support.v4.toast
@@ -88,6 +90,7 @@ class WeatherFragment : Fragment() {
 
           LocalUtils.setWeatherIcons(context, it, weather_list)
           LineChartUtils.setWeatherLineChart(lineChart, LocalUtils.getWeatherNewLabels(it), LocalUtils.getWeatherNewDegrees(it))
+          lineChart.animateY(1700)
         }
       }
     }
