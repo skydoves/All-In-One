@@ -33,6 +33,7 @@ import com.skydoves.allinone.utils.TodoUtils
 import com.skydoves.allinone.view.adapter.recyclerView.TodoListAdapter
 import com.skydoves.allinone.view.viewholder.TodoViewHolder
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.layout_bubble.*
 import kotlinx.android.synthetic.main.layout_todo.*
 import javax.inject.Inject
 
@@ -61,6 +62,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
   private fun initializeUI() {
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = adapter
+    bubble.setOnClickListener {  }
   }
 
   private fun observeLiveData() {

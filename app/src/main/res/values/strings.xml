@@ -60,4 +60,5 @@
   <string name="label_completed">임무 완료</string>
   <string name="label_task">Task</string>
   <string name="_0">0</string>
+  <string name="label_add_item">아이템 추가</string>
 </resources>
