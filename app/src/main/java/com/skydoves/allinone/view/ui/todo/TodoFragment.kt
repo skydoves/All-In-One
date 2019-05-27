@@ -66,7 +66,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
   private fun initializeUI() {
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = adapter
-    bubble.setOnClickListener {  }
+    bubble.setOnClickListener { }
     layout_bubble.tag = true
     scrollView.onScrollChange { _, _, scrollY, _, _ ->
       if (scrollY == 0) layout_bubble.fadeIn()

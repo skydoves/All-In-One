@@ -22,7 +22,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.ViewAnimationUtils
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.skydoves.allinone.R
 
