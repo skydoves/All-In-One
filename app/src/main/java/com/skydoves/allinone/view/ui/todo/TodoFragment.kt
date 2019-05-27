@@ -25,6 +25,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.fadeIn
+import com.skydoves.allinone.extension.fadeOut
+import com.skydoves.allinone.extension.isVisible
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.slideFromRightAnimation
 import com.skydoves.allinone.extension.vm
@@ -35,6 +38,7 @@ import com.skydoves.allinone.view.viewholder.TodoViewHolder
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_bubble.*
 import kotlinx.android.synthetic.main.layout_todo.*
+import org.jetbrains.anko.support.v4.onScrollChange
 import javax.inject.Inject
 
 class TodoFragment : Fragment(), TodoViewHolder.Delegate {
@@ -63,6 +67,11 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = adapter
     bubble.setOnClickListener {  }
+    layout_bubble.tag = true
+    scrollView.onScrollChange { _, _, scrollY, _, _ ->
+      if (scrollY == 0) layout_bubble.fadeIn()
+      else if (layout_bubble.isVisible()) layout_bubble.fadeOut()
+    }
   }
 
   private fun observeLiveData() {

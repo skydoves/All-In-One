@@ -17,6 +17,9 @@
 package com.skydoves.allinone.extension
 
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import com.skydoves.allinone.R
 
 fun View.visible() {
   visibility = View.VISIBLE
@@ -28,4 +31,40 @@ fun View.inVisible() {
 
 fun View.gone() {
   visibility = View.GONE
+}
+
+fun View.isVisible(): Boolean {
+  return visibility == View.VISIBLE
+}
+
+fun View.fadeIn() {
+  if (alpha == 1f) {
+    this.alpha = 0.99f
+    val fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+    this.startAnimation(fadeIn)
+    fadeIn.setAnimationListener(object : Animation.AnimationListener {
+      override fun onAnimationRepeat(p0: Animation?) = Unit
+      override fun onAnimationStart(p0: Animation?) = Unit
+      override fun onAnimationEnd(p0: Animation?) {
+        alpha = 1f
+        visible()
+      }
+    })
+  }
+}
+
+fun View.fadeOut() {
+  if (alpha == 1f) {
+    this.alpha = 0.99f
+    val fadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+    this.startAnimation(fadeOut)
+    fadeOut.setAnimationListener(object : Animation.AnimationListener {
+      override fun onAnimationRepeat(p0: Animation?) = Unit
+      override fun onAnimationStart(p0: Animation?) = Unit
+      override fun onAnimationEnd(p0: Animation?) {
+        alpha = 1f
+        gone()
+      }
+    })
+  }
 }
