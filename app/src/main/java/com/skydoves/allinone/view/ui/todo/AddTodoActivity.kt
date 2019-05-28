@@ -23,6 +23,7 @@ import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.overridePendingDown
 import com.skydoves.allinone.extension.vm
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.toolbar_default.*
 import javax.inject.Inject
 
 class AddTodoActivity : AppCompatActivity() {
@@ -35,6 +36,13 @@ class AddTodoActivity : AppCompatActivity() {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_add_todo)
+
+    initializeUI()
+  }
+
+  private fun initializeUI() {
+    toolbar_home.setOnClickListener { onBackPressed() }
+    toolbar_title.text = getString(R.string.label_add_item)
   }
 
   override fun onBackPressed() {

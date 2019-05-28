@@ -17,9 +17,8 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     android:usesCleartextTraffic="true"
+    android:hardwareAccelerated="true"
     tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
-    <activity android:name=".view.ui.todo.AddTodoActivity"></activity>
-    <activity android:name=".view.ui.setting.local.LocalActivity"></activity>
     <activity
       android:name=".view.ui.main.MainActivity"
       android:launchMode="singleInstance"
@@ -35,6 +34,8 @@
     <activity
       android:name=".view.ui.waterdrink.WaterDrinkSelectActivity"
       android:theme="@style/AppTheme.Dialog" />
+    <activity android:name=".view.ui.todo.AddTodoActivity"/>
+    <activity android:name=".view.ui.setting.local.LocalActivity"/>
   </application>
 
 </manifest>
