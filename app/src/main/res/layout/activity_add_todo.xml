@@ -19,11 +19,38 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="start"
+      android:scrollbars="vertical"
+      android:text="@string/label_color"
+      android:textColor="@color/waterBlue"
+      android:textSize="15sp"
+      android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerView_color"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="5dp"
-      tools:listitem="@layout/item_color"/>
+      android:layout_marginTop="8dp"
+      tools:listitem="@layout/item_color" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:gravity="start"
+      android:scrollbars="vertical"
+      android:text="@string/label_icon"
+      android:textColor="@color/waterBlue"
+      android:textSize="15sp"
+      android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerView_icon"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp" />
   </LinearLayout>
 </LinearLayout>

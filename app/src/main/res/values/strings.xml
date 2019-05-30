@@ -61,4 +61,6 @@
   <string name="label_task">Task</string>
   <string name="_0">0</string>
   <string name="label_add_item">아이템 추가</string>
+  <string name="label_color">색상</string>
+  <string name="label_icon">아이콘</string>
 </resources>
