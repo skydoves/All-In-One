@@ -25,19 +25,26 @@ import com.skydoves.allinone.extension.overridePendingDown
 import com.skydoves.allinone.extension.setImageTint
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.ColorItem
+import com.skydoves.allinone.models.IconItem
 import com.skydoves.allinone.view.adapter.recyclerView.TodoColorAdapter
+import com.skydoves.allinone.view.adapter.recyclerView.TodoIconAdapter
 import com.skydoves.allinone.view.viewholder.TodoColorViewHolder
+import com.skydoves.allinone.view.viewholder.TodoIconViewHolder
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_add_todo.*
 import kotlinx.android.synthetic.main.toolbar_default.*
+import org.jetbrains.anko.image
 import javax.inject.Inject
 
-class AddTodoActivity : AppCompatActivity(), TodoColorViewHolder.Delegate {
+class AddTodoActivity : AppCompatActivity(),
+  TodoColorViewHolder.Delegate, TodoIconViewHolder.Delegate {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, AddTodoViewModel::class) }
+
   private val colorAdapter by lazy { TodoColorAdapter(this, this) }
+  private val iconAdapter by lazy { TodoIconAdapter(this, this) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
@@ -53,15 +60,23 @@ class AddTodoActivity : AppCompatActivity(), TodoColorViewHolder.Delegate {
     toolbar_title.text = getString(R.string.label_add_item)
     recyclerView_color.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     recyclerView_color.adapter = colorAdapter
+    recyclerView_icon.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    recyclerView_icon.adapter = iconAdapter
   }
 
   private fun initializeAdapter() {
     colorAdapter.getFirstItem().isChecked = true
+    iconAdapter.getFirstItem().isChecked = true
   }
 
   override fun onColorItemClick(colorItem: ColorItem) {
     colorAdapter.checkColorItem(colorItem)
     circle.setImageTint(colorItem.color)
+  }
+
+  override fun onIconItemClick(iconItem: IconItem) {
+    iconAdapter.checkIconItem(iconItem)
+    icon.setImageDrawable(iconItem.resource)
   }
 
   override fun onBackPressed() {

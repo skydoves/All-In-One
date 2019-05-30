@@ -21,7 +21,7 @@
       android:paddingLeft="16dp"
       android:paddingRight="16dp"
       android:scaleType="fitXY"
-      android:src="@drawable/ic_place_white_24dp"
+      android:src="@drawable/ic_location"
       android:tint="@color/waterBlue"/>
   </LinearLayout>
 

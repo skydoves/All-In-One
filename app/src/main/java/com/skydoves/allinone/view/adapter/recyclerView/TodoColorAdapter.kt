@@ -31,7 +31,7 @@ class TodoColorAdapter(
 ) : BaseAdapter() {
 
   init {
-    addSection(ArrayList<Int>())
+    addSection(ArrayList<ColorItem>())
 
     addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.waterBlue), false))
     addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.colorPrimary), false))

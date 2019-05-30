@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/background"
-              android:orientation="vertical">
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background"
+  android:orientation="vertical">
 
   <com.google.android.material.appbar.AppBarLayout
     android:layout_width="match_parent"
@@ -28,17 +28,16 @@
         android:id="@+id/circle"
         android:layout_width="74dp"
         android:layout_height="74dp"
-        android:src="@drawable/circle"
         android:layout_centerInParent="true"
-        android:tint="@color/waterBlue"/>
+        android:src="@drawable/circle"
+        android:tint="@color/waterBlue" />
 
       <ImageView
         android:id="@+id/icon"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        android:tint="@color/white"/>
     </RelativeLayout>
 
     <TextView
@@ -56,8 +55,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
-      tools:listitem="@layout/item_color"
-      tools:itemCount="1"/>
+      tools:itemCount="1"
+      tools:listitem="@layout/item_color" />
 
     <TextView
       android:layout_width="wrap_content"
@@ -75,6 +74,6 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
-      tools:itemCount="1"/>
+      tools:itemCount="1" />
   </LinearLayout>
 </LinearLayout>

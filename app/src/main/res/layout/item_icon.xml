@@ -14,12 +14,13 @@
     android:layout_height="match_parent">
 
     <ImageView
-      android:id="@+id/item_color"
+      android:id="@+id/item_icon"
       android:layout_width="52dp"
       android:layout_height="52dp"
-      android:layout_centerInParent="true"
-      android:src="@drawable/circle"
-      android:tint="@color/waterBlue" />
+      android:scaleType="fitXY"
+      android:tint="@color/waterBlue"
+      android:padding="5dp"
+      tools:src="@drawable/ic_glass0" />
 
     <ImageView
       android:id="@+id/item_check"
