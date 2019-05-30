@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.skydoves.elasticviews.ElasticLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:layout_margin="5dp">
+  android:layout_margin="5dp"
+  app:layout_duration="150"
+  app:layout_scale="0.8"
+  app:layout_backgroundColor="@android:color/transparent">
 
-  <ImageView
-    android:id="@+id/item_color"
-    android:layout_width="52dp"
-    android:layout_height="52dp"
-    android:src="@drawable/circle"
-    android:layout_centerInParent="true"
-    android:tint="@color/white"/>
-</RelativeLayout>
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.skydoves.elasticviews.ElasticImageView
+      android:id="@+id/item_color"
+      android:layout_width="52dp"
+      android:layout_height="52dp"
+      android:src="@drawable/circle"
+      android:layout_centerInParent="true"
+      android:tint="@color/waterBlue"
+      app:imageview_duration="150"
+      app:imageview_scale="0.8"/>
+
+    <ImageView
+      android:id="@+id/item_check"
+      android:layout_width="28dp"
+      android:layout_height="28dp"
+      android:src="@drawable/ic_check"
+      android:layout_centerInParent="true"
+      android:visibility="gone"
+      tools:visibility="visible"/>
+  </RelativeLayout>
+</com.skydoves.elasticviews.ElasticLayout>

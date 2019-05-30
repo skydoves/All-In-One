@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.overridePendingDown
+import com.skydoves.allinone.extension.setImageTint
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.ColorItem
 import com.skydoves.allinone.view.adapter.recyclerView.TodoColorAdapter
@@ -36,6 +37,7 @@ class AddTodoActivity : AppCompatActivity(), TodoColorViewHolder.Delegate {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, AddTodoViewModel::class) }
+  private val colorAdapter by lazy { TodoColorAdapter(this, this) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
@@ -43,18 +45,23 @@ class AddTodoActivity : AppCompatActivity(), TodoColorViewHolder.Delegate {
     setContentView(R.layout.activity_add_todo)
 
     initializeUI()
+    initializeAdapter()
   }
 
   private fun initializeUI() {
     toolbar_home.setOnClickListener { onBackPressed() }
     toolbar_title.text = getString(R.string.label_add_item)
-
-    val colorAdapter = TodoColorAdapter(this, this)
     recyclerView_color.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     recyclerView_color.adapter = colorAdapter
   }
 
-  override fun onColorItemClick(color: ColorItem) {
+  private fun initializeAdapter() {
+    colorAdapter.getFirstItem().isChecked = true
+  }
+
+  override fun onColorItemClick(colorItem: ColorItem) {
+    colorAdapter.checkColorItem(colorItem)
+    circle.setImageTint(colorItem.color)
   }
 
   override fun onBackPressed() {

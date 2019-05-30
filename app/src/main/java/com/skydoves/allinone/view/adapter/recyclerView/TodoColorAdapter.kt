@@ -28,20 +28,31 @@ import com.skydoves.baserecyclerviewadapter.SectionRow
 class TodoColorAdapter(
   context: Context,
   private val delegate: TodoColorViewHolder.Delegate
-)
-  : BaseAdapter() {
+) : BaseAdapter() {
 
   init {
     addSection(ArrayList<Int>())
 
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.waterBlue), true))
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.colorPrimary), true))
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.yellow), true))
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.warm_pink), true))
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.purple), true))
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.white), true))
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.black), true))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.waterBlue), false))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.colorPrimary), false))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.yellow), false))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.warm_pink), false))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.purple), false))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.black), false))
     notifyDataSetChanged()
+  }
+
+  fun checkColorItem(colorItem: ColorItem) {
+    for (item in sections()[0]) {
+      item as ColorItem
+      item.isChecked = false
+    }
+    (sections()[0][sections()[0].indexOf(colorItem)] as ColorItem).isChecked = true
+    notifyDataSetChanged()
+  }
+
+  fun getFirstItem(): ColorItem {
+    return sections()[0][0] as ColorItem
   }
 
   override fun layout(sectionRow: SectionRow) = R.layout.item_color

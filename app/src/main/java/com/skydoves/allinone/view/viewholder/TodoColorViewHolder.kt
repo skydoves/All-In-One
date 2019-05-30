@@ -16,8 +16,10 @@
 
 package com.skydoves.allinone.view.viewholder
 
-import android.graphics.PorterDuff
 import android.view.View
+import com.skydoves.allinone.extension.gone
+import com.skydoves.allinone.extension.setImageTint
+import com.skydoves.allinone.extension.visible
 import com.skydoves.allinone.models.ColorItem
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import kotlinx.android.synthetic.main.item_color.view.*
@@ -28,7 +30,7 @@ class TodoColorViewHolder(
 ) : BaseViewHolder(view) {
 
   interface Delegate {
-    fun onColorItemClick(color: ColorItem)
+    fun onColorItemClick(colorItem: ColorItem)
   }
 
   private lateinit var colorItem: ColorItem
@@ -42,7 +44,12 @@ class TodoColorViewHolder(
 
   private fun updateUI() {
     itemView.run {
-      item_color.drawable.setColorFilter(colorItem.color, PorterDuff.Mode.SRC_OVER)
+      item_color.setImageTint(colorItem.color)
+      if (colorItem.isChecked) {
+        item_check.visible()
+      } else {
+        item_check.gone()
+      }
     }
   }
 

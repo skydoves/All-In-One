@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.models
+package com.skydoves.allinone.extension
 
-data class ColorItem(
-  val color: Int,
-  var isChecked: Boolean = false
-)
+import android.content.res.ColorStateList
+import android.widget.ImageView
+import androidx.core.widget.ImageViewCompat
+
+fun ImageView.setImageTint(color: Int) {
+  ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(color))
+}
