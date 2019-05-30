@@ -25,7 +25,8 @@ import com.skydoves.allinone.view.viewholder.TodoColorViewHolder
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.SectionRow
 
-class TodoColorAdapter(context: Context,
+class TodoColorAdapter(
+  context: Context,
   private val delegate: TodoColorViewHolder.Delegate
 )
   : BaseAdapter() {

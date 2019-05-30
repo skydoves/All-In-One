@@ -55,7 +55,6 @@ class AddTodoActivity : AppCompatActivity(), TodoColorViewHolder.Delegate {
   }
 
   override fun onColorItemClick(color: ColorItem) {
-
   }
 
   override fun onBackPressed() {
