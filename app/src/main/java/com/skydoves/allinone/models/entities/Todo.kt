@@ -27,15 +27,17 @@ data class Todo(
   val timeStamp: OffsetDateTime,
   val title: String?,
   val contents: String?,
+  val color: Int,
   val icon: Int,
   val progress: Int
 ) : Parcelable {
   constructor(source: Parcel) : this(
-    source.readSerializable() as OffsetDateTime,
-    source.readString(),
-    source.readString(),
-    source.readInt(),
-    source.readInt()
+      source.readSerializable() as OffsetDateTime,
+      source.readString(),
+      source.readString(),
+      source.readInt(),
+      source.readInt(),
+      source.readInt()
   )
 
   override fun describeContents() = 0
@@ -44,6 +46,7 @@ data class Todo(
     writeSerializable(timeStamp)
     writeString(title)
     writeString(contents)
+    writeInt(color)
     writeInt(icon)
     writeInt(progress)
   }

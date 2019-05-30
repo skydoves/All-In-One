@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_margin="5dp">
+
+  <ImageView
+    android:id="@+id/item_color"
+    android:layout_width="52dp"
+    android:layout_height="52dp"
+    android:src="@drawable/circle"
+    android:layout_centerInParent="true"
+    android:tint="@color/white"/>
+</RelativeLayout>

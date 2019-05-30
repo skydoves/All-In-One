@@ -48,7 +48,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, TodoViewModel::class) }
-  private val adapter by lazy { TodoListAdapter(context, this) }
+  private val adapter by lazy { TodoListAdapter(this) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)

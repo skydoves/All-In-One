@@ -16,7 +16,6 @@
 
 package com.skydoves.allinone.view.adapter.recyclerView
 
-import android.content.Context
 import android.view.View
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.entities.Todo
@@ -25,12 +24,8 @@ import com.skydoves.allinone.view.viewholder.TodoViewHolder
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
-import org.threeten.bp.OffsetDateTime
 
-class TodoListAdapter(
-  context: Context?,
-  private val delegate: TodoViewHolder.Delegate
-)
+class TodoListAdapter(private val delegate: TodoViewHolder.Delegate)
   : BaseAdapter() {
 
   init {
@@ -38,16 +33,6 @@ class TodoListAdapter(
     addSection(ArrayList<Todo>())
     addSection(ArrayList<String>())
     addSection(ArrayList<Todo>())
-
-    context?.let {
-      addItemOnSection(0, it.getString(R.string.label_todo))
-      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "content", 0, 0))
-      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "content", 0, 0))
-      addItemOnSection(1, Todo(OffsetDateTime.now(), "test1", "content", 0, 0))
-      addItemOnSection(2, it.getString(R.string.label_completed))
-      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "content", 0, 0))
-      addItemOnSection(3, Todo(OffsetDateTime.now(), "test3", "content", 0, 0))
-    }
     notifyDataSetChanged()
   }
 
