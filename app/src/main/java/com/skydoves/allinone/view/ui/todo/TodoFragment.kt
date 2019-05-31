@@ -87,6 +87,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
     }
   }
 
-  override fun onItemClick(todo: Todo) {
+  override fun onItemClick(todo: Todo, circle: View, icon: View) {
+    TodoDetailActivity.startActivity(activity!!, todo, circle, icon)
   }
 }

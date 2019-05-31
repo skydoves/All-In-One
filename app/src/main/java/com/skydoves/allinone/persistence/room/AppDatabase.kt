@@ -26,7 +26,7 @@ import com.skydoves.allinone.persistence.room.dao.TodoDao
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
 
 @Database(entities = [(Todo::class), (WaterDrink::class)],
-    version = 1, exportSchema = false)
+    version = 2, exportSchema = false)
 @TypeConverters(TimeStampConverter::class)
 abstract class AppDatabase : RoomDatabase() {
   abstract fun waterDrinkDao(): WaterDrinkDao

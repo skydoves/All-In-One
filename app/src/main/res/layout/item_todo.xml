@@ -18,23 +18,26 @@
 
     <RelativeLayout
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content"
+      tools:targetApi="lollipop">
 
       <ImageView
         android:id="@+id/circle"
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:src="@drawable/circle"
         android:layout_centerInParent="true"
-        android:tint="@color/waterBlue"/>
+        android:src="@drawable/circle"
+        android:tint="@color/waterBlue"
+        android:transitionName="@string/transition_circle" />
 
       <ImageView
         android:id="@+id/icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_centerInParent="true"
         android:src="@drawable/ic_sunny_day"
         android:tint="@color/white"
-        android:layout_centerInParent="true"/>
+        android:transitionName="@string/transition_icon" />
     </RelativeLayout>
 
     <LinearLayout
@@ -50,6 +53,8 @@
         android:textColor="@color/white_two"
         android:textSize="19sp"
         android:textStyle="bold"
+        android:transitionName="@string/transition_title"
+        tools:targetApi="lollipop"
         tools:text="Drinking water" />
 
       <TextView
@@ -59,6 +64,8 @@
         android:textColor="@color/white_70"
         android:textSize="15sp"
         android:textStyle="bold"
+        android:transitionName="@string/transition_content"
+        tools:targetApi="lollipop"
         tools:text="drink 250ml coffee" />
 
       <LinearLayout

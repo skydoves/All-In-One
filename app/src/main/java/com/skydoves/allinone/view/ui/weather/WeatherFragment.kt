@@ -68,6 +68,7 @@ class WeatherFragment : Fragment() {
       refreshLayout.setOnRefreshListener {
         refreshLayout.finishRefresh(1500)
         viewModel.publishInitData()
+        toast(getString(R.string.label_refresh_weather))
       }
     }
     layout_location.setOnClickListener { startActivity<LocalActivity>() }

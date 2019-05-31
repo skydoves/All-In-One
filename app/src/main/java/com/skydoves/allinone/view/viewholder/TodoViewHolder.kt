@@ -29,11 +29,10 @@ import kotlinx.android.synthetic.main.item_todo.view.*
 class TodoViewHolder(
   private val delegate: Delegate,
   view: View
-)
-  : BaseViewHolder(view) {
+) : BaseViewHolder(view) {
 
   interface Delegate {
-    fun onItemClick(todo: Todo)
+    fun onItemClick(todo: Todo, circle: View, icon: View)
   }
 
   private lateinit var todo: Todo
@@ -62,7 +61,7 @@ class TodoViewHolder(
   }
 
   override fun onClick(p0: View?) {
-    delegate.onItemClick(todo)
+    delegate.onItemClick(todo, itemView.circle, itemView.icon)
   }
 
   override fun onLongClick(p0: View?) = false

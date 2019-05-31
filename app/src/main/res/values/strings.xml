@@ -76,4 +76,9 @@
   <string name="label_save">저장하기</string>
   <string name="label_require_inputs">제목과 내용을 모두 입력해주세요.</string>
   <string name="label_added_todo">할 일이 추가 되었습니다.</string>
+  <string name="label_refresh_weather">날씨 정보가 리프레시 되었습니다.</string>
+  <string name="transition_circle">circle</string>
+  <string name="transition_icon">icon</string>
+  <string name="transition_title">title</string>
+  <string name="transition_content">content</string>
 </resources>
