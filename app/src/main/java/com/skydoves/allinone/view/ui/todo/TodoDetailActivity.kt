@@ -38,7 +38,6 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-
 class TodoDetailActivity : AppCompatActivity() {
 
   @Inject

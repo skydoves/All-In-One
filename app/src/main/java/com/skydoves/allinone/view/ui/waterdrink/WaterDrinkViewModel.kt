@@ -16,12 +16,18 @@
 
 package com.skydoves.allinone.view.ui.waterdrink
 
+import android.content.Context
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
+import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.ml
+import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
+import com.skydoves.allinone.persistence.room.dao.TodoDao
 import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
 import com.skydoves.allinone.utils.AbsentLiveData
 import com.skydoves.allinone.utils.LocalUtils
@@ -31,7 +37,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class WaterDrinkViewModel @Inject
-constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
+constructor(
+  private val waterDrinkDao: WaterDrinkDao,
+  private val todoDao: TodoDao
+) : ViewModel() {
 
   private val setting = PreferenceComponent_PreferenceComponent.getInstance().Settings()
   private val weather = PreferenceComponent_PreferenceComponent.getInstance().Weathers()
@@ -62,9 +71,17 @@ constructor(private val waterDrinkDao: WaterDrinkDao) : ViewModel() {
 
   fun setWaterDropColor(color: Int) = setting.putWaterColor(color)
 
-  fun insertWaterDrink(waterDrink: WaterDrink) {
-    waterDrink.timeStamp = OffsetDateTime.now()
+  fun takeWaterDrink(context: Context, waterDrink: WaterDrink) {
+    val now = OffsetDateTime.now()
+    waterDrink.timeStamp = now
     waterDrinkDao.insertWaterDrink(waterDrink)
     waterDrinkLiveData.postValue(waterDrink)
+    val todo = Todo(now,
+      context.getString(R.string.label_take_water),
+      "${waterDrink.amount.toString().ml()} ${context.getString(R.string.label_take_water)}",
+      ContextCompat.getColor(context, R.color.waterBlue),
+      WaterDrinkItemUtils.getWaterDrinkIcon(waterDrink.amount),
+      100)
+    todoDao.insertTodo(todo)
   }
 }

@@ -83,4 +83,5 @@
   <string name="transition_content">content</string>
   <string name="label_complete">임무를 완료했습니다.</string>
   <string name="label_rollback">임무를 롤백 시켰습니다.</string>
+  <string name="label_take_water">수분 섭취</string>
 </resources>

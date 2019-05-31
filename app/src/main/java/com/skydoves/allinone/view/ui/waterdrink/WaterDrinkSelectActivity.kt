@@ -43,7 +43,6 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.layout_item_select_popup)
-
     initializeUI()
   }
 
@@ -55,7 +54,7 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
   }
 
   override fun onItemClick(waterDrink: WaterDrink) {
-    viewModel.insertWaterDrink(waterDrink)
+    viewModel.takeWaterDrink(this, waterDrink)
     toast("${waterDrink.amount}${getString(R.string.toast_drink_water)}")
     finish()
   }
