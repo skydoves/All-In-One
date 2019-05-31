@@ -16,13 +16,16 @@
 
 package com.skydoves.allinone.view.ui.todo
 
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.overridePendingDown
 import com.skydoves.allinone.extension.setImageTint
+import com.skydoves.allinone.extension.toTodayFormat
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.ColorItem
 import com.skydoves.allinone.models.IconItem
@@ -33,10 +36,12 @@ import com.skydoves.allinone.view.viewholder.TodoIconViewHolder
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_add_todo.*
 import kotlinx.android.synthetic.main.toolbar_default.*
+import java.util.Calendar
 import javax.inject.Inject
 
 class AddTodoActivity : AppCompatActivity(),
-  TodoColorViewHolder.Delegate, TodoIconViewHolder.Delegate {
+    TodoColorViewHolder.Delegate, TodoIconViewHolder.Delegate,
+    TimePickerDialog.OnTimeSetListener {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -61,6 +66,21 @@ class AddTodoActivity : AppCompatActivity(),
     recyclerView_color.adapter = colorAdapter
     recyclerView_icon.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     recyclerView_icon.adapter = iconAdapter
+
+    time.setOnClickListener {
+      val calendar = Calendar.getInstance()
+      val dialog = TimePickerDialog(this,
+          R.style.DialogTheme,
+          this,
+          calendar.get(Calendar.HOUR_OF_DAY),
+          calendar.get(Calendar.MINUTE),
+          false)
+      dialog.show()
+    }
+
+    save.setOnClickListener {
+
+    }
   }
 
   private fun initializeAdapter() {
@@ -76,6 +96,10 @@ class AddTodoActivity : AppCompatActivity(),
   override fun onIconItemClick(iconItem: IconItem) {
     iconAdapter.checkIconItem(iconItem)
     circle_icon.setImageDrawable(iconItem.resource)
+  }
+
+  override fun onTimeSet(p0: TimePicker?, hour: Int, minute: Int) {
+    time.text = toTodayFormat(hour, minute)
   }
 
   override fun onBackPressed() {

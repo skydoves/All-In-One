@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
@@ -42,6 +43,7 @@
           android:layout_height="42dp"
           android:layout_centerInParent="true"
           android:scaleType="fitXY"
+          android:src="@drawable/ic_date"
           android:tint="@color/white" />
       </RelativeLayout>
 
@@ -130,6 +132,46 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         tools:itemCount="1" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="start"
+        android:scrollbars="vertical"
+        android:text="@string/label_alarm"
+        android:textColor="@color/waterBlue"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+      <com.skydoves.elasticviews.ElasticButton
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="start"
+        android:paddingStart="10dp"
+        app:button_backgroundColor="@color/background800"
+        app:button_duration="150"
+        app:button_labelColor="@color/white"
+        app:button_labelSize="15"
+        app:button_labelText="@string/label_require_time"
+        app:button_round="10"
+        app:button_scale="0.8" />
     </LinearLayout>
   </LinearLayout>
-</ScrollView>
+
+  <com.skydoves.elasticviews.ElasticButton
+    android:id="@+id/save"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
+    app:button_backgroundColor="@color/waterBlue"
+    app:button_duration="150"
+    app:button_labelColor="@color/white"
+    app:button_labelSize="15"
+    app:button_labelText="@string/label_save"
+    app:button_round="10"
+    app:button_scale="0.8" />
+</RelativeLayout>

@@ -67,4 +67,11 @@
   <string name="label_content">내용</string>
   <string name="label_type_title">제목을 입력해주세요.</string>
   <string name="label_type_content">내용을 입력해주세요.</string>
+  <string name="label_date">날짜</string>
+  <string name="needs_internet">네트워크를 통해 날씨 정보를 받아옵니다.</string>
+  <string name="needs_nfc">NFC 태그로 부터 정보를 읽어옵니다.</string>
+  <string name="label_time">시간</string>
+  <string name="label_alarm">알람 시간</string>
+  <string name="label_require_time">알람 시간을 선택해주세요.</string>
+  <string name="label_save">저장하기</string>
 </resources>

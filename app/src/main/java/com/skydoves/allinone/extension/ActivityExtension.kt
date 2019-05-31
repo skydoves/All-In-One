@@ -51,6 +51,10 @@ fun Activity.textWatcher(afterTextChanged: () -> Unit): TextWatcher {
   }
 }
 
+fun Activity.toTodayFormat(hour: Int, minute: Int): String {
+  return "${hour}시 ${minute}분"
+}
+
 fun Activity.overridePendingUp() {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
     overridePendingTransition(R.anim.slide_in_up, R.anim.slide_no_change)

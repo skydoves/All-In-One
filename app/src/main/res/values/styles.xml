@@ -22,5 +22,13 @@
     <item name="android:textSize">18sp</item>
   </style>
 
+  <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="colorControlNormal">@color/colorPrimary</item>
+    <item name="colorControlActivated">@color/colorPrimary</item>
+  </style>
+
   <style name="AppTheme.DarkDialog" parent="Theme.AppCompat.DayNight.Dialog" />
 </resources>
