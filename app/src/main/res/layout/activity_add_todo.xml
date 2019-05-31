@@ -79,7 +79,7 @@
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="12dp"
+          android:layout_marginTop="19dp"
           android:gravity="start"
           android:scrollbars="vertical"
           android:text="@string/label_content"
@@ -103,7 +103,7 @@
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="10dp"
+          android:layout_marginTop="19dp"
           android:gravity="start"
           android:scrollbars="vertical"
           android:text="@string/label_color"
@@ -122,7 +122,7 @@
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="12dp"
+          android:layout_marginTop="19dp"
           android:gravity="start"
           android:scrollbars="vertical"
           android:text="@string/label_icon"
@@ -141,7 +141,7 @@
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="12dp"
+          android:layout_marginTop="19dp"
           android:gravity="start"
           android:scrollbars="vertical"
           android:text="@string/label_alarm"

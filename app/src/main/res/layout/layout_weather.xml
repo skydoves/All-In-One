@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.scwang.smartrefresh.layout.SmartRefreshLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/refreshLayout"
   android:layout_width="match_parent"
@@ -13,16 +14,25 @@
     android:orientation="vertical"
     android:background="@drawable/bg_morning">
 
-    <TextView
-      android:id="@+id/local"
+    <com.skydoves.elasticviews.ElasticLayout
+      android:id="@+id/layout_location"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:alpha="0.8"
-      android:gravity="center"
-      android:textColor="@color/white_two"
-      android:textSize="25sp"
-      tools:text="서울특별시" />
+      app:layout_backgroundColor="@android:color/transparent"
+      app:layout_duration="150"
+      app:layout_scale="0.75">
+
+      <TextView
+        android:id="@+id/local"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:alpha="0.8"
+        android:gravity="center"
+        android:textColor="@color/white_two"
+        android:textSize="25sp"
+        tools:text="서울특별시" />
+    </com.skydoves.elasticviews.ElasticLayout>
 
     <LinearLayout
       android:layout_width="match_parent"

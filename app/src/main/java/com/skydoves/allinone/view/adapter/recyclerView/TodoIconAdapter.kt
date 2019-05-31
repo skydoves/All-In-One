@@ -34,6 +34,7 @@ class TodoIconAdapter(private val delegate: TodoIconViewHolder.Delegate) : BaseA
     addItemOnSection(0, IconItem(R.drawable.ic_location, false))
     addItemOnSection(0, IconItem(R.drawable.ic_drop, false))
     addItemOnSection(0, IconItem(R.drawable.ic_outdoor, false))
+    addItemOnSection(0, IconItem(R.drawable.ic_mask, false))
     addItemOnSection(0, IconItem(R.drawable.ic_run, false))
     addItemOnSection(0, IconItem(R.drawable.ic_bike, false))
     addItemOnSection(0, IconItem(R.drawable.ic_drive, false))

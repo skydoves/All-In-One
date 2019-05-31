@@ -29,7 +29,7 @@ data class Todo(
   val contents: String?,
   val color: Int,
   val icon: Int,
-  val progress: Int,
+  var progress: Int,
   val alarmStamp: OffsetDateTime? = null
 ) : Parcelable {
   constructor(source: Parcel) : this(

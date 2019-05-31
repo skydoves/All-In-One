@@ -33,6 +33,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_sunny_day"
+        android:tint="@color/white"
         android:layout_centerInParent="true"/>
     </RelativeLayout>
 

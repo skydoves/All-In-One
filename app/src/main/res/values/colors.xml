@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#39be96</color>
-  <color name="colorPrimaryDark">#1fa67d</color>
-  <color name="colorAccent">#39be96</color>
+  <color name="colorPrimary">#57A8D8</color>
+  <color name="colorPrimaryDark">#3d95c9</color>
+  <color name="colorAccent">#57A8D8</color>
+  <color name="cyan">#1fa67d</color>
   <color name="background">#303030</color>
   <color name="background800">#424242</color>
   <color name="background900">#212121</color>
@@ -18,9 +19,12 @@
   <color name="white_three">#f4f4f4</color>
   <color name="warm_pink">#C53866</color>
   <color name="purple">#aa00ff</color>
+  <color name="indigo">#3F51B5</color>
 
   <color name="white_56">#8effffff</color>
   <color name="white_70">#b2ffffff</color>
   <color name="white_87">#ddffffff</color>
   <color name="white_93">#edf8f8f8</color>
+
+
 </resources>

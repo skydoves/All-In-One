@@ -40,7 +40,7 @@ object NavigationUtils {
     models.add(
       NavigationTabBar.Model.Builder(
         ContextCompat.getDrawable(mContext, R.drawable.ic_drop),
-        Color.parseColor(colors[1])
+        Color.parseColor(colors[4])
       )
         .title("수분 섭취")
         .badgeTitle("new")
@@ -49,7 +49,7 @@ object NavigationUtils {
     models.add(
       NavigationTabBar.Model.Builder(
         ContextCompat.getDrawable(mContext, R.drawable.ic_todo),
-        Color.parseColor(colors[2])
+        Color.parseColor(colors[1])
       )
         .title("할일 목록")
         .badgeTitle("new")
@@ -67,7 +67,7 @@ object NavigationUtils {
     models.add(
       NavigationTabBar.Model.Builder(
         ContextCompat.getDrawable(mContext, R.drawable.ic_setting),
-        Color.parseColor(colors[4])
+        ContextCompat.getColor(mContext, R.color.indigo)
       )
         .title("환경 설정")
         .badgeTitle("new")
@@ -77,16 +77,14 @@ object NavigationUtils {
   }
 
   fun setComponents(context: Context, viewPager: ViewPager, navigationTabBar: NavigationTabBar) {
-    navigationTabBar.models = NavigationUtils.getNavigationModels(context)
+    navigationTabBar.models = getNavigationModels(context)
     navigationTabBar.setViewPager(viewPager, 2)
     navigationTabBar.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-      override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-
+      override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
+      override fun onPageScrollStateChanged(state: Int) = Unit
       override fun onPageSelected(position: Int) {
         navigationTabBar.models[position].hideBadge()
       }
-
-      override fun onPageScrollStateChanged(state: Int) {}
     })
   }
 }

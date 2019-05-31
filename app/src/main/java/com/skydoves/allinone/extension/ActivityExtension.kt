@@ -61,6 +61,6 @@ fun Activity.overridePendingUp() {
 }
 
 fun Activity.overridePendingDown() {
-  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-    overridePendingTransition(R.anim.slide_no_change, R.anim.slide_out_down)
+/*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+    overridePendingTransition(R.anim.slide_no_change, R.anim.slide_out_down)*/
 }

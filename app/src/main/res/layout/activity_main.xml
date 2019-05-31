@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background"
+  android:orientation="vertical">
+
+  <androidx.viewpager.widget.ViewPager
+    android:id="@+id/viewpager"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical">
+    android:layout_height="0dp"
+    android:layout_weight="1" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-    <devlight.io.library.ntb.NavigationTabBar
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:ntb_icon_size_fraction="0.35"
-        app:ntb_badge_gravity="top"
-        app:ntb_badge_position="right"
-        app:ntb_badged="false"
-        app:ntb_scaled="true"
-        app:ntb_tinted="true"
-        app:ntb_title_mode="all"
-        app:ntb_titled="true"
-        app:ntb_swiped="true"/>
+  <devlight.io.library.ntb.NavigationTabBar
+    android:id="@+id/navigation"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    app:ntb_preview_colors="@color/white"
+    app:ntb_active_color="@color/white"
+    app:ntb_bg_color="@color/skyBlue"
+    app:ntb_inactive_color="@color/white"
+    app:ntb_badge_gravity="top"
+    app:ntb_badge_position="right"
+    app:ntb_badged="false"
+    app:ntb_icon_size_fraction="0.35"
+    app:ntb_scaled="true"
+    app:ntb_swiped="true"
+    app:ntb_tinted="true"
+    app:ntb_title_mode="all"
+    app:ntb_titled="true" />
 </LinearLayout>

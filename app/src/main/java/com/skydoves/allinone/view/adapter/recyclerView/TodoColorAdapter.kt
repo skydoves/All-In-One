@@ -34,10 +34,11 @@ class TodoColorAdapter(
     addSection(ArrayList<ColorItem>())
 
     addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.waterBlue), false))
-    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.colorPrimary), false))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.cyan), false))
     addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.yellow), false))
     addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.warm_pink), false))
     addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.purple), false))
+    addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.indigo), false))
     addItemOnSection(0, ColorItem(ContextCompat.getColor(context, R.color.black), false))
     notifyDataSetChanged()
   }
