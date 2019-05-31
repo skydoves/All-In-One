@@ -57,6 +57,7 @@ class AddTodoActivity : AppCompatActivity(),
 
   private lateinit var colorItem: ColorItem
   private lateinit var iconItem: IconItem
+  private var alarmOffset: OffsetDateTime? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
@@ -93,12 +94,13 @@ class AddTodoActivity : AppCompatActivity(),
     save.setOnClickListener {
       if (it.alpha == 1.0f) {
         viewModel.insertTodo(Todo(
-          OffsetDateTime.now(),
-          input_title.text.toString(),
-          input_content.text.toString(),
-          colorItem.color,
-          iconItem.resource,
-          0))
+          timeStamp = OffsetDateTime.now(),
+          title = input_title.text.toString(),
+          contents = input_content.text.toString(),
+          color = colorItem.color,
+          icon = iconItem.resource,
+          progress = 0,
+          alarmStamp = alarmOffset))
         finish()
         toast(getString(R.string.label_added_todo))
       } else {
@@ -128,6 +130,7 @@ class AddTodoActivity : AppCompatActivity(),
 
   override fun onTimeSet(p0: TimePicker?, hour: Int, minute: Int) {
     time.text = toTodayFormat(hour, minute)
+    this.alarmOffset = OffsetDateTime.now().withHour(hour).withMinute(minute)
   }
 
   private fun checkValidate() {

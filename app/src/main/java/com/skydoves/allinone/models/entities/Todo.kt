@@ -61,4 +61,8 @@ data class Todo(
       override fun newArray(size: Int): Array<Todo?> = arrayOfNulls(size)
     }
   }
+
+  fun isComplete(): Boolean {
+    return this.progress == 100
+  }
 }

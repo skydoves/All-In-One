@@ -48,7 +48,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, TodoViewModel::class) }
-  private val adapter by lazy { TodoListAdapter(this) }
+  private val adapter by lazy { TodoListAdapter(context, this) }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -82,6 +82,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
     observeLiveData(viewModel.getTodoList()) {
       task_todo.text = TodoUtils.getTodoSize(it).toString()
       task_complete.text = TodoUtils.getCompleteSize(it).toString()
+      adapter.addTodoItems(it)
       recyclerView.slideFromRightAnimation()
     }
   }

@@ -23,7 +23,7 @@ object TodoUtils {
   fun getTodoSize(todoList: List<Todo>): Int {
     var size = 0
     for (todo in todoList) {
-      if (todo.progress >= 100) {
+      if (todo.progress < 100) {
         size++
       }
     }
@@ -33,7 +33,7 @@ object TodoUtils {
   fun getCompleteSize(todoList: List<Todo>): Int {
     var size = 0
     for (todo in todoList) {
-      if (todo.progress < 100) {
+      if (todo.progress >= 100) {
         size++
       }
     }

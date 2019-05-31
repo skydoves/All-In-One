@@ -17,6 +17,11 @@
 package com.skydoves.allinone.view.viewholder
 
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.skydoves.allinone.extension.gone
+import com.skydoves.allinone.extension.setImageTint
+import com.skydoves.allinone.extension.toDateString
+import com.skydoves.allinone.extension.visible
 import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import kotlinx.android.synthetic.main.item_todo.view.*
@@ -42,8 +47,17 @@ class TodoViewHolder(
 
   private fun drawItemUI() {
     itemView.run {
+      circle.setImageTint(todo.color)
+      icon.setImageDrawable(ContextCompat.getDrawable(context, todo.icon))
       title.text = todo.title
       content.text = todo.contents
+
+      if (todo.alarmStamp == null) {
+        layout_time.gone()
+      } else {
+        layout_time.visible()
+        time.text = todo.alarmStamp?.toDateString()
+      }
     }
   }
 

@@ -16,6 +16,7 @@
 
 package com.skydoves.allinone.view.adapter.recyclerView
 
+import android.content.Context
 import android.view.View
 import com.skydoves.allinone.R
 import com.skydoves.allinone.models.entities.Todo
@@ -25,7 +26,10 @@ import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
 
-class TodoListAdapter(private val delegate: TodoViewHolder.Delegate)
+class TodoListAdapter(
+  private val context: Context?,
+  private val delegate: TodoViewHolder.Delegate
+)
   : BaseAdapter() {
 
   init {
@@ -33,6 +37,21 @@ class TodoListAdapter(private val delegate: TodoViewHolder.Delegate)
     addSection(ArrayList<Todo>())
     addSection(ArrayList<String>())
     addSection(ArrayList<Todo>())
+
+    context?.also {
+      addItemOnSection(0, it.getString(R.string.label_todo))
+      addItemOnSection(2, it.getString(R.string.label_completed))
+    }
+    notifyDataSetChanged()
+  }
+
+  fun addTodoItems(todoList: List<Todo>) {
+    clearSection(1)
+    clearSection(3)
+    for (todo in todoList) {
+      if (todo.isComplete()) addItemOnSection(3, todo)
+      else addItemOnSection(1, todo)
+    }
     notifyDataSetChanged()
   }
 
