@@ -18,6 +18,7 @@ package com.skydoves.allinone.persistence.room.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -38,4 +39,7 @@ interface TodoDao {
 
   @Query("SELECT * FROM TODO WHERE timeStamp >= :timeStamp_")
   fun getTodoFromDay(timeStamp_: String): LiveData<List<Todo>>
+
+  @Delete
+  fun removeTodo(todo: Todo)
 }

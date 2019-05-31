@@ -71,6 +71,11 @@ class TodoDetailActivity : AppCompatActivity() {
       viewModel.updateTodo(todo)
       finish()
     }
+    bin.setOnClickListener {
+      viewModel.removeTodo(todo)
+      toast(getString(R.string.label_delete_todo))
+      finish()
+    }
   }
 
   private fun getTodoFromIntent(): Todo {

@@ -88,6 +88,16 @@
         app:fabSize="normal" />
 
       <com.skydoves.elasticviews.ElasticFloatingActionButton
+        android:id="@+id/bin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/ic_bin"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:elevation="0dp"
+        app:fabSize="normal" />
+
+      <com.skydoves.elasticviews.ElasticFloatingActionButton
         android:id="@+id/check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

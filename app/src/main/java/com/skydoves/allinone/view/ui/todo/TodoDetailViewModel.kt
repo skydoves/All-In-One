@@ -32,4 +32,6 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
   fun getTodo(timeStamp: String) = todoDao.getTodo(timeStamp)
 
   fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
+
+  fun removeTodo(todo: Todo) = todoDao.removeTodo(todo)
 }
