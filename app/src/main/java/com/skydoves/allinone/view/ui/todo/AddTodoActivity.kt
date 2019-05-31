@@ -20,15 +20,18 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.overridePendingDown
 import com.skydoves.allinone.extension.setImageTint
+import com.skydoves.allinone.extension.textWatcher
 import com.skydoves.allinone.extension.toTodayFormat
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.ColorItem
 import com.skydoves.allinone.models.IconItem
+import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.view.adapter.recyclerView.TodoColorAdapter
 import com.skydoves.allinone.view.adapter.recyclerView.TodoIconAdapter
 import com.skydoves.allinone.view.viewholder.TodoColorViewHolder
@@ -36,19 +39,24 @@ import com.skydoves.allinone.view.viewholder.TodoIconViewHolder
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_add_todo.*
 import kotlinx.android.synthetic.main.toolbar_default.*
+import org.jetbrains.anko.toast
+import org.threeten.bp.OffsetDateTime
 import java.util.Calendar
 import javax.inject.Inject
 
 class AddTodoActivity : AppCompatActivity(),
-    TodoColorViewHolder.Delegate, TodoIconViewHolder.Delegate,
-    TimePickerDialog.OnTimeSetListener {
+  TodoColorViewHolder.Delegate, TodoIconViewHolder.Delegate,
+  TimePickerDialog.OnTimeSetListener {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, AddTodoViewModel::class) }
 
   private val colorAdapter by lazy { TodoColorAdapter(this, this) }
-  private val iconAdapter by lazy { TodoIconAdapter(this, this) }
+  private val iconAdapter by lazy { TodoIconAdapter(this) }
+
+  private lateinit var colorItem: ColorItem
+  private lateinit var iconItem: IconItem
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
@@ -70,36 +78,67 @@ class AddTodoActivity : AppCompatActivity(),
     time.setOnClickListener {
       val calendar = Calendar.getInstance()
       val dialog = TimePickerDialog(this,
-          R.style.DialogTheme,
-          this,
-          calendar.get(Calendar.HOUR_OF_DAY),
-          calendar.get(Calendar.MINUTE),
-          false)
+        R.style.DialogTheme,
+        this,
+        calendar.get(Calendar.HOUR_OF_DAY),
+        calendar.get(Calendar.MINUTE),
+        false)
       dialog.show()
     }
 
-    save.setOnClickListener {
+    val watcher = textWatcher { checkValidate() }
+    input_title.addTextChangedListener(watcher)
+    input_content.addTextChangedListener(watcher)
 
+    save.setOnClickListener {
+      if (it.alpha == 1.0f) {
+        viewModel.insertTodo(Todo(
+          OffsetDateTime.now(),
+          input_title.text.toString(),
+          input_content.text.toString(),
+          colorItem.color,
+          iconItem.resource,
+          0))
+        finish()
+        toast(getString(R.string.label_added_todo))
+      } else {
+        toast(getString(R.string.label_require_inputs))
+      }
     }
   }
 
   private fun initializeAdapter() {
     colorAdapter.getFirstItem().isChecked = true
+    colorItem = colorAdapter.getFirstItem()
     iconAdapter.getFirstItem().isChecked = true
+    iconItem = iconAdapter.getFirstItem()
   }
 
   override fun onColorItemClick(colorItem: ColorItem) {
     colorAdapter.checkColorItem(colorItem)
+    this.colorItem = colorItem
     circle.setImageTint(colorItem.color)
   }
 
   override fun onIconItemClick(iconItem: IconItem) {
     iconAdapter.checkIconItem(iconItem)
-    circle_icon.setImageDrawable(iconItem.resource)
+    this.iconItem = iconItem
+    circle_icon.setImageDrawable(ContextCompat.getDrawable(this, iconItem.resource))
   }
 
   override fun onTimeSet(p0: TimePicker?, hour: Int, minute: Int) {
     time.text = toTodayFormat(hour, minute)
+  }
+
+  private fun checkValidate() {
+    if (input_title.text.toString().isEmpty() ||
+      input_content.text.toString().isEmpty()) {
+      save.isEnabled = false
+      save.alpha = 0.7f
+    } else {
+      save.isEnabled = true
+      save.alpha = 1.0f
+    }
   }
 
   override fun onBackPressed() {

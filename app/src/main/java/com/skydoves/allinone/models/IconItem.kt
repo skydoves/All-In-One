@@ -16,9 +16,7 @@
 
 package com.skydoves.allinone.models
 
-import android.graphics.drawable.Drawable
-
 data class IconItem(
-  val resource: Drawable?,
+  val resource: Int,
   var isChecked: Boolean = false
 )

@@ -74,4 +74,6 @@
   <string name="label_alarm">알람 시간</string>
   <string name="label_require_time">알람 시간을 선택해주세요.</string>
   <string name="label_save">저장하기</string>
+  <string name="label_require_inputs">제목과 내용을 모두 입력해주세요.</string>
+  <string name="label_added_todo">할 일이 추가 되었습니다.</string>
 </resources>

@@ -34,7 +34,8 @@
     <activity
       android:name=".view.ui.waterdrink.WaterDrinkSelectActivity"
       android:theme="@style/AppTheme.Dialog" />
-    <activity android:name=".view.ui.todo.AddTodoActivity"/>
+    <activity android:name=".view.ui.todo.AddTodoActivity"
+      android:windowSoftInputMode="adjustNothing"/>
     <activity android:name=".view.ui.setting.local.LocalActivity"/>
   </application>
 

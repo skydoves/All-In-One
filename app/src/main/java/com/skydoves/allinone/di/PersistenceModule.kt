@@ -45,7 +45,7 @@ class PersistenceModule {
 
   @Provides
   @Singleton
-  fun provodeTodoDao(@NonNull database: AppDatabase): TodoDao {
+  fun provideTodoDao(@NonNull database: AppDatabase): TodoDao {
     return database.todoDao()
   }
 }

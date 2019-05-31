@@ -26,6 +26,7 @@ import com.skydoves.allinone.models.entities.Todo
 
 @Dao
 interface TodoDao {
+
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insertTodo(todo: Todo)
 

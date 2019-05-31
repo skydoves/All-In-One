@@ -17,6 +17,7 @@
 package com.skydoves.allinone.view.viewholder
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.skydoves.allinone.extension.gone
 import com.skydoves.allinone.extension.visible
 import com.skydoves.allinone.models.IconItem
@@ -43,7 +44,7 @@ class TodoIconViewHolder(
 
   private fun drawItemUI() {
     itemView.apply {
-      item_icon.setImageDrawable(iconItem.resource)
+      item_icon.setImageDrawable(ContextCompat.getDrawable(context, iconItem.resource))
       if (iconItem.isChecked) {
         item_check.visible()
       } else {
