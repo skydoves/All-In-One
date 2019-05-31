@@ -24,6 +24,7 @@ import com.skydoves.allinone.view.ui.outdoor.OutDoorViewModel
 import com.skydoves.allinone.view.ui.setting.local.LocalViewModel
 import com.skydoves.allinone.view.ui.setting.water.WaterGoalViewModel
 import com.skydoves.allinone.view.ui.todo.AddTodoViewModel
+import com.skydoves.allinone.view.ui.todo.TodoDetailViewModel
 import com.skydoves.allinone.view.ui.todo.TodoViewModel
 import com.skydoves.allinone.view.ui.waterdrink.WaterDrinkViewModel
 import com.skydoves.allinone.view.ui.weather.WeatherViewModel
@@ -74,6 +75,11 @@ internal abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(AddTodoViewModel::class)
   internal abstract fun bindAddTodoViewModel(addTodoViewModel: AddTodoViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(TodoDetailViewModel::class)
+  internal abstract fun bindTodoDetailViewModel(todoDetailViewModel: TodoDetailViewModel): ViewModel
 
   @Binds
   internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
