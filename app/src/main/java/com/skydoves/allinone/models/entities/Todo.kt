@@ -63,6 +63,6 @@ data class Todo(
   }
 
   fun isComplete(): Boolean {
-    return this.progress == 100
+    return this.progress >= 100
   }
 }

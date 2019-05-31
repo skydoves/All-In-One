@@ -17,6 +17,7 @@
 package com.skydoves.allinone.view.ui.todo
 
 import androidx.lifecycle.ViewModel
+import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.persistence.room.dao.TodoDao
 import timber.log.Timber
 import javax.inject.Inject
@@ -29,4 +30,6 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
   }
 
   fun getTodo(timeStamp: String) = todoDao.getTodo(timeStamp)
+
+  fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
 }

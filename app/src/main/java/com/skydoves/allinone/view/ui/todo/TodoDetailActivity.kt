@@ -33,7 +33,9 @@ import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.Todo
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_todo_detail.*
+import org.jetbrains.anko.image
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 
@@ -56,6 +58,20 @@ class TodoDetailActivity : AppCompatActivity() {
     circle_icon.setImageDrawable(ContextCompat.getDrawable(this, todo.icon))
     detail_title.text = todo.title
     detail_content.text = todo.contents
+    if (todo.isComplete()) {
+      check.image = ContextCompat.getDrawable(this, R.drawable.ic_retry)
+    }
+    check.setOnClickListener {
+      if (todo.isComplete()) {
+        todo.progress = 0
+        toast(getString(R.string.label_rollback))
+      } else {
+        todo.progress = 100
+        toast(getString(R.string.label_complete))
+      }
+      viewModel.updateTodo(todo)
+      finish()
+    }
   }
 
   private fun getTodoFromIntent(): Todo {
