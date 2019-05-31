@@ -63,4 +63,8 @@
   <string name="label_add_item">아이템 추가</string>
   <string name="label_color">색상</string>
   <string name="label_icon">아이콘</string>
+  <string name="label_title">제목</string>
+  <string name="label_content">내용</string>
+  <string name="label_type_title">제목을 입력해주세요.</string>
+  <string name="label_type_content">내용을 입력해주세요.</string>
 </resources>

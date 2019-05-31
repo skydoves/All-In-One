@@ -17,9 +17,10 @@
       android:id="@+id/item_icon"
       android:layout_width="52dp"
       android:layout_height="52dp"
-      android:scaleType="fitXY"
-      android:tint="@color/waterBlue"
+      android:layout_centerInParent="true"
       android:padding="5dp"
+      android:scaleType="fitXY"
+      android:tint="@color/white_two"
       tools:src="@drawable/ic_glass0" />
 
     <ImageView
@@ -28,6 +29,7 @@
       android:layout_height="28dp"
       android:layout_centerInParent="true"
       android:src="@drawable/ic_check"
+      android:tint="@color/waterBlue"
       android:visibility="gone"
       tools:visibility="visible" />
   </RelativeLayout>

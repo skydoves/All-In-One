@@ -1,79 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/background"
-  android:orientation="vertical">
-
-  <com.google.android.material.appbar.AppBarLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <include layout="@layout/toolbar_default" />
-  </com.google.android.material.appbar.AppBarLayout>
+  android:background="@color/background">
 
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <com.google.android.material.appbar.AppBarLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="wrap_content">
+
+      <include layout="@layout/toolbar_default" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
       android:padding="10dp">
 
-      <ImageView
-        android:id="@+id/circle"
-        android:layout_width="74dp"
-        android:layout_height="74dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/circle"
-        android:tint="@color/waterBlue" />
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-      <ImageView
-        android:id="@+id/icon"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_centerInParent="true"
-        android:tint="@color/white"/>
-    </RelativeLayout>
+        <ImageView
+          android:id="@+id/circle"
+          android:layout_width="74dp"
+          android:layout_height="74dp"
+          android:layout_centerInParent="true"
+          android:src="@drawable/circle"
+          android:tint="@color/waterBlue" />
 
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:gravity="start"
-      android:scrollbars="vertical"
-      android:text="@string/label_color"
-      android:textColor="@color/waterBlue"
-      android:textSize="15sp"
-      android:textStyle="bold" />
+        <ImageView
+          android:id="@+id/circle_icon"
+          android:layout_width="42dp"
+          android:layout_height="42dp"
+          android:layout_centerInParent="true"
+          android:scaleType="fitXY"
+          android:tint="@color/white" />
+      </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/recyclerView_color"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      tools:itemCount="1"
-      tools:listitem="@layout/item_color" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="start"
+        android:scrollbars="vertical"
+        android:text="@string/label_title"
+        android:textColor="@color/waterBlue"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="12dp"
-      android:gravity="start"
-      android:scrollbars="vertical"
-      android:text="@string/label_icon"
-      android:textColor="@color/waterBlue"
-      android:textSize="15sp"
-      android:textStyle="bold" />
+      <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label_type_title"
+        android:imeOptions="actionNext"
+        android:maxEms="10"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:nextFocusDown="@+id/content"
+        android:singleLine="true"
+        android:textColor="@color/white_two"
+        android:textColorHint="@color/white_56" />
 
-    <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/recyclerView_icon"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      tools:itemCount="1" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="start"
+        android:scrollbars="vertical"
+        android:text="@string/label_content"
+        android:textColor="@color/waterBlue"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+      <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label_type_content"
+        android:imeOptions="actionNext"
+        android:maxEms="10"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/white_two"
+        android:textColorHint="@color/white_56" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:scrollbars="vertical"
+        android:text="@string/label_color"
+        android:textColor="@color/waterBlue"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        tools:itemCount="1"
+        tools:listitem="@layout/item_color" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="start"
+        android:scrollbars="vertical"
+        android:text="@string/label_icon"
+        android:textColor="@color/waterBlue"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        tools:itemCount="1" />
+    </LinearLayout>
   </LinearLayout>
-</LinearLayout>
+</ScrollView>

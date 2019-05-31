@@ -33,7 +33,6 @@ import com.skydoves.allinone.view.viewholder.TodoIconViewHolder
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_add_todo.*
 import kotlinx.android.synthetic.main.toolbar_default.*
-import org.jetbrains.anko.image
 import javax.inject.Inject
 
 class AddTodoActivity : AppCompatActivity(),
@@ -76,7 +75,7 @@ class AddTodoActivity : AppCompatActivity(),
 
   override fun onIconItemClick(iconItem: IconItem) {
     iconAdapter.checkIconItem(iconItem)
-    icon.setImageDrawable(iconItem.resource)
+    circle_icon.setImageDrawable(iconItem.resource)
   }
 
   override fun onBackPressed() {
