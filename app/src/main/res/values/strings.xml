@@ -86,4 +86,5 @@
   <string name="label_take_water">수분 섭취</string>
   <string name="label_delete_todo">임무를 삭제 했습니다.</string>
   <string name="label_created_time">생성 시간</string>
+  <string name="label_time_notification">푸시 알람 시간</string>
 </resources>

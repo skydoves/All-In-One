@@ -42,23 +42,39 @@
         android:orientation="vertical"
         android:paddingStart="15dp">
 
-      <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_created_time"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold" />
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/label_created_time"
+          android:textColor="@color/colorPrimary"
+          android:textStyle="bold" />
 
-      <TextView
-        android:id="@+id/created_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        tools:text="10분 5초" />
+        <TextView
+          android:id="@+id/created_time"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          tools:text="10시 15분" />
+
+        <TextView
+          android:id="@+id/label_alarm_time"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/label_time_notification"
+          android:textColor="@color/colorPrimary"
+          android:layout_marginTop="15dp"
+          android:textStyle="bold" />
+
+        <TextView
+          android:id="@+id/alarm_time"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          tools:text="10시 15분" />
       </LinearLayout>
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="6"
@@ -66,42 +82,50 @@
       android:orientation="vertical"
       android:paddingTop="60dp">
 
-      <TextView
-        android:id="@+id/detail_title"
+      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:gravity="center"
-        android:textColor="@color/white_two"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        tools:targetApi="lollipop"
-        tools:text="Drinking water" />
+        android:orientation="vertical">
 
-      <TextView
-        android:id="@+id/detail_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxEms="80"
-        android:maxLines="3"
-        android:textColor="@color/white_70"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        tools:targetApi="lollipop"
-        tools:text="drink 250ml coffee" />
+        <TextView
+          android:id="@+id/detail_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="6dp"
+          android:gravity="center"
+          android:textColor="@color/white_two"
+          android:textSize="21sp"
+          android:textStyle="bold"
+          tools:targetApi="lollipop"
+          tools:text="Drinking water" />
+
+        <TextView
+          android:id="@+id/detail_content"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:ellipsize="end"
+          android:gravity="center"
+          android:maxEms="80"
+          android:maxLines="3"
+          android:textColor="@color/white_70"
+          android:textSize="15sp"
+          android:textStyle="bold"
+          tools:targetApi="lollipop"
+          tools:text="drink 250ml coffee" />
+      </LinearLayout>
 
       <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp">
 
         <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_centerInParent="true"
+          android:layout_marginBottom="20dp"
           android:orientation="horizontal">
 
           <com.skydoves.elasticviews.ElasticFloatingActionButton
@@ -109,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_create"
-            app:backgroundTint="@color/colorPrimaryDark"
+            app:backgroundTint="@color/colorPrimary"
             app:elevation="0dp"
             app:fabSize="normal" />
 
@@ -119,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:src="@drawable/ic_bin"
-            app:backgroundTint="@color/colorPrimaryDark"
+            app:backgroundTint="@color/colorPrimary"
             app:elevation="0dp"
             app:fabSize="normal" />
 
@@ -129,12 +153,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:src="@drawable/ic_check"
-            app:backgroundTint="@color/colorPrimaryDark"
+            app:backgroundTint="@color/colorPrimary"
             app:elevation="0dp"
             app:fabSize="normal" />
         </LinearLayout>
       </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
   </LinearLayout>
 
   <LinearLayout

@@ -19,5 +19,5 @@ package com.skydoves.allinone.extension
 import org.threeten.bp.OffsetDateTime
 
 fun OffsetDateTime.toDateString(): String {
-  return "${hour}시 ${minute}분"
+  return "${String.format("%02d", hour)}시 ${String.format("%02d", minute)}분"
 }

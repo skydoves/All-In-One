@@ -29,7 +29,7 @@ import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.checkIsMaterialVersion
-import com.skydoves.allinone.extension.overridePendingUp
+import com.skydoves.allinone.extension.gone
 import com.skydoves.allinone.extension.setImageTint
 import com.skydoves.allinone.extension.toDateString
 import com.skydoves.allinone.extension.vm
@@ -67,6 +67,7 @@ class TodoDetailActivity : AppCompatActivity() {
     circle.setImageTint(todo.color)
     circle_icon.setImageDrawable(ContextCompat.getDrawable(this, todo.icon))
     created_time.text = todo.timeStamp.toDateString()
+    todo.alarmStamp?.let { alarm_time.text = it.toDateString() } ?: label_alarm_time.gone()
     detail_title.text = todo.title
     detail_content.text = todo.contents
     if (todo.isComplete()) {
