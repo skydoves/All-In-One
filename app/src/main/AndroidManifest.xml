@@ -11,7 +11,6 @@
   <application
     android:name=".AllInOneApplication"
     android:allowBackup="true"
-    android:hardwareAccelerated="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
@@ -39,8 +38,7 @@
       android:windowSoftInputMode="adjustNothing" />
     <activity android:name=".view.ui.setting.local.LocalActivity" />
     <activity
-      android:name=".view.ui.todo.TodoDetailActivity"
-      android:theme="@style/AppTheme.Dialog" />
+      android:name=".view.ui.todo.TodoDetailActivity"/>
   </application>
 
 </manifest>

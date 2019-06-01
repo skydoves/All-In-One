@@ -19,6 +19,7 @@ package com.skydoves.allinone.view.ui.todo
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Explode
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
@@ -28,7 +29,9 @@ import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.checkIsMaterialVersion
+import com.skydoves.allinone.extension.overridePendingUp
 import com.skydoves.allinone.extension.setImageTint
+import com.skydoves.allinone.extension.toDateString
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.Todo
 import dagger.android.AndroidInjection
@@ -46,6 +49,14 @@ class TodoDetailActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    if (checkIsMaterialVersion()) {
+      with(window) {
+        requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS)
+        enterTransition = Explode()
+        exitTransition = Explode()
+      }
+    }
+
     setContentView(R.layout.activity_todo_detail)
     AndroidInjection.inject(this)
     initializeUI()
@@ -55,11 +66,13 @@ class TodoDetailActivity : AppCompatActivity() {
     val todo = getTodoFromIntent()
     circle.setImageTint(todo.color)
     circle_icon.setImageDrawable(ContextCompat.getDrawable(this, todo.icon))
+    created_time.text = todo.timeStamp.toDateString()
     detail_title.text = todo.title
     detail_content.text = todo.contents
     if (todo.isComplete()) {
       check.image = ContextCompat.getDrawable(this, R.drawable.ic_retry)
     }
+    close.setOnClickListener { onBackPressed() }
     check.setOnClickListener {
       if (todo.isComplete()) {
         todo.progress = 0

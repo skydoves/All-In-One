@@ -29,7 +29,6 @@ import com.skydoves.allinone.extension.fadeIn
 import com.skydoves.allinone.extension.fadeOut
 import com.skydoves.allinone.extension.isVisible
 import com.skydoves.allinone.extension.observeLiveData
-import com.skydoves.allinone.extension.overridePendingUp
 import com.skydoves.allinone.extension.slideFromRightAnimation
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.Todo
@@ -68,10 +67,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
   private fun initializeUI() {
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = adapter
-    bubble.setOnClickListener {
-      startActivity<AddTodoActivity>()
-      activity?.overridePendingUp()
-    }
+    bubble.setOnClickListener { startActivity<AddTodoActivity>() }
     scrollView.onScrollChange { _, _, scrollY, _, _ ->
       if (scrollY == 0) layout_bubble.fadeIn()
       else if (layout_bubble.isVisible()) layout_bubble.fadeOut()
