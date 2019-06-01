@@ -34,8 +34,8 @@ interface TodoDao {
   @Update
   fun updateTodo(todo: Todo)
 
-  @Query("SELECT * FROM Todo WHERE timeStamp = :timeStamp_")
-  fun getTodo(timeStamp_: String): Todo
+  @Query("SELECT * FROM Todo WHERE id = :id_")
+  fun getTodo(id_: Int): Todo?
 
   @Query("SELECT * FROM TODO WHERE timeStamp >= :timeStamp_")
   fun getTodoFromDay(timeStamp_: String): LiveData<List<Todo>>

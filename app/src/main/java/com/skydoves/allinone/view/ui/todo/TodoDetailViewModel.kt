@@ -29,7 +29,7 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
     Timber.d("injection AddTodoViewModel")
   }
 
-  fun getTodo(timeStamp: String) = todoDao.getTodo(timeStamp)
+  fun getTodo(id: Int) = todoDao.getTodo(id)
 
   fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
 

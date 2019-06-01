@@ -19,11 +19,13 @@ package com.skydoves.allinone.models.entities
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import org.threeten.bp.OffsetDateTime
 
 @Suppress("unused")
-@Entity(primaryKeys = [("timeStamp")])
+@Entity
 data class Todo(
+  @PrimaryKey(autoGenerate = true) val id: Int,
   val timeStamp: OffsetDateTime,
   val title: String?,
   val contents: String?,
@@ -33,6 +35,7 @@ data class Todo(
   val alarmStamp: OffsetDateTime? = null
 ) : Parcelable {
   constructor(source: Parcel) : this(
+    source.readInt(),
     source.readSerializable() as OffsetDateTime,
     source.readString(),
     source.readString(),
@@ -45,6 +48,7 @@ data class Todo(
   override fun describeContents() = 0
 
   override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+    writeInt(id)
     writeSerializable(timeStamp)
     writeString(title)
     writeString(contents)

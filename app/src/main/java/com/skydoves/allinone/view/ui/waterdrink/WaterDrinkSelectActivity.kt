@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.allinone.R
+import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
@@ -37,6 +38,7 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
 
+  private var amount = -1
   private val adapter by lazy { WaterItemAdapter(this) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +46,7 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
     super.onCreate(savedInstanceState)
     setContentView(R.layout.layout_item_select_popup)
     initializeUI()
+    observeLiveData()
   }
 
   private fun initializeUI() {
@@ -53,9 +56,18 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
     cancel.setOnClickListener { finish() }
   }
 
+  private fun observeLiveData() {
+    observeLiveData(viewModel.getTodayWaterDrinks()) {
+      if (amount != -1) {
+        toast("$amount${getString(R.string.toast_drink_water)}")
+        finish()
+      }
+    }
+  }
+
   override fun onItemClick(waterDrink: WaterDrink) {
     viewModel.takeWaterDrink(this, waterDrink)
-    toast("${waterDrink.amount}${getString(R.string.toast_drink_water)}")
-    finish()
+    amount = waterDrink.amount
+    recyclerView.isEnabled = false
   }
 }

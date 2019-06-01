@@ -76,7 +76,7 @@ constructor(
     waterDrink.timeStamp = now
     waterDrinkDao.insertWaterDrink(waterDrink)
     waterDrinkLiveData.postValue(waterDrink)
-    val todo = Todo(now,
+    val todo = Todo(0, now,
       context.getString(R.string.label_take_water),
       "${waterDrink.amount.toString().ml()} ${context.getString(R.string.label_take_water)}",
       ContextCompat.getColor(context, R.color.waterBlue),

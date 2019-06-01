@@ -94,6 +94,7 @@ class AddTodoActivity : AppCompatActivity(),
     save.setOnClickListener {
       if (it.alpha == 1.0f) {
         viewModel.insertTodo(Todo(
+          id = 0,
           timeStamp = OffsetDateTime.now(),
           title = input_title.text.toString(),
           contents = input_content.text.toString(),

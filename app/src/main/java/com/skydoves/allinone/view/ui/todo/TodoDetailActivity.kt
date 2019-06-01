@@ -64,51 +64,53 @@ class TodoDetailActivity : AppCompatActivity() {
 
   private fun initializeUI() {
     val todo = getTodoFromIntent()
-    circle.setImageTint(todo.color)
-    circle_icon.setImageDrawable(ContextCompat.getDrawable(this, todo.icon))
-    created_time.text = todo.timeStamp.toDateString()
-    todo.alarmStamp?.let { alarm_time.text = it.toDateString() } ?: label_alarm_time.gone()
-    detail_title.text = todo.title
-    detail_content.text = todo.contents
-    if (todo.isComplete()) {
-      check.image = ContextCompat.getDrawable(this, R.drawable.ic_retry)
-    }
-    close.setOnClickListener { onBackPressed() }
-    check.setOnClickListener {
+    todo?.let {
+      circle.setImageTint(todo.color)
+      circle_icon.setImageDrawable(ContextCompat.getDrawable(this, todo.icon))
+      created_time.text = todo.timeStamp.toDateString()
+      todo.alarmStamp?.let { alarm_time.text = it.toDateString() } ?: label_alarm_time.gone()
+      detail_title.text = todo.title
+      detail_content.text = todo.contents
       if (todo.isComplete()) {
-        todo.progress = 0
-        toast(getString(R.string.label_rollback))
-      } else {
-        todo.progress = 100
-        toast(getString(R.string.label_complete))
+        check.image = ContextCompat.getDrawable(this, R.drawable.ic_retry)
       }
-      viewModel.updateTodo(todo)
-      finish()
-    }
-    bin.setOnClickListener {
-      viewModel.removeTodo(todo)
-      toast(getString(R.string.label_delete_todo))
-      finish()
+      close.setOnClickListener { onBackPressed() }
+      check.setOnClickListener {
+        if (todo.isComplete()) {
+          todo.progress = 0
+          toast(getString(R.string.label_rollback))
+        } else {
+          todo.progress = 100
+          toast(getString(R.string.label_complete))
+        }
+        viewModel.updateTodo(todo)
+        finish()
+      }
+      bin.setOnClickListener {
+        viewModel.removeTodo(todo)
+        toast(getString(R.string.label_delete_todo))
+        finish()
+      }
     }
   }
 
-  private fun getTodoFromIntent(): Todo {
-    return viewModel.getTodo(intent.getStringExtra(timeStamp))
+  private fun getTodoFromIntent(): Todo? {
+    return viewModel.getTodo(intent.getIntExtra(id, 0))
   }
 
   companion object {
-    private const val timeStamp = "timeStamp"
+    private const val id = "id"
     private const val intent_requestCode = 1000
     fun startActivity(activity: Activity, todo: Todo, circle: View, icon: View) {
       if (activity.checkIsMaterialVersion()) {
         val intent = Intent(activity, TodoDetailActivity::class.java)
-        intent.putExtra(timeStamp, todo.timeStamp.toString())
+        intent.putExtra(id, todo.id)
         val p1 = Pair.create(circle, ViewCompat.getTransitionName(circle))
         val p2 = Pair.create(icon, ViewCompat.getTransitionName(icon))
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, p1, p2)
         activity.startActivityForResult(intent, intent_requestCode, options.toBundle())
       } else {
-        activity.startActivity<TodoDetailActivity>(timeStamp to todo.timeStamp)
+        activity.startActivity<TodoDetailActivity>(id to todo.id)
       }
     }
   }
