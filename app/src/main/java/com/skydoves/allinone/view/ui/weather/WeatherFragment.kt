@@ -26,13 +26,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.scwang.smartrefresh.header.PhoenixHeader
 import com.skydoves.allinone.R
+import com.skydoves.allinone.bus.LiveDataBus
 import com.skydoves.allinone.extension.applyPm10Color
 import com.skydoves.allinone.extension.applyPm25Color
+import com.skydoves.allinone.extension.observeEventBus
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.LocalUtils
+import com.skydoves.allinone.utils.PowerMenuUtils
 import com.skydoves.allinone.view.ui.setting.local.LocalActivity
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_weather.*
 import kotlinx.android.synthetic.main.layout_weather_list.*
@@ -46,6 +52,7 @@ class WeatherFragment : Fragment() {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, WeatherViewModel::class) }
+  private lateinit var powerMenu: PowerMenu
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -59,6 +66,8 @@ class WeatherFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     initializeUI()
+    observeLiveData()
+    observeEvents()
   }
 
   private fun initializeUI() {
@@ -70,14 +79,17 @@ class WeatherFragment : Fragment() {
         viewModel.publishInitData()
         toast(getString(R.string.label_refresh_weather))
       }
+      this.powerMenu =
+        PowerMenuUtils.getWeatherSettingPowerMenu(it,
+          lifecycleOwner = this,
+          onMenuItemClickListener = onPowerMenuItemClickListener)
     }
-    layout_location.setOnClickListener { startActivity<LocalActivity>() }
+    setting.setOnClickListener { powerMenu.showAsAnchorRightTop(it) }
     local.text = LocalUtils.getLocalName(viewModel.getLocal())
     degree.text = viewModel.getWeather().weather?.temp?.toInt().toString()
     reh.text = viewModel.getWeather().weather?.reh.toString()
     pm10.text = viewModel.getWeather().air?.pm10Value.toString()
     pm25.text = viewModel.getWeather().air?.pm25Value.toString()
-    observeLiveData()
   }
 
   private fun observeLiveData() {
@@ -111,4 +123,19 @@ class WeatherFragment : Fragment() {
       toast(it)
     }
   }
+
+  private fun observeEvents() {
+    observeEventBus<Int>(LiveDataBus.EVENT_CHANGED_WEATHER_LOCAL) {
+      initializeUI()
+    }
+  }
+
+  private val onPowerMenuItemClickListener =
+    OnMenuItemClickListener<PowerMenuItem> { position, _ ->
+      when (position) {
+        1 -> startActivity<LocalActivity>()
+        2 -> Unit
+      }
+      powerMenu.dismiss()
+    }
 }

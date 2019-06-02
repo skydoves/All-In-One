@@ -92,7 +92,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       initializeWaterDrop(it)
       initializeGraph()
       this.powerMenu =
-        PowerMenuUtils.getSettingPowerMenu(it,
+        PowerMenuUtils.getWaterDrinkSettingPowerMenu(it,
           lifecycleOwner = this,
           onMenuItemClickListener = onPowerMenuItemClickListener)
     }

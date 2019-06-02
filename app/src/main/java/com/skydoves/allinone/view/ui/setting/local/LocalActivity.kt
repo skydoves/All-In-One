@@ -22,6 +22,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
+import com.skydoves.allinone.bus.LiveDataBus
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.LocalUtils
 import dagger.android.AndroidInjection
@@ -64,6 +65,7 @@ class LocalActivity : AppCompatActivity() {
   private fun setLocal() {
     if (this.local != -1) {
       viewModel.setLocal(this.local)
+      LiveDataBus.sendEvent(LiveDataBus.EVENT_CHANGED_WEATHER_LOCAL, 0)
       toast(getString(R.string.toast_change_local))
       finish()
     } else {

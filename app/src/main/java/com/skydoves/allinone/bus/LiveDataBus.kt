@@ -25,6 +25,7 @@ object LiveDataBus {
   private val sEventMap = SparseArray<EventLiveData>()
 
   const val EVENT_CHANGED_WATER_DRINK = 0
+  const val EVENT_CHANGED_WEATHER_LOCAL = 1
 
   private fun getLiveData(eventId: Int): EventLiveData {
     var liveData: EventLiveData? = sEventMap.get(eventId)

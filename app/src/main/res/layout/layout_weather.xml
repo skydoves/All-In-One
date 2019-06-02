@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smartrefresh.layout.SmartRefreshLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/refreshLayout"
@@ -11,16 +10,12 @@
     android:id="@+id/layout_weather"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg_morning">
+    android:background="@drawable/bg_morning"
+    android:orientation="vertical">
 
-    <com.skydoves.elasticviews.ElasticLayout
-      android:id="@+id/layout_location"
+    <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_backgroundColor="@android:color/transparent"
-      app:layout_duration="150"
-      app:layout_scale="0.75">
+      android:layout_height="wrap_content">
 
       <TextView
         android:id="@+id/local"
@@ -32,15 +27,26 @@
         android:textColor="@color/white_two"
         android:textSize="25sp"
         tools:text="서울특별시" />
-    </com.skydoves.elasticviews.ElasticLayout>
+
+      <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/setting"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_hamburger"
+        app:imageview_duration="80"
+        app:imageview_scale="0.75" />
+    </RelativeLayout>
 
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:paddingLeft="40dp"
-      android:paddingRight="40dp"
-      android:paddingTop="20dp">
+      android:paddingTop="20dp"
+      android:paddingRight="40dp">
 
       <LinearLayout
         android:layout_width="wrap_content"
@@ -146,8 +152,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="10"
->
+        android:weightSum="10">
 
         <LinearLayout
           android:layout_width="0dp"
@@ -158,8 +163,8 @@
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginStart="15dp"
+            android:gravity="center"
             android:text="@string/label_pm10"
             android:textColor="@color/white_three"
             android:textSize="21sp" />
@@ -168,8 +173,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="5dp"
             android:alpha="0.8"
             android:background="@color/white" />
@@ -178,9 +183,9 @@
             android:id="@+id/pm10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginStart="15dp"
             android:layout_marginBottom="25dp"
+            android:gravity="center"
             android:textColor="@color/white_three"
             android:textSize="21sp"
             tools:text="40" />
@@ -195,8 +200,8 @@
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginStart="15dp"
+            android:gravity="center"
             android:text="@string/label_pm25"
             android:textColor="@color/white_three"
             android:textSize="21sp" />
@@ -205,8 +210,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="5dp"
             android:alpha="0.8"
             android:background="@color/white" />
@@ -215,9 +220,9 @@
             android:id="@+id/pm25"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginStart="15dp"
             android:layout_marginBottom="25dp"
+            android:gravity="center"
             android:textColor="@color/white_three"
             android:textSize="21sp"
             tools:text="40" />
@@ -227,13 +232,13 @@
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
         <include
+          layout="@layout/layout_weather_list"
           android:layout_width="match_parent"
-          android:layout_height="45dp"
-          layout="@layout/layout_weather_list"/>
+          android:layout_height="45dp" />
 
         <com.github.mikephil.charting.charts.LineChart
           android:id="@+id/lineChart"
