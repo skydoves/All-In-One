@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.ml
+import com.skydoves.allinone.models.TodoType
 import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
@@ -54,7 +55,8 @@ constructor(
     waterDrinkLiveData.value = WaterDrinkItemUtils.getDummyWaterDrink()
     waterDrinks = waterDrinkLiveData.switchMap {
       waterDrinkLiveData.value?.let {
-        waterDrinkDao.getWaterDrinksByDate(WaterDrinkItemUtils.getDateString(OffsetDateTime.now())) }
+        waterDrinkDao.getWaterDrinksByDate(WaterDrinkItemUtils.getDateString(OffsetDateTime.now()))
+      }
           ?: AbsentLiveData.create()
     }
   }
@@ -76,12 +78,16 @@ constructor(
     waterDrink.timeStamp = now
     waterDrinkDao.insertWaterDrink(waterDrink)
     waterDrinkLiveData.postValue(waterDrink)
-    val todo = Todo(0, now,
-      context.getString(R.string.label_take_water),
-      "${waterDrink.amount.toString().ml()} ${context.getString(R.string.label_take_water)}",
-      ContextCompat.getColor(context, R.color.waterBlue),
-      WaterDrinkItemUtils.getWaterDrinkIcon(waterDrink.amount),
-      100)
+    val todo = Todo(
+        id = 0,
+        timeStamp = now,
+        title = context.getString(R.string.label_take_water),
+        contents = "${waterDrink.amount.toString().ml()} ${context.getString(R.string.label_take_water)}",
+        color = ContextCompat.getColor(context, R.color.waterBlue),
+        icon = WaterDrinkItemUtils.getWaterDrinkIcon(waterDrink.amount),
+        progress = 100,
+        alarmStamp = null,
+        todoType = TodoType.WaterDrink.ordinal)
     todoDao.insertTodo(todo)
   }
 }

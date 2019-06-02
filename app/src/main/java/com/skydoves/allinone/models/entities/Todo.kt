@@ -20,6 +20,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.skydoves.allinone.models.TodoType
 import org.threeten.bp.OffsetDateTime
 
 @Suppress("unused")
@@ -32,17 +33,19 @@ data class Todo(
   val color: Int,
   val icon: Int,
   var progress: Int,
-  val alarmStamp: OffsetDateTime? = null
+  val alarmStamp: OffsetDateTime? = null,
+  var todoType: Int = TodoType.Normal.ordinal
 ) : Parcelable {
   constructor(source: Parcel) : this(
-    source.readInt(),
-    source.readSerializable() as OffsetDateTime,
-    source.readString(),
-    source.readString(),
-    source.readInt(),
-    source.readInt(),
-    source.readInt(),
-    source.readSerializable() as OffsetDateTime?
+      source.readInt(),
+      source.readSerializable() as OffsetDateTime,
+      source.readString(),
+      source.readString(),
+      source.readInt(),
+      source.readInt(),
+      source.readInt(),
+      source.readSerializable() as OffsetDateTime?,
+      source.readInt()
   )
 
   override fun describeContents() = 0
@@ -56,6 +59,7 @@ data class Todo(
     writeInt(icon)
     writeInt(progress)
     writeSerializable(alarmStamp)
+    writeInt(todoType)
   }
 
   companion object {

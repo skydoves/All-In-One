@@ -39,7 +39,7 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
     trigger.value = 0
     todoList = trigger.switchMap {
       trigger.value?.let { todoDao.getTodoFromDay(DateUtils.getSinceToday()) }
-        ?: AbsentLiveData.create()
+          ?: AbsentLiveData.create()
     }
   }
 

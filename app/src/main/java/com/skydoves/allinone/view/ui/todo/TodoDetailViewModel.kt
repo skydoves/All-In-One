@@ -17,13 +17,18 @@
 package com.skydoves.allinone.view.ui.todo
 
 import androidx.lifecycle.ViewModel
+import com.skydoves.allinone.models.TodoType
 import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.persistence.room.dao.TodoDao
+import com.skydoves.allinone.persistence.room.dao.WaterDrinkDao
 import timber.log.Timber
 import javax.inject.Inject
 
 class TodoDetailViewModel @Inject
-constructor(private val todoDao: TodoDao) : ViewModel() {
+constructor(
+  private val todoDao: TodoDao,
+  private val waterDrinkDao: WaterDrinkDao
+) : ViewModel() {
 
   init {
     Timber.d("injection AddTodoViewModel")
@@ -33,5 +38,14 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
 
   fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
 
-  fun removeTodo(todo: Todo) = todoDao.removeTodo(todo)
+  fun removeTodo(todo: Todo) {
+    todoDao.removeTodo(todo)
+
+    /** case : [TodoType.WaterDrink] removes item. */
+    if (todo.todoType == TodoType.WaterDrink.ordinal) {
+      waterDrinkDao.getWaterDrink(todo.timeStamp.toString())?.let {
+        waterDrinkDao.removeWaterDrink(it)
+      }
+    }
+  }
 }
