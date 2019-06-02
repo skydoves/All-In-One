@@ -1,68 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_intro2"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/layout_intro2"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_weight="10"
+  android:background="@color/background"
+  android:orientation="vertical">
+
+  <Space
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="10"
-    android:background="@color/background"
+    android:layout_height="0dp"
+    android:layout_weight="2" />
+
+  <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_weight="5"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"/>
+    <ImageView
+      android:id="@+id/imageView2"
+      android:layout_width="230dp"
+      android:layout_height="200dp"
+      android:layout_gravity="center"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:scaleType="fitXY"
+      android:src="@drawable/calendar" />
+  </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:gravity="center"
-        android:orientation="vertical">
+  <TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_gravity="center"
+    android:layout_weight="3"
+    android:fontFamily="sans-serif-thin"
+    android:gravity="center"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:text="일일 목표 관리"
+    android:textColor="#ffffff"
+    android:textSize="28sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:layout_gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:src="@drawable/ic_alarm"
-            android:id="@+id/imageView2" />
-    </LinearLayout>
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_gravity="center"
+    android:layout_weight="3"
+    android:gravity="center"
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp"
+    android:text="'헬스케어 올인원'은 \n일일 목표 관리를 통하여\n사용자의 규칙적인 건강 습관\n형성을 도와줍니다."
+    android:textColor="#ffffff"
+    android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="3"
-        android:fontFamily="sans-serif-thin"
-        android:gravity="center"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:text="알람 시스템"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:id="@+id/textView" />
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:paddingLeft="64dp"
-        android:paddingRight="64dp"
-        android:text="'물 한잔 해요'는 \n사용자에게 규칙적인 알람 \n시스템을 제공합니다."
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="64dp" />
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="64dp" />
 </LinearLayout>

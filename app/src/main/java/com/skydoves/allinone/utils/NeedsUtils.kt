@@ -62,7 +62,7 @@ object NeedsUtils {
     }
 
     return createNeeds(context) {
-      titleIcon = ContextCompat.getDrawable(context, R.drawable.ic_drop)
+      titleIcon = ContextCompat.getDrawable(context, R.drawable.ic_launcher)
       title = context.getString(R.string.needs_title)
       titleTextForm = titleForm
       addNeedsItem(

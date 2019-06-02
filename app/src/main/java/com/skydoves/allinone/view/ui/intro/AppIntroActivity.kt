@@ -31,8 +31,8 @@ class AppIntroActivity : AppIntro() {
 
     addSlide(IntroFragment.newInstance(R.layout.layout_intro01))
     addSlide(IntroFragment.newInstance(R.layout.layout_intro02))
-    addSlide(IntroFragment.newInstance(R.layout.layout_intro02))
-    addSlide(IntroFragment.newInstance(R.layout.layout_intro02))
+    addSlide(IntroFragment.newInstance(R.layout.layout_intro03))
+    addSlide(IntroFragment.newInstance(R.layout.layout_intro04))
     setDoneText(getString(R.string.label_start))
   }
 

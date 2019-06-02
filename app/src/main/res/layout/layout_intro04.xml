@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/layout_intro1"
+  android:id="@+id/layout_intro2"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:layout_weight="10"
@@ -10,20 +10,7 @@
   <Space
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="1.7" />
-
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_gravity="center"
-    android:layout_weight="2"
-    android:fontFamily="sans-serif-thin"
-    android:gravity="center"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    android:text="헬스케이 올인원"
-    android:textColor="#ffffff"
-    android:textSize="30sp" />
+    android:layout_weight="2" />
 
   <LinearLayout
     android:layout_width="fill_parent"
@@ -33,15 +20,29 @@
     android:orientation="vertical">
 
     <ImageView
+      android:id="@+id/imageView2"
       android:layout_width="280dp"
       android:layout_height="250dp"
       android:layout_gravity="center"
       android:paddingLeft="16dp"
       android:paddingRight="16dp"
       android:scaleType="fitXY"
-      android:src="@drawable/ic_launcher_big"/>
-
+      android:src="@drawable/ic_sunny_cloud" />
   </LinearLayout>
+
+  <TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_gravity="center"
+    android:layout_weight="3"
+    android:fontFamily="sans-serif-thin"
+    android:gravity="center"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:text="날씨 및 미세먼지 정보"
+    android:textColor="#ffffff"
+    android:textSize="28sp" />
 
   <TextView
     android:layout_width="wrap_content"
@@ -51,9 +52,14 @@
     android:gravity="center"
     android:paddingLeft="64dp"
     android:paddingRight="64dp"
-    android:text="환영합니다."
+    android:text="'헬스케어 올인원'은 \n매일매일 유동적인 건강 목표를\n세울 수 있도록 일일 날씨와\n미세먼지 정보를 제공합니다."
     android:textColor="#ffffff"
-    android:textSize="20sp" />
+    android:textSize="18sp" />
+
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
 
   <TextView
     android:layout_width="fill_parent"
