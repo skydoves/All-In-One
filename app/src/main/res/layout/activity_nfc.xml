@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/appBarLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <include layout="@layout/toolbar_default" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight="4"
+      android:gravity="center"
+      android:orientation="vertical">
+
+      <ImageView
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/mobile" />
+    </LinearLayout>
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_margin="15dp"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:text="@string/label_nfc_title"
+      android:textColor="@color/colorPrimary"
+      android:textSize="17sp"
+      android:textStyle="bold" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:layout_gravity="center"
+      android:layout_weight="3"
+      android:fontFamily="sans-serif"
+      android:gravity="center"
+      android:paddingLeft="32dp"
+      android:paddingRight="32dp"
+      android:text="@string/label_write_instruction"
+      android:textColor="@color/white_two"
+      android:textSize="17sp" />
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="2">
+
+      <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/nfc_value"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@+id/nfc_value"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_glass0" />
+
+      <EditText
+        android:id="@+id/nfc_value"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:maxLength="4"
+        android:maxLines="1"
+        android:text="500"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/nfc_value"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/nfc_value"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:text="@string/label_ml"
+        android:textColor="#3d95c9"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="2">
+
+      <Button
+        android:id="@+id/write_nfc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/label_write_nfc"
+        android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="32dp" />
+  </LinearLayout>
+
+  <com.skyfishjy.library.RippleBackground
+    android:id="@+id/nfc_sticker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible"
+    app:rb_color="@color/colorPrimary"
+    app:rb_duration="3000"
+    app:rb_radius="32dp"
+    app:rb_rippleAmount="4"
+    app:rb_scale="6">
+
+    <ImageView
+      android:id="@+id/centerImage"
+      android:layout_width="128dp"
+      android:layout_height="128dp"
+      android:layout_centerInParent="true"
+      android:src="@drawable/mobile" />
+  </com.skyfishjy.library.RippleBackground>
+</RelativeLayout>

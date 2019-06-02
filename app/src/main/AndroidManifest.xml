@@ -7,6 +7,7 @@
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.NFC" />
 
   <application
     android:name=".AllInOneApplication"
@@ -24,8 +25,12 @@
       android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
         <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="all_in_one/*" />
       </intent-filter>
     </activity>
     <activity android:name=".view.ui.intro.AppIntroActivity" />
@@ -37,8 +42,8 @@
       android:name=".view.ui.todo.AddTodoActivity"
       android:windowSoftInputMode="adjustNothing" />
     <activity android:name=".view.ui.setting.local.LocalActivity" />
-    <activity
-      android:name=".view.ui.todo.TodoDetailActivity"/>
+    <activity android:name=".view.ui.todo.TodoDetailActivity" />
+    <activity android:name=".view.ui.waterdrink.WaterDrinkNfcActivity" />
   </application>
 
 </manifest>

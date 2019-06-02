@@ -191,7 +191,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
   private val onPowerMenuItemClickListener =
     OnMenuItemClickListener<PowerMenuItem> { position, _ ->
       when (position) {
-        1 -> Unit
+        1 -> startActivity<WaterDrinkNfcActivity>()
         2 -> {
           startActivity<WaterGoalActivity>()
           activity?.overridePendingUp()
