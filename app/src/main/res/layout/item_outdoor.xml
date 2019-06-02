@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:paddingLeft="12dp"
+  android:paddingTop="10dp"
+  android:paddingRight="12dp">
+
+  <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="8dp">
+
+    <RelativeLayout
+      android:id="@+id/cover"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:alpha="0.8"
+      android:background="@drawable/vertical_gradient_black_to_transparent" />
+
+    <TextView
+      android:id="@+id/title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textColor="@color/white_three"
+      android:textSize="21sp"
+      android:textStyle="bold"
+      tools:text="스트레칭" />
+  </androidx.cardview.widget.CardView>
+</LinearLayout>

@@ -25,7 +25,7 @@ import devlight.io.library.ntb.NavigationTabBar
 
 object NavigationUtils {
 
-  fun getNavigationModels(mContext: Context): ArrayList<NavigationTabBar.Model> {
+  private fun getNavigationModels(mContext: Context): ArrayList<NavigationTabBar.Model> {
     val colors = mContext.resources.getStringArray(R.array.default_preview)
     val models = ArrayList<NavigationTabBar.Model>()
     models.add(
@@ -33,7 +33,7 @@ object NavigationUtils {
         ContextCompat.getDrawable(mContext, R.drawable.ic_outdoor),
         Color.parseColor(colors[0])
       )
-        .title("야외 활동")
+        .title("액티비티")
         .badgeTitle("new")
         .build()
     )
@@ -69,7 +69,7 @@ object NavigationUtils {
         ContextCompat.getDrawable(mContext, R.drawable.ic_setting),
         ContextCompat.getColor(mContext, R.color.indigo)
       )
-        .title("환경 설정")
+        .title("환경설정")
         .badgeTitle("new")
         .build()
     )

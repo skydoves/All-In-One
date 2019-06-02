@@ -26,7 +26,7 @@ import com.skydoves.allinone.view.ui.waterdrink.WaterDrinkFragment
 import com.skydoves.allinone.view.ui.weather.WeatherFragment
 
 class MainPagerAdapter(fm: FragmentManager)
-  : FragmentPagerAdapter(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+  : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
   override fun getItem(position: Int): Fragment {
     return when (position) {
