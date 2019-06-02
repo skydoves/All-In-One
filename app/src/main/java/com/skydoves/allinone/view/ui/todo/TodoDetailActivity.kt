@@ -75,6 +75,10 @@ class TodoDetailActivity : AppCompatActivity() {
         check.image = ContextCompat.getDrawable(this, R.drawable.ic_retry)
       }
       close.setOnClickListener { onBackPressed() }
+      edit.setOnClickListener {
+        AddTodoActivity.startActivity(this, todo)
+        onBackPressed()
+      }
       check.setOnClickListener {
         if (todo.isComplete()) {
           todo.progress = 0

@@ -30,4 +30,6 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
   }
 
   fun insertTodo(todo: Todo) = todoDao.insertTodo(todo)
+
+  fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
 }

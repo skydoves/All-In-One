@@ -16,6 +16,7 @@
 
 package com.skydoves.allinone.view.ui.todo
 
+import android.app.Activity
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.TimePicker
@@ -39,6 +40,7 @@ import com.skydoves.allinone.view.viewholder.TodoIconViewHolder
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_add_todo.*
 import kotlinx.android.synthetic.main.toolbar_default.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.threeten.bp.OffsetDateTime
 import java.util.Calendar
@@ -66,6 +68,7 @@ class AddTodoActivity : AppCompatActivity(),
 
     initializeUI()
     initializeAdapter()
+    initializeEditTodoUI()
   }
 
   private fun initializeUI() {
@@ -102,8 +105,7 @@ class AddTodoActivity : AppCompatActivity(),
           icon = iconItem.resource,
           progress = 0,
           alarmStamp = alarmOffset))
-        finish()
-        toast(getString(R.string.label_added_todo))
+        finishEdit()
       } else {
         toast(getString(R.string.label_require_inputs))
       }
@@ -115,6 +117,35 @@ class AddTodoActivity : AppCompatActivity(),
     colorItem = colorAdapter.getFirstItem()
     iconAdapter.getFirstItem().isChecked = true
     iconItem = iconAdapter.getFirstItem()
+  }
+
+  private fun initializeEditTodoUI() {
+    val todo = intent.getParcelableExtra<Todo>(todoName)
+    todo?.let {
+      toolbar_title.text = getString(R.string.label_edit_item)
+      save.text = getString(R.string.label_edit)
+      todo.title?.let { input_title.setText(it) }
+      todo.contents?.let { input_content.setText(it) }
+      circle.setImageTint(todo.color)
+      circle_icon.setImageDrawable(ContextCompat.getDrawable(this, todo.icon))
+      save.setOnClickListener {
+        viewModel.updateTodo(Todo(
+          id = todo.id,
+          timeStamp = todo.timeStamp,
+          title = input_title.text.toString(),
+          contents = input_content.text.toString(),
+          color = colorItem.color,
+          icon = iconItem.resource,
+          progress = 0,
+          alarmStamp = alarmOffset))
+        finishEdit()
+      }
+    }
+  }
+
+  private fun finishEdit() {
+    toast(getString(R.string.label_added_todo))
+    finish()
   }
 
   override fun onColorItemClick(colorItem: ColorItem) {
@@ -148,5 +179,12 @@ class AddTodoActivity : AppCompatActivity(),
   override fun onBackPressed() {
     super.onBackPressed()
     overridePendingDown()
+  }
+
+  companion object {
+    const val todoName = "todo"
+    fun startActivity(activity: Activity, todo: Todo) {
+      activity.startActivity<AddTodoActivity>(todoName to todo)
+    }
   }
 }

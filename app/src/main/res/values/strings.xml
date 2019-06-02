@@ -89,4 +89,6 @@
   <string name="label_time_notification">푸시 알람 시간</string>
   <string name="label_change_location">지역 변경</string>
   <string name="label_daily_alarm">데일리 알람</string>
+  <string name="label_edit_item">아이템 편집</string>
+  <string name="label_edit">편집하기</string>
 </resources>
