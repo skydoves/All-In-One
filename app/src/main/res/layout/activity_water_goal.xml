@@ -110,7 +110,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="64dp"
             android:layout_marginRight="64dp"
-            android:background="@color/waterBlue"
+            android:background="@drawable/primary_gradient"
             android:text="@string/label_waterGoal_confirm"
             android:textColor="#ffffff" />
     </RelativeLayout>

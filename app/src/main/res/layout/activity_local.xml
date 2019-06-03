@@ -79,7 +79,7 @@
       android:layout_marginLeft="64dp"
       android:layout_marginTop="20dp"
       android:layout_marginRight="64dp"
-      android:background="#3d95c9"
+      android:background="@drawable/primary_gradient"
       android:text="@string/label_change_local"
       android:textColor="#ffffff"/>
   </LinearLayout>
