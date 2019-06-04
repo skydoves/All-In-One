@@ -3,6 +3,7 @@
 [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17) </br></br>
 __All-In-One__ is a health care application for reminding health-todo lists and helping health habits everyday.</br>
 This project based on clean android architecture components and material design & animations.
+<img src="https://user-images.githubusercontent.com/24237865/58887425-903b0100-8720-11e9-84c8-8a0ad490da5f.png" align="right" width="16%"><br>
 
 ## Build Status
 
@@ -28,7 +29,7 @@ Providing daily weather information for planning todo.
 
 Todo list for planning daily to-do.
 
-![KakaoTalk_20190602_224207277](https://user-images.githubusercontent.com/24237865/58793174-9356c400-8630-11e9-9a73-9a072403bcdd.jpg)
+![todo preview](https://user-images.githubusercontent.com/24237865/58887313-5b2eae80-8720-11e9-98be-d1838297b345.gif)
 ![KakaoTalk_20190602_230834056](https://user-images.githubusercontent.com/24237865/58793176-9356c400-8630-11e9-9a74-afeac8c5c4aa.jpg)
 ![KakaoTalk_20190602_230638942](https://user-images.githubusercontent.com/24237865/58793175-9356c400-8630-11e9-9a2d-0ae4006a0490.jpg)
 
