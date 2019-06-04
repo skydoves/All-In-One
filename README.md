@@ -22,7 +22,7 @@ Providing daily weather information for planning todo.
 
 ![KakaoTalk_20190602_211441738](https://user-images.githubusercontent.com/24237865/58792942-19263f80-8630-11e9-9b5d-2b14935ff991.jpg)
 ![KakaoTalk_20190602_211441525](https://user-images.githubusercontent.com/24237865/58792941-19263f80-8630-11e9-9752-e403d391874b.jpg)
-![KakaoTalk_20190602_211441288](https://user-images.githubusercontent.com/24237865/58792939-188da900-8630-11e9-8217-d3b02f29b3df.jpg)
+![refresh](https://user-images.githubusercontent.com/24237865/58886340-af389380-871e-11e9-8c3e-6c95b244cb02.gif)
 
 ## TODO List
 
