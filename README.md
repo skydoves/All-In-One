@@ -1,7 +1,7 @@
 # All-In-One
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17) </br></br>
-__All-In-One__ is a health care application for reminding health-todo lists and helping health habits everyday.</br>
+__All-In-One__ is a health care application for reminding health-todo lists and helping healthy habits everyday.</br>
 This project based on clean android architecture components and material design & animations.
 <img src="https://user-images.githubusercontent.com/24237865/58887425-903b0100-8720-11e9-84c8-8a0ad490da5f.png" align="right" width="16%"><br>
 
