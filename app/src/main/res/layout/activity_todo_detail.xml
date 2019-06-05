@@ -133,7 +133,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_create"
-            app:backgroundTint="@drawable/primary_gradient"
             app:elevation="0dp"
             app:fabSize="normal" />
 
@@ -143,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:src="@drawable/ic_bin"
-            app:backgroundTint="@drawable/primary_gradient"
             app:elevation="0dp"
             app:fabSize="normal" />
 
@@ -153,7 +151,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:src="@drawable/ic_check"
-            app:backgroundTint="@drawable/primary_gradient"
             app:elevation="0dp"
             app:fabSize="normal" />
         </LinearLayout>
