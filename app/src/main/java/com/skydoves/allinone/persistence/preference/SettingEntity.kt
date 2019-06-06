@@ -24,19 +24,16 @@ import com.skydoves.preferenceroom.PreferenceEntity
 @EncryptEntity("skydoves01234567")
 @PreferenceEntity("Settings")
 open class SettingEntity {
-  @JvmField
+
   @KeyName("intro")
-  val introShowed: Boolean = false
+  @JvmField val introShowed: Boolean = false
 
-  @JvmField
   @KeyName("waterGoal")
-  val waterGoal: Int = 2000
+  @JvmField val waterGoal: Int = 2000
 
-  @JvmField
   @KeyName("local")
-  val local: Int = 0
+  @JvmField val local: Int = 0
 
-  @JvmField
   @KeyName("waterColor")
-  val waterColor: Int = -1
+  @JvmField val waterColor: Int = -1
 }
