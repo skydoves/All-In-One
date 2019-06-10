@@ -33,13 +33,29 @@ Todo list for planning daily to-do.
 ![KakaoTalk_20190602_230834056](https://user-images.githubusercontent.com/24237865/58793176-9356c400-8630-11e9-9a74-afeac8c5c4aa.jpg)
 ![KakaoTalk_20190602_230638942](https://user-images.githubusercontent.com/24237865/58793175-9356c400-8630-11e9-9a2d-0ae4006a0490.jpg)
 
-## Water Drink
+## Water Drinking
 
 Another to-do screen focusing on water drinking every day.
 
 ![screenshot738375304](https://user-images.githubusercontent.com/24237865/58793648-8b4b5400-8631-11e9-8070-df60d5f8f76e.png)
 ![screenshot48865084](https://user-images.githubusercontent.com/24237865/58793278-c13c0880-8630-11e9-8710-ccfc6ac62e4e.png)
 ![screenshot1974868066](https://user-images.githubusercontent.com/24237865/58793282-c13c0880-8630-11e9-93d8-81f64a50cddf.png)
+
+## Key Features
+- [x] introduction slides and permission instruction popup.
+- [x] getting weather data from the [KMA](http://www.kma.go.kr/) via RESTful API. 
+- [x] visualizes weather data as a chart and implements pull to refresh.
+- [x] changes background as local time.
+- [x] sectioned todo list screen with google material design & animations.
+- [x] adds and edits a todo item.
+- [x] done, roll-back and delete on a todo item detail screen.
+- [x] visualizes daily water drinking amount as a dynamic water drop.
+- [x] visualizes weekly water drinking amount as a chart.
+- [x] customizes the water drop color using color picker.
+- [x] links recording water drinking amount to the todo list.
+- [x] records water drinking amout via NFC tags.
+- [ ] daily notification about the fine dust.
+- [ ] healthy exercise instructions and links to the todo list.
 
 ## Architecture
 
