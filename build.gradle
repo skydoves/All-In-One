@@ -17,7 +17,7 @@ buildscript {
         ankoVersion = '0.10.8'
         archCompomentVersion = '2.0.0'
         roomVersion = '2.1.0-rc01'
-        preferenceroomVersion = '1.1.7'
+        preferenceroomVersion = '1.1.8'
         daggerVersion = '2.22.1'
         okhttpVersion = '3.11.0'
         retrofitVersion = '2.3.0'
