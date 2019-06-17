@@ -26,14 +26,22 @@ import com.skydoves.preferenceroom.PreferenceEntity
 open class SettingEntity {
 
   @KeyName("intro")
-  @JvmField val introShowed: Boolean = false
+  @JvmField
+  val introShowed: Boolean = false
 
   @KeyName("waterGoal")
-  @JvmField val waterGoal: Int = 2000
+  @JvmField
+  val waterGoal: Int = 2000
 
   @KeyName("local")
-  @JvmField val local: Int = 0
+  @JvmField
+  val local: Int = 0
 
   @KeyName("waterColor")
-  @JvmField val waterColor: Int = -1
+  @JvmField
+  val waterColor: Int = -1
+
+  @KeyName("initTodo")
+  @JvmField
+  val initTodo: Boolean = false
 }

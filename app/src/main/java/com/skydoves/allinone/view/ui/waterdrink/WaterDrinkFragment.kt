@@ -112,21 +112,21 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     goal.text = viewModel.getWaterGoal().toString().ml()
     recommend.text = viewModel.getRecommendWater().toString().ml()
     fab_drink.setOnClickListener { startActivity<WaterDrinkSelectActivity>() }
-    duration.text = DateUtils.getFarDay(0) + " ~ " + DateUtils.getFarDay( 6)
+    duration.text = DateUtils.getFarDay(0) + " ~ " + DateUtils.getFarDay(6)
   }
 
   private fun initializeWaterDrop(context: Context) {
     val loaderBuilder = FillableLoaderBuilder()
     this.fillAbleLoader = loaderBuilder.parentView(parentView)
-        .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
-        .layoutParams(FillAbleLoaderUtils.getParams(context))
-        .originalDimensions(290, 425)
-        .fillColor(WaterDrinkItemUtils.getDefaultWaterDropColor(context, viewModel.getWaterDropColor()))
-        .strokeColor(WaterDrinkItemUtils.getDefaultWaterDropColor(context, viewModel.getWaterDropColor()))
-        .strokeDrawingDuration(0)
-        .clippingTransform(WavesClippingTransform())
-        .fillDuration(3000)
-        .build()
+      .svgPath(FillAbleLoaderPaths.SVG_WATERDROP)
+      .layoutParams(FillAbleLoaderUtils.getParams(context))
+      .originalDimensions(290, 425)
+      .fillColor(WaterDrinkItemUtils.getDefaultWaterDropColor(context, viewModel.getWaterDropColor()))
+      .strokeColor(WaterDrinkItemUtils.getDefaultWaterDropColor(context, viewModel.getWaterDropColor()))
+      .strokeDrawingDuration(0)
+      .clippingTransform(WavesClippingTransform())
+      .fillDuration(3000)
+      .build()
     percentage.bringToFront()
   }
 
@@ -134,10 +134,10 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     context?.let { context_ ->
       observeLiveDataOnce(viewModel.getWaterDrinksFromDate(DateUtils.getWeeklyBoundDateTime())) {
         LineChartUtils.setWaterDrinkLineChart(
-            context_,
-            lineChart,
-            WaterDrinkItemUtils.getWeeklyEntries(it),
-            this)
+          context_,
+          lineChart,
+          WaterDrinkItemUtils.getWeeklyEntries(it),
+          this)
         val amounts = WaterDrinkItemUtils.sumOfWaterDrinks(it)
         total.text = amounts.toString().ml()
         if (it.isNotEmpty()) {
@@ -199,15 +199,15 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
         3 -> context?.let { ColorPickerUtils.showColorPickerDialog(it, onColorEnvelopListener) }
       }
       powerMenu.dismiss()
-  }
+    }
 
   private val onColorEnvelopListener =
-      ColorEnvelopeListener { envelope, _ ->
-        viewModel.setWaterDropColor(envelope.color)
-        parentView.removeView(fillAbleLoader)
-        context?.let { initializeWaterDrop(it) }
-        FillAbleLoaderUtils.refreshPercentage(fillAbleLoader, this.percent)
-      }
+    ColorEnvelopeListener { envelope, _ ->
+      viewModel.setWaterDropColor(envelope.color)
+      parentView.removeView(fillAbleLoader)
+      context?.let { initializeWaterDrop(it) }
+      FillAbleLoaderUtils.refreshPercentage(fillAbleLoader, this.percent)
+    }
 
   override fun onNothingSelected() = Unit
 

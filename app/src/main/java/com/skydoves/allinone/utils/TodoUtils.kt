@@ -16,7 +16,11 @@
 
 package com.skydoves.allinone.utils
 
+import android.content.Context
+import androidx.core.content.ContextCompat
+import com.skydoves.allinone.R
 import com.skydoves.allinone.models.entities.Todo
+import org.threeten.bp.OffsetDateTime
 
 object TodoUtils {
 
@@ -38,5 +42,17 @@ object TodoUtils {
       }
     }
     return size
+  }
+
+  fun getDummyTodoItem(context: Context): Todo {
+    return Todo(
+      id = 0,
+      timeStamp = OffsetDateTime.now(),
+      title = "인트로",
+      contents = "앱 설치 후 인트로 및 권한 팝업 확인 완료!",
+      color = ContextCompat.getColor(context, R.color.yellow),
+      icon = R.drawable.ic_new,
+      progress = 100,
+      alarmStamp = null)
   }
 }

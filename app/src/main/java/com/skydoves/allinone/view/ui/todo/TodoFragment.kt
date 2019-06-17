@@ -75,6 +75,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
   }
 
   private fun observeLiveData() {
+    viewModel.addDummyTodo(context)
     observeLiveData(viewModel.getTodoList()) {
       task_todo.text = TodoUtils.getTodoSize(it).toString()
       task_complete.text = TodoUtils.getCompleteSize(it).toString()
