@@ -19,11 +19,11 @@ def getProperty(String filename, String propName) {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.skydoves.allinone"
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -34,6 +34,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    androidExtensions {
+        experimental = true
     }
     lintOptions {
         abortOnError false
@@ -55,7 +58,6 @@ dependencies {
     // architecture components
     implementation "androidx.lifecycle:lifecycle-extensions:$archCompomentVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataKtxVersion"
-
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     testImplementation "androidx.arch.core:core-testing:$archCompomentVersion"

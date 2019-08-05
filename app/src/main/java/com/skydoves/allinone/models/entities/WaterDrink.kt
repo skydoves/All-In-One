@@ -16,41 +16,18 @@
 
 package com.skydoves.allinone.models.entities
 
-import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.Entity
+import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 import org.threeten.bp.OffsetDateTime
 
-@Suppress("unused")
-@Entity(primaryKeys = [("timeStamp")])
+@Entity
+@Parcelize
 data class WaterDrink(
-  @NonNull var timeStamp: OffsetDateTime,
+  @PrimaryKey var timeStamp: OffsetDateTime,
   @NonNull val date: String,
   val icon: Int,
   val amount: Int
-) : Parcelable {
-  constructor(source: Parcel) : this(
-      source.readSerializable() as OffsetDateTime,
-      source.readString(),
-      source.readInt(),
-      source.readInt()
-  )
-
-  override fun describeContents() = 0
-
-  override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-    writeSerializable(timeStamp)
-    writeString(date)
-    writeInt(icon)
-    writeInt(amount)
-  }
-
-  companion object {
-    @JvmField
-    val CREATOR: Parcelable.Creator<WaterDrink> = object : Parcelable.Creator<WaterDrink> {
-      override fun createFromParcel(source: Parcel): WaterDrink = WaterDrink(source)
-      override fun newArray(size: Int): Array<WaterDrink?> = arrayOfNulls(size)
-    }
-  }
-}
+) : Parcelable
