@@ -66,22 +66,22 @@ object NeedsUtils {
       title = context.getString(R.string.needs_title)
       titleTextForm = titleForm
       addNeedsItem(
-          NeedsItem(
-              ContextCompat.getDrawable(context, R.drawable.ic_sdcard),
-              "SD Card", context.getString(R.string.needs_required), context.getString(R.string.needs_sdcard)
-          )
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_sdcard),
+          "SD Card", context.getString(R.string.needs_required), context.getString(R.string.needs_sdcard)
+        )
       )
       addNeedsItem(
-          NeedsItem(
-              ContextCompat.getDrawable(context, R.drawable.ic_network),
-              "Internet", context.getString(R.string.needs_required), context.getString(R.string.needs_internet)
-          )
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_network),
+          "Internet", context.getString(R.string.needs_required), context.getString(R.string.needs_internet)
+        )
       )
       addNeedsItem(
-          NeedsItem(
-              ContextCompat.getDrawable(context, R.drawable.ic_nfc),
-              "NFC", context.getString(R.string.needs_required), context.getString(R.string.needs_nfc)
-          )
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_nfc),
+          "NFC", context.getString(R.string.needs_required), context.getString(R.string.needs_nfc)
+        )
       )
       description = context.getString(R.string.needs_sdcard_description)
       confirm = context.getString(R.string.confirm)

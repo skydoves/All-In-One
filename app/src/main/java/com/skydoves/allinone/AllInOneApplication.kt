@@ -19,6 +19,7 @@ package com.skydoves.allinone
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.skydoves.allinone.di.DaggerAppComponent
 import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
+import com.skydoves.only.Only
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
@@ -38,6 +39,7 @@ class AllInOneApplication : DaggerApplication() {
       Timber.plant(Timber.DebugTree())
     }
 
+    Only.init(this)
     AndroidThreeTen.init(this)
     PreferenceComponent_PreferenceComponent.init(this)
   }

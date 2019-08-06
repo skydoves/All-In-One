@@ -22,13 +22,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
-import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.NavigationUtils
 import com.skydoves.allinone.utils.NeedsUtils
 import com.skydoves.allinone.view.adapter.viewpager.MainPagerAdapter
 import com.skydoves.allinone.view.ui.intro.AppIntroActivity
-import com.skydoves.needs.Needs
 import com.skydoves.needs.OnConfirmListener
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -46,16 +44,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class) }
-
-  private lateinit var needs: Needs
+  private val needs by lazy { NeedsUtils.getNeedsPopup(this, this) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-
     initializeUI()
-    observeLiveData()
+    showIntro()
   }
 
   private fun initializeUI() {
@@ -65,14 +61,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     configureNeeds()
   }
 
-  private fun observeLiveData() {
-    observeLiveData(viewModel.shouldInitialize) {
+  private fun showIntro() {
+    viewModel.showIntro {
       startActivity(Intent(this, AppIntroActivity::class.java))
     }
   }
 
   private fun configureNeeds() {
-    this.needs = NeedsUtils.getNeedsPopup(this, this)
     this.needs.setOnConfirmListener(object : OnConfirmListener {
       override fun onConfirm() {
         toast(getString(R.string.needs_confirm))

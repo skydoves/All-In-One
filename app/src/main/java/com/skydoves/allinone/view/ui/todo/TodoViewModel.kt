@@ -22,11 +22,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import com.skydoves.allinone.models.entities.Todo
-import com.skydoves.allinone.persistence.preference.PreferenceComponent_PreferenceComponent
 import com.skydoves.allinone.persistence.room.dao.TodoDao
 import com.skydoves.allinone.utils.AbsentLiveData
 import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.TodoUtils.getDummyTodoItem
+import com.skydoves.only.onlyOnce
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -35,7 +35,6 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
 
   private val trigger: MutableLiveData<Int> = MutableLiveData()
   private val todoList: LiveData<List<Todo>>
-  private val settings = PreferenceComponent_PreferenceComponent.getInstance().Settings()
 
   init {
     Timber.d("injection TodoViewModel")
@@ -51,10 +50,9 @@ constructor(private val todoDao: TodoDao) : ViewModel() {
 
   fun addDummyTodo(context: Context?) {
     if (context != null) {
-        if (!settings.initTodo) {
-          settings.putIntro(true)
-          todoDao.insertTodo(getDummyTodoItem(context))
-        }
+      onlyOnce("addDummyTodo") {
+        onDo { todoDao.insertTodo(getDummyTodoItem(context)) }
       }
+    }
   }
 }
