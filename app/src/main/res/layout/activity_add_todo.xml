@@ -155,15 +155,16 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="12dp"
           android:layout_marginBottom="60dp"
+          android:background="@color/background800"
           android:gravity="start|center_vertical"
           android:paddingStart="15dp"
-          app:button_backgroundColor="@color/background800"
+          android:text="@string/label_require_time"
+          android:textColor="@color/white"
+          android:textSize="15sp"
           app:button_duration="150"
-          app:button_labelColor="@color/white"
-          app:button_labelSize="15"
-          app:button_labelText="@string/label_require_time"
           app:button_round="10"
-          app:button_scale="0.8" />
+          app:button_scale="0.8"
+          tools:ignore="RtlSymmetry" />
       </LinearLayout>
     </LinearLayout>
   </ScrollView>
@@ -175,11 +176,11 @@
     android:layout_alignParentBottom="true"
     android:layout_gravity="bottom"
     android:alpha="0.7"
-    app:button_backgroundColor="@color/waterBlue"
+    android:background="@color/waterBlue"
+    android:text="@string/label_save"
+    android:textColor="@color/white"
+    android:textSize="15sp"
     app:button_duration="150"
-    app:button_labelColor="@color/white"
-    app:button_labelSize="15"
-    app:button_labelText="@string/label_save"
     app:button_round="10"
     app:button_scale="0.8" />
 </RelativeLayout>

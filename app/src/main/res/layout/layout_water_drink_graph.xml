@@ -1,184 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/background"
-              android:orientation="vertical">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background"
+  android:orientation="vertical">
 
   <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="0.7">
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.7">
 
     <com.skydoves.elasticviews.ElasticImageView
-        android:id="@+id/backLayout"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:padding="8dp"
-        android:src="@drawable/ic_chart"
-        android:layout_margin="15dp"
-        android:rotation="90"
-        app:imageview_duration="80"
-        app:imageview_scale="0.75"/>
+      android:id="@+id/backLayout"
+      android:layout_width="42dp"
+      android:layout_height="42dp"
+      android:layout_margin="15dp"
+      android:padding="8dp"
+      android:rotation="90"
+      android:src="@drawable/ic_chart"
+      app:imageView_duration="80"
+      app:imageView_scale="0.75" />
 
     <TextView
-        android:id="@+id/duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        tools:text="2019-10-21 ~ 2019-10-28"/>
+      android:id="@+id/duration"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="#ffffff"
+      android:textSize="20sp"
+      tools:text="2019-10-21 ~ 2019-10-28" />
   </RelativeLayout>
 
   <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="2.5">
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="2.5">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#2e3241"
-        android:orientation="horizontal"/>
+      android:layout_width="match_parent"
+      android:layout_height="2dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:background="#2e3241"
+      android:orientation="horizontal" />
 
     <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:foregroundGravity="center"/>
+      android:id="@+id/lineChart"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginStart="15dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginEnd="10dp"
+      android:layout_marginBottom="5dp"
+      android:foregroundGravity="center" />
 
     <TextView
-        android:id="@+id/chart_tv_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:text="@string/label_no_record"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff"
-        android:textSize="22sp"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+      android:id="@+id/chart_tv_message"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true"
+      android:layout_gravity="center"
+      android:text="@string/label_no_record"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="#ffffff"
+      android:textSize="22sp"
+      android:visibility="gone"
+      tools:visibility="visible" />
 
   </RelativeLayout>
 
   <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.8">
+
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="0.8">
+      android:layout_height="2dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:background="#2e3241" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#2e3241"/>
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal"
+      android:paddingStart="20dp"
+      android:paddingTop="20dp"
+      android:paddingBottom="20dp"
+      android:weightSum="3"
+      tools:ignore="RtlHardcoded">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+      <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:weightSum="3"
-        android:paddingStart="20dp"
-        tools:ignore="RtlHardcoded">
-
-      <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:text="@string/label_drink_total"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#3d95c9"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:scrollbars="vertical"
+          android:text="@string/label_drink_total"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:textColor="#3d95c9"
+          android:textSize="15sp"
+          android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#ffffff"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="1000 ml"/>
+          android:id="@+id/total"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="#ffffff"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          tools:text="1000 ml" />
       </LinearLayout>
 
       <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/chart_tv02"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:text="@string/label_water_average"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#3d95c9"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+          android:id="@+id/chart_tv02"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:scrollbars="vertical"
+          android:text="@string/label_water_average"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:textColor="#3d95c9"
+          android:textSize="15sp"
+          android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/average"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#ffffff"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="1000 ml"/>
+          android:id="@+id/average"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="#ffffff"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          tools:text="1000 ml" />
       </LinearLayout>
 
       <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/today"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:text="@string/label_selected_day"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#3d95c9"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+          android:id="@+id/today"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:scrollbars="vertical"
+          android:text="@string/label_selected_day"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:textColor="#3d95c9"
+          android:textSize="15sp"
+          android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/today_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#ffffff"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="금요일"/>
+          android:id="@+id/today_amount"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="#ffffff"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          tools:text="금요일" />
       </LinearLayout>
     </LinearLayout>
   </RelativeLayout>

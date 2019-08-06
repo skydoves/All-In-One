@@ -32,7 +32,7 @@ buildscript {
         balloonVersion = '1.0.1'
         powermenuVersion = '2.1.0'
         colorpickerviewVersion = '2.1.5'
-        elasticviewVersion = '2.0.3'
+        elasticviewVersion = '2.0.4'
         mpChartVersion = 'v2.1.6'
         rippleVersion = '1.0.1'
         smartRefreshVersion = '1.1.0-andx-8'

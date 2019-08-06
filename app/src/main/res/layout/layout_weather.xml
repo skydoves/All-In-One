@@ -36,8 +36,8 @@
         android:layout_margin="15dp"
         android:padding="8dp"
         android:src="@drawable/ic_hamburger"
-        app:imageview_duration="80"
-        app:imageview_scale="0.75" />
+        app:imageView_duration="80"
+        app:imageView_scale="0.75" />
     </RelativeLayout>
 
     <LinearLayout

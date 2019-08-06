@@ -16,36 +16,36 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="0.7">
-      
+
       <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/more"
         android:layout_width="47dp"
         android:layout_height="47dp"
+        android:layout_margin="15dp"
         android:padding="8dp"
         android:src="@drawable/ic_chart"
-        android:layout_margin="15dp"
-        app:imageview_duration="80"
-        app:imageview_scale="0.75"/>
+        app:imageView_duration="80"
+        app:imageView_scale="0.75" />
 
       <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/setting"
         android:layout_width="47dp"
         android:layout_height="47dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
         android:padding="8dp"
         android:src="@drawable/ic_hamburger"
-        android:layout_margin="15dp"
-        android:layout_alignParentEnd="true"
-        app:imageview_duration="80"
-        app:imageview_scale="0.75"/>
+        app:imageView_duration="80"
+        app:imageView_scale="0.75" />
 
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:text="@string/label_today_drink"
         android:textColor="@color/white"
-        android:textSize="23sp"
-        android:layout_centerInParent="true" />
+        android:textSize="23sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -61,7 +61,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/preview"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
       <TextView
         android:id="@+id/label_goal"
@@ -141,7 +141,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/preview"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
       <LinearLayout
         android:layout_width="match_parent"

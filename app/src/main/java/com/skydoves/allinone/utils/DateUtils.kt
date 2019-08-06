@@ -53,7 +53,7 @@ object DateUtils {
       val dateFormat = SimpleDateFormat("yyyy-M-d", Locale.KOREA)
       val nDate = dateFormat.parse(getFarDay(0))
       val cal = Calendar.getInstance()
-      cal.time = nDate
+      nDate?.let { cal.time = it }
       return cal.get(Calendar.DAY_OF_WEEK) - 1
     } catch (e: ParseException) {
       e.printStackTrace()
