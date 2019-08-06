@@ -35,6 +35,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    androidExtensions {
+        experimental = true
+    }
     lintOptions {
         abortOnError false
     }
@@ -55,7 +58,6 @@ dependencies {
     // architecture components
     implementation "androidx.lifecycle:lifecycle-extensions:$archCompomentVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataKtxVersion"
-
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     testImplementation "androidx.arch.core:core-testing:$archCompomentVersion"

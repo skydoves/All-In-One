@@ -16,15 +16,15 @@
 
 package com.skydoves.allinone.models.entities
 
-import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.skydoves.allinone.models.TodoType
+import kotlinx.android.parcel.Parcelize
 import org.threeten.bp.OffsetDateTime
 
-@Suppress("unused")
 @Entity
+@Parcelize
 data class Todo(
   @PrimaryKey(autoGenerate = true) val id: Int,
   val timeStamp: OffsetDateTime,
@@ -36,40 +36,6 @@ data class Todo(
   val alarmStamp: OffsetDateTime? = null,
   var todoType: Int = TodoType.Normal.ordinal
 ) : Parcelable {
-  constructor(source: Parcel) : this(
-      source.readInt(),
-      source.readSerializable() as OffsetDateTime,
-      source.readString(),
-      source.readString(),
-      source.readInt(),
-      source.readInt(),
-      source.readInt(),
-      source.readSerializable() as OffsetDateTime?,
-      source.readInt()
-  )
-
-  override fun describeContents() = 0
-
-  override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-    writeInt(id)
-    writeSerializable(timeStamp)
-    writeString(title)
-    writeString(contents)
-    writeInt(color)
-    writeInt(icon)
-    writeInt(progress)
-    writeSerializable(alarmStamp)
-    writeInt(todoType)
-  }
-
-  companion object {
-    @JvmField
-    val CREATOR: Parcelable.Creator<Todo> = object : Parcelable.Creator<Todo> {
-      override fun createFromParcel(source: Parcel): Todo = Todo(source)
-      override fun newArray(size: Int): Array<Todo?> = arrayOfNulls(size)
-    }
-  }
-
   fun isComplete(): Boolean {
     return this.progress >= 100
   }
