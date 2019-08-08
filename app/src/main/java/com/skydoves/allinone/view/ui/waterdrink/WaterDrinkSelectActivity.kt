@@ -17,12 +17,12 @@
 package com.skydoves.allinone.view.ui.waterdrink
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.allinone.R
 import com.skydoves.allinone.extension.observeLiveData
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.WaterDrink
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import com.skydoves.allinone.view.adapter.recyclerView.WaterItemAdapter
@@ -36,7 +36,7 @@ class WaterDrinkSelectActivity : AppCompatActivity(), WaterItemViewHolder.Delega
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
+  private val viewModel by viewModels<WaterDrinkViewModel> { viewModelFactory }
 
   private var amount = -1
   private val adapter by lazy { WaterItemAdapter(this) }

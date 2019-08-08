@@ -18,12 +18,12 @@ package com.skydoves.allinone.view.ui.setting.local
 
 import android.content.DialogInterface
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.bus.LiveDataBus
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.LocalUtils
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_local.*
@@ -34,7 +34,7 @@ class LocalActivity : AppCompatActivity() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, LocalViewModel::class) }
+  private val viewModel by viewModels<LocalViewModel> { viewModelFactory }
 
   private var local: Int = -1
 

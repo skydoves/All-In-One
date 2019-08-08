@@ -22,10 +22,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.OutDoor
 import com.skydoves.allinone.view.adapter.recyclerView.OutdoorAdapter
 import com.skydoves.allinone.view.viewholder.OutdoorViewHolder
@@ -35,30 +35,30 @@ import javax.inject.Inject
 
 class OutdoorFragment : Fragment(), OutdoorViewHolder.Delegate {
 
-  @Inject
-  lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, OutDoorViewModel::class) }
-  private val adapter by lazy { OutdoorAdapter(this) }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<OutDoorViewModel> { viewModelFactory }
+    private val adapter by lazy { OutdoorAdapter(this) }
 
-  override fun onAttach(context: Context) {
-    AndroidSupportInjection.inject(this)
-    super.onAttach(context)
-  }
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.layout_outdoor, container, false)
-  }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.layout_outdoor, container, false)
+    }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    initializeUI()
-  }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initializeUI()
+    }
 
-  private fun initializeUI() {
-    recyclerView.layoutManager = LinearLayoutManager(context)
-    recyclerView.adapter = adapter
-  }
+    private fun initializeUI() {
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+    }
 
-  override fun onItemClick(outDoor: OutDoor) {
-  }
+    override fun onItemClick(outDoor: OutDoor) {
+    }
 }

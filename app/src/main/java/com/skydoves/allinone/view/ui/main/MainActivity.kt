@@ -18,11 +18,11 @@ package com.skydoves.allinone.view.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.NavigationUtils
 import com.skydoves.allinone.utils.NeedsUtils
 import com.skydoves.allinone.view.adapter.viewpager.MainPagerAdapter
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class) }
+  private val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
   private val needs by lazy { NeedsUtils.getNeedsPopup(this, this) }
 
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -22,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.allinone.R
@@ -30,7 +31,7 @@ import com.skydoves.allinone.extension.fadeOut
 import com.skydoves.allinone.extension.isVisible
 import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.slideFromRightAnimation
-import com.skydoves.allinone.extension.vm
+
 import com.skydoves.allinone.models.entities.Todo
 import com.skydoves.allinone.utils.TodoUtils
 import com.skydoves.allinone.view.adapter.recyclerView.TodoListAdapter
@@ -46,7 +47,7 @@ class TodoFragment : Fragment(), TodoViewHolder.Delegate {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, TodoViewModel::class) }
+  private val viewModel by viewModels<TodoViewModel> { viewModelFactory }
   private val adapter by lazy { TodoListAdapter(context, this) }
 
   override fun onAttach(context: Context) {

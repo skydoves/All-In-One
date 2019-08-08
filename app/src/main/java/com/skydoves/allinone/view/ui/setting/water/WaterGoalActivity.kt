@@ -17,12 +17,12 @@
 package com.skydoves.allinone.view.ui.setting.water
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
 import com.skydoves.allinone.bus.LiveDataBus
 import com.skydoves.allinone.extension.overridePendingDown
-import com.skydoves.allinone.extension.vm
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_water_goal.*
 import org.jetbrains.anko.toast
@@ -32,7 +32,7 @@ class WaterGoalActivity : AppCompatActivity() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, WaterGoalViewModel::class) }
+  private val viewModel by viewModels<WaterGoalViewModel> { viewModelFactory }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)

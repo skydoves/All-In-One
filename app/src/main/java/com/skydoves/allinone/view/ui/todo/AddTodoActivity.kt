@@ -20,6 +20,7 @@ import android.app.Activity
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.TimePicker
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -29,7 +30,6 @@ import com.skydoves.allinone.extension.overridePendingDown
 import com.skydoves.allinone.extension.setImageTint
 import com.skydoves.allinone.extension.textWatcher
 import com.skydoves.allinone.extension.toTodayFormat
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.ColorItem
 import com.skydoves.allinone.models.IconItem
 import com.skydoves.allinone.models.entities.Todo
@@ -52,8 +52,7 @@ class AddTodoActivity : AppCompatActivity(),
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, AddTodoViewModel::class) }
-
+  private val viewModel by viewModels<AddTodoViewModel> { viewModelFactory }
   private val colorAdapter by lazy { TodoColorAdapter(this, this) }
   private val iconAdapter by lazy { TodoIconAdapter(this) }
 

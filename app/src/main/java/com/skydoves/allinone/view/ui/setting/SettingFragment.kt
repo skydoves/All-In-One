@@ -22,9 +22,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.view.ui.main.MainActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -33,7 +33,7 @@ class SettingFragment : Fragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, MainActivityViewModel::class) }
+  private val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)

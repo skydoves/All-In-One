@@ -21,6 +21,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.transition.Explode
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
@@ -32,7 +33,6 @@ import com.skydoves.allinone.extension.checkIsMaterialVersion
 import com.skydoves.allinone.extension.gone
 import com.skydoves.allinone.extension.setImageTint
 import com.skydoves.allinone.extension.toDateString
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.models.entities.Todo
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_todo_detail.*
@@ -45,7 +45,7 @@ class TodoDetailActivity : AppCompatActivity() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, TodoDetailViewModel::class) }
+  private val viewModel by viewModels<TodoDetailViewModel> { viewModelFactory }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

@@ -23,6 +23,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.scwang.smartrefresh.header.PhoenixHeader
 import com.skydoves.allinone.R
@@ -31,7 +32,7 @@ import com.skydoves.allinone.extension.applyPm10Color
 import com.skydoves.allinone.extension.applyPm25Color
 import com.skydoves.allinone.extension.observeEventBus
 import com.skydoves.allinone.extension.observeLiveData
-import com.skydoves.allinone.extension.vm
+
 import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.LocalUtils
 import com.skydoves.allinone.utils.PowerMenuUtils
@@ -51,7 +52,7 @@ class WeatherFragment : Fragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, WeatherViewModel::class) }
+  private val viewModel by viewModels<WeatherViewModel> { viewModelFactory }
   private lateinit var powerMenu: PowerMenu
 
   override fun onAttach(context: Context) {

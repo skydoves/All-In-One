@@ -28,16 +28,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "GOKR_API_KEY", "\"${getProperty("local.properties", "gokr_api_key")}\""
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
     androidExtensions {
         experimental = true
@@ -50,6 +54,10 @@ android {
 dependencies {
     // support library
     implementation "androidx.appcompat:appcompat:$accompatVersion"
+    implementation "androidx.activity:activity:$androidActivity"
+    implementation "androidx.activity:activity-ktx:$androidActivity"
+    implementation "androidx.fragment:fragment:$androidFragment"
+    implementation "androidx.fragment:fragment-ktx:$androidFragment"
     implementation "androidx.palette:palette:$androidxVersion"
     implementation "androidx.cardview:cardview:$androidxVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
@@ -60,8 +68,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko:$ankoVersion"
 
     // architecture components
-    implementation "androidx.lifecycle:lifecycle-extensions:$archCompomentVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     testImplementation "androidx.arch.core:core-testing:$archCompomentVersion"
@@ -106,6 +114,9 @@ dependencies {
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:$smartRefreshVersion"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$smartRefreshVersion"
     implementation "com.skyfishjy.ripplebackground:library:$rippleVersion"
+
+    // multi dex
+    implementation "com.android.support:multidex:1.0.3"
 
     // debugging
     implementation "com.jakewharton.timber:timber:$timberVersion"

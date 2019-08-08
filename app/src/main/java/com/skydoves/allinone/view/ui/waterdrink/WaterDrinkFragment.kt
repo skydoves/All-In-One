@@ -23,6 +23,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.github.jorgecastillo.FillableLoader
 import com.github.jorgecastillo.FillableLoaderBuilder
@@ -39,7 +40,6 @@ import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.observeLiveDataOnce
 import com.skydoves.allinone.extension.overridePendingUp
 import com.skydoves.allinone.extension.visible
-import com.skydoves.allinone.extension.vm
 import com.skydoves.allinone.utils.ColorPickerUtils
 import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
@@ -64,7 +64,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
-  private val viewModel by lazy { vm(viewModelFactory, WaterDrinkViewModel::class) }
+  private val viewModel by viewModels<WaterDrinkViewModel> { viewModelFactory }
 
   private var percent: Float = 0f
   private lateinit var fillAbleLoader: FillableLoader
