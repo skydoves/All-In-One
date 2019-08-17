@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.utils
+package com.skydoves.allinone.factory
 
 import android.content.Context
 import android.graphics.Color
@@ -23,47 +23,17 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.allinone.R
 import com.skydoves.powermenu.MenuAnimation
-import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
 
-object PowerMenuUtils {
+class WeatherMenuFactory : PowerMenu.Factory() {
 
-  fun getWaterDrinkSettingPowerMenu(
-    context: Context,
-    lifecycleOwner: LifecycleOwner,
-    onMenuItemClickListener: OnMenuItemClickListener<PowerMenuItem>
-  ): PowerMenu {
-    return PowerMenu.Builder(context)
-      .addItem(PowerMenuItem(context.getString(R.string.label_settings), true))
-      .addItem(PowerMenuItem(context.getString(R.string.label_nfc), false))
-      .addItem(PowerMenuItem(context.getString(R.string.label_target), false))
-      .addItem(PowerMenuItem(context.getString(R.string.label_color_drop), false))
-      .setLifecycleOwner(lifecycleOwner)
-      .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
-      .setMenuRadius(13f)
-      .setMenuShadow(10f)
-      .setTextColor(Color.WHITE)
-      .setTextGravity(Gravity.CENTER)
-      .setMenuColor(ContextCompat.getColor(context, R.color.background800))
-      .setSelectedTextColor(ContextCompat.getColor(context, R.color.white))
-      .setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
-      .setSelectedEffect(false)
-      .setShowBackground(false)
-      .setOnMenuItemClickListener(onMenuItemClickListener)
-      .build()
-  }
-
-  fun getWeatherSettingPowerMenu(
-    context: Context,
-    lifecycleOwner: LifecycleOwner,
-    onMenuItemClickListener: OnMenuItemClickListener<PowerMenuItem>
-  ): PowerMenu {
+  override fun create(context: Context, lifecycle: LifecycleOwner): PowerMenu {
     return PowerMenu.Builder(context)
       .addItem(PowerMenuItem(context.getString(R.string.label_settings), true))
       .addItem(PowerMenuItem(context.getString(R.string.label_change_location), false))
       .addItem(PowerMenuItem(context.getString(R.string.label_daily_alarm), false))
-      .setLifecycleOwner(lifecycleOwner)
+      .setLifecycleOwner(lifecycle)
       .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
       .setMenuRadius(13f)
       .setMenuShadow(10f)
@@ -74,7 +44,6 @@ object PowerMenuUtils {
       .setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
       .setSelectedEffect(false)
       .setShowBackground(false)
-      .setOnMenuItemClickListener(onMenuItemClickListener)
       .build()
   }
 }

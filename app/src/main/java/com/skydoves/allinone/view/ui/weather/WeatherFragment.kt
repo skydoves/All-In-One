@@ -32,14 +32,13 @@ import com.skydoves.allinone.extension.applyPm10Color
 import com.skydoves.allinone.extension.applyPm25Color
 import com.skydoves.allinone.extension.observeEventBus
 import com.skydoves.allinone.extension.observeLiveData
-
+import com.skydoves.allinone.factory.WeatherMenuFactory
 import com.skydoves.allinone.utils.LineChartUtils
 import com.skydoves.allinone.utils.LocalUtils
-import com.skydoves.allinone.utils.PowerMenuUtils
 import com.skydoves.allinone.view.ui.setting.local.LocalActivity
 import com.skydoves.powermenu.OnMenuItemClickListener
-import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import com.skydoves.powermenu.kotlin.powerMenu
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_weather.*
 import kotlinx.android.synthetic.main.layout_weather_list.*
@@ -53,7 +52,7 @@ class WeatherFragment : Fragment() {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by viewModels<WeatherViewModel> { viewModelFactory }
-  private lateinit var powerMenu: PowerMenu
+  private val settingMenu by powerMenu(WeatherMenuFactory::class)
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -80,12 +79,9 @@ class WeatherFragment : Fragment() {
         viewModel.publishInitData()
         toast(getString(R.string.label_refresh_weather))
       }
-      this.powerMenu =
-        PowerMenuUtils.getWeatherSettingPowerMenu(it,
-          lifecycleOwner = this,
-          onMenuItemClickListener = onPowerMenuItemClickListener)
+      this.settingMenu.onMenuItemClickListener = onPowerMenuItemClickListener
     }
-    setting.setOnClickListener { powerMenu.showAsAnchorRightTop(it) }
+    setting.setOnClickListener { settingMenu.showAsAnchorRightTop(it) }
     local.text = LocalUtils.getLocalName(viewModel.getLocal())
     degree.text = viewModel.getWeather().weather?.temp?.toInt().toString()
     reh.text = viewModel.getWeather().weather?.reh.toString()
@@ -137,6 +133,6 @@ class WeatherFragment : Fragment() {
         1 -> startActivity<LocalActivity>()
         2 -> Unit
       }
-      powerMenu.dismiss()
+      settingMenu.dismiss()
     }
 }

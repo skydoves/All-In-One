@@ -61,6 +61,7 @@ dependencies {
     implementation "androidx.palette:palette:$androidxVersion"
     implementation "androidx.cardview:cardview:$androidxVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
+
     implementation "com.google.android.material:material:$materialVersion"
 
     // kotlin

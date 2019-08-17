@@ -40,18 +40,18 @@ import com.skydoves.allinone.extension.observeLiveData
 import com.skydoves.allinone.extension.observeLiveDataOnce
 import com.skydoves.allinone.extension.overridePendingUp
 import com.skydoves.allinone.extension.visible
+import com.skydoves.allinone.factory.WaterDrinkMenuFactory
 import com.skydoves.allinone.utils.ColorPickerUtils
 import com.skydoves.allinone.utils.DateUtils
 import com.skydoves.allinone.utils.FillAbleLoaderPaths
 import com.skydoves.allinone.utils.FillAbleLoaderUtils
 import com.skydoves.allinone.utils.LineChartUtils
-import com.skydoves.allinone.utils.PowerMenuUtils
 import com.skydoves.allinone.utils.WaterDrinkItemUtils
 import com.skydoves.allinone.view.ui.setting.water.WaterGoalActivity
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import com.skydoves.powermenu.OnMenuItemClickListener
-import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import com.skydoves.powermenu.kotlin.powerMenu
 import com.yalantis.guillotine.animation.GuillotineAnimation
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.layout_water_drink_graph.*
@@ -69,7 +69,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
   private var percent: Float = 0f
   private lateinit var fillAbleLoader: FillableLoader
   private lateinit var layoutMenu: GuillotineAnimation
-  private lateinit var powerMenu: PowerMenu
+  private val settingMenu by powerMenu(WaterDrinkMenuFactory::class)
 
   override fun onAttach(context: Context) {
     AndroidSupportInjection.inject(this)
@@ -91,10 +91,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     context?.let {
       initializeWaterDrop(it)
       initializeGraph()
-      this.powerMenu =
-        PowerMenuUtils.getWaterDrinkSettingPowerMenu(it,
-          lifecycleOwner = this,
-          onMenuItemClickListener = onPowerMenuItemClickListener)
+      this.settingMenu.onMenuItemClickListener = onPowerMenuItemClickListener
     }
 
     inflateGraphLayout()
@@ -107,7 +104,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       layoutMenu.close()
       fab_drink.visible()
     }
-    setting.setOnClickListener { powerMenu.showAsAnchorRightTop(it) }
+    setting.setOnClickListener { settingMenu.showAsAnchorRightTop(it) }
 
     goal.text = viewModel.getWaterGoal().toString().ml()
     recommend.text = viewModel.getRecommendWater().toString().ml()
@@ -198,7 +195,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
         }
         3 -> context?.let { ColorPickerUtils.showColorPickerDialog(it, onColorEnvelopListener) }
       }
-      powerMenu.dismiss()
+      settingMenu.dismiss()
     }
 
   private val onColorEnvelopListener =
