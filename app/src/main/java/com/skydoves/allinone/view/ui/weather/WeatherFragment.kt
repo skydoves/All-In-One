@@ -79,9 +79,9 @@ class WeatherFragment : Fragment() {
         viewModel.publishInitData()
         toast(getString(R.string.label_refresh_weather))
       }
-      this.settingMenu.onMenuItemClickListener = onPowerMenuItemClickListener
+      this.settingMenu?.onMenuItemClickListener = onPowerMenuItemClickListener
     }
-    setting.setOnClickListener { settingMenu.showAsAnchorRightTop(it) }
+    setting.setOnClickListener { settingMenu?.showAsAnchorRightTop(it) }
     local.text = LocalUtils.getLocalName(viewModel.getLocal())
     degree.text = viewModel.getWeather().weather?.temp?.toInt().toString()
     reh.text = viewModel.getWeather().weather?.reh.toString()
@@ -133,6 +133,6 @@ class WeatherFragment : Fragment() {
         1 -> startActivity<LocalActivity>()
         2 -> Unit
       }
-      settingMenu.dismiss()
+      settingMenu?.dismiss()
     }
 }

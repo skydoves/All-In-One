@@ -91,7 +91,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
     context?.let {
       initializeWaterDrop(it)
       initializeGraph()
-      this.settingMenu.onMenuItemClickListener = onPowerMenuItemClickListener
+      this.settingMenu?.onMenuItemClickListener = onPowerMenuItemClickListener
     }
 
     inflateGraphLayout()
@@ -104,7 +104,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
       layoutMenu.close()
       fab_drink.visible()
     }
-    setting.setOnClickListener { settingMenu.showAsAnchorRightTop(it) }
+    setting.setOnClickListener { settingMenu?.showAsAnchorRightTop(it) }
 
     goal.text = viewModel.getWaterGoal().toString().ml()
     recommend.text = viewModel.getRecommendWater().toString().ml()
@@ -195,7 +195,7 @@ class WaterDrinkFragment : Fragment(), OnChartValueSelectedListener {
         }
         3 -> context?.let { ColorPickerUtils.showColorPickerDialog(it, onColorEnvelopListener) }
       }
-      settingMenu.dismiss()
+      settingMenu?.dismiss()
     }
 
   private val onColorEnvelopListener =
