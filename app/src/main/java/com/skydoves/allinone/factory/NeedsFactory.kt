@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.allinone.utils
+package com.skydoves.allinone.factory
 
 import android.content.Context
 import android.graphics.Typeface
@@ -29,9 +29,9 @@ import com.skydoves.needs.needsItemTheme
 import com.skydoves.needs.needsTheme
 import com.skydoves.needs.textForm
 
-object NeedsUtils {
+class NeedsFactory : Needs.Factory() {
 
-  fun getNeedsPopup(context: Context, owner: LifecycleOwner): Needs {
+  override fun create(context: Context, lifecycle: LifecycleOwner): Needs {
     val titleForm = textForm(context) {
       textSize = 18
       textStyle = Typeface.BOLD
@@ -86,7 +86,7 @@ object NeedsUtils {
       description = context.getString(R.string.needs_sdcard_description)
       confirm = context.getString(R.string.confirm)
       backgroundAlpha = 0.6f
-      lifecycleOwner = owner
+      lifecycleOwner = lifecycle
       needsTheme = theme
       needsItemTheme = itemTheme
       needsAnimation = NeedsAnimation.CIRCULAR

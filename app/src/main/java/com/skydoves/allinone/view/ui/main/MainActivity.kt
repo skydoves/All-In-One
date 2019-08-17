@@ -23,11 +23,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skydoves.allinone.R
+import com.skydoves.allinone.factory.NeedsFactory
 import com.skydoves.allinone.utils.NavigationUtils
-import com.skydoves.allinone.utils.NeedsUtils
 import com.skydoves.allinone.view.adapter.viewpager.MainPagerAdapter
 import com.skydoves.allinone.view.ui.intro.AppIntroActivity
 import com.skydoves.needs.OnConfirmListener
+import com.skydoves.needs.needs
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
   private val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
-  private val needs by lazy { NeedsUtils.getNeedsPopup(this, this) }
+  private val need by needs(NeedsFactory::class)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
@@ -68,14 +69,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
   }
 
   private fun configureNeeds() {
-    this.needs.setOnConfirmListener(object : OnConfirmListener {
+    this.need.setOnConfirmListener(object : OnConfirmListener {
       override fun onConfirm() {
         toast(getString(R.string.needs_confirm))
-        needs.dismiss()
+        need.dismiss()
       }
     })
     viewpager.viewTreeObserver.addOnGlobalLayoutListener {
-      needs.show(viewpager)
+      need.show(viewpager)
     }
   }
 
